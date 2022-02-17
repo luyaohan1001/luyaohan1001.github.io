@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mazda3 Sedan on 00001001</title>
+    <link>http://luyaohan1001.github.io/mazda3-sedan/</link>
+    <description>Recent content in Mazda3 Sedan on 00001001</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>luyaoh@andrew.cmu.edu (Luyao Han)</managingEditor>
+    <webMaster>luyaoh@andrew.cmu.edu (Luyao Han)</webMaster>
+    <lastBuildDate>Wed, 16 Feb 2022 11:31:24 -0500</lastBuildDate>
+    
+	<atom:link href="http://luyaohan1001.github.io/mazda3-sedan/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
