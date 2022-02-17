@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Memory of California on AutoPhugo</title>
-    <link>http://example.org/memory-of-california/</link>
-    <description>Recent content in Memory of California on AutoPhugo</description>
+    <title>Memory of California on 00001001</title>
+    <link>http://luyaohan1001.github.io/memory-of-california/</link>
+    <description>Recent content in Memory of California on 00001001</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <managingEditor>kc0bfv@gmail.com (Karl Sickendick)</managingEditor>
-    <webMaster>kc0bfv@gmail.com (Karl Sickendick)</webMaster>
+    <managingEditor>luyaoh@andrew.cmu.edu (Luyao Han)</managingEditor>
+    <webMaster>luyaoh@andrew.cmu.edu (Luyao Han)</webMaster>
     <lastBuildDate>Wed, 16 Feb 2022 10:15:19 -0500</lastBuildDate>
     
-	<atom:link href="http://example.org/memory-of-california/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://luyaohan1001.github.io/memory-of-california/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
