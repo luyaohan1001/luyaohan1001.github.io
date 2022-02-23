@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bangkok Thailand on 2.4GHz</title>
+    <link>http://luyaohan1001.github.io/bangkok-thailand/</link>
+    <description>Recent content in Bangkok Thailand on 2.4GHz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>luyaoh@andrew.cmu.edu (Luyao Han)</managingEditor>
+    <webMaster>luyaoh@andrew.cmu.edu (Luyao Han)</webMaster>
+    <lastBuildDate>Tue, 22 Feb 2022 16:30:44 -0500</lastBuildDate>
+    
+	<atom:link href="http://luyaohan1001.github.io/bangkok-thailand/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
