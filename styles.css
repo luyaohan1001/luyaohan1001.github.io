@@ -25,13 +25,13 @@
         align-items: center;
     }
  
-    .logo {
+    .profile-pic {
         display: flex;
         justify-content: center;
         align-items: center;
     }
  
-    .logo img {
+    .profile-pic img {
         width: 180px;
         border-radius: 50px;
     }
@@ -50,25 +50,13 @@
         color: grey;
     }
  
-    .rightnav {
-        width: 30%;
-        text-align: right;
+    .SelfIntroduction {
+        background-color: silver;
+        height: 800px;
     }
  
-    #search {
-        padding: 5px;
-        font-size: 17px;
-        border: 2px solid grey;
-        border-radius: 9px;
-    }
- 
-    .firstsection {
-        background-color: green;
-        height: 400px;
-    }
- 
-    .secondsection {
-        background-color: blue;
+    .WorkExperience {
+        background-color: white;
         height: 400px;
     }
  
