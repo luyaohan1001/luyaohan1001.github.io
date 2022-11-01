@@ -1,16 +1,16 @@
 <style>
     * {
-        margin: 0;
-        padding: 0;
+        margin: 0px;
+        padding: 0px;
     }
  
     .navbar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: sticky;
-        top: 0;
         cursor: pointer;
+        display: flex;
+        height: 200px;
+        justify-content: center;
+        position: sticky; /* Allows the navbar to be always within the page. */
+        top: 0;
     }
  
     .background {
@@ -20,9 +20,9 @@
     }
  
     .nav-list {
-        width: 70%;
-        display: flex;
         align-items: center;
+        display: flex;
+        width: 70%;
     }
  
     .profile-pic {
@@ -32,8 +32,8 @@
     }
  
     .profile-pic img {
-        width: 180px;
-        border-radius: 50px;
+        width: 30%;
+        border-radius: 30%;
     }
  
     .nav-list li {
@@ -47,46 +47,29 @@
     }
  
     .nav-list li a:hover {
-        color: grey;
+        color: silver;
     }
  
+    section *{
+        margin: 0px;
+    }
+
     .SelfIntroduction {
         background-color: silver;
-        height: 800px;
+        height: 100%;
+        scroll-margin-top: 200px;
     }
  
-    .WorkExperience {
-        background-color: white;
-        height: 400px;
+    .Photography {
+        background-color: red;
+        height: 100%;
+        scroll-margin-top: 200px; /* Offset to the sticky navbar */
     }
- 
-    .box-main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: black;
-        max-width: 80%;
-        margin: auto;
-        height: 80%;
-    }
- 
-    .firsthalf {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
- 
-    .secondhalf {
-        width: 30%;
-    }
- 
-    .secondhalf img {
-        width: 70%;
-        border: 4px solid white;
-        border-radius: 150px;
-        display: block;
-        margin: auto;
+
+    .Cooking {
+        background-color: burlywood;
+        height: 100%;
+        scroll-margin-top: 200px;
     }
  
     .text-big {
@@ -98,50 +81,8 @@
     .text-small {
         font-size: 18px;
     }
- 
-    .btn {
-        padding: 8px 20px;
-        margin: 7px 0;
-        border: 2px solid white;
-        border-radius: 8px;
-        background: none;
-        color: white;
-        cursor: pointer;
-    }
- 
-    .btn-sm {
-        padding: 6px 10px;
-        vertical-align: middle;
-    }
- 
-    .section {
-        height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        max-width: 90%;
-        margin: auto;
-    }
- 
-    .section-Left {
-        flex-direction: row-reverse;
-    }
- 
-    .paras {
-        padding: 0px 65px;
-    }
- 
-    .thumbnail img {
-        width: 250px;
-        border: 2px solid black;
-        border-radius: 26px;
-        margin-top: 19px;
-    }
- 
-    .center {
-        text-align: center;
-    }
- 
+
+
     .text-footer {
         text-align: center;
         padding: 30px 0;
