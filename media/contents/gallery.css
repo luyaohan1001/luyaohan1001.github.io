@@ -1,0 +1,15 @@
+.gallery_santa_barbara_photography img {
+    align-content: center;
+    justify-content: center;
+    height: 200px;
+    opacity:0.5;
+    transition: 1s ease;
+    padding-top: 3%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+}
+
+.gallery_santa_barbara_photography img:hover {
+    opacity:1;
+    transition: 1s ease;
+}

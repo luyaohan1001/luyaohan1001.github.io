@@ -1,0 +1,27 @@
+/* Text styles. */
+.pitch_line_style {
+    text-align: center;
+    font-family: 'Piazzolla', serif;
+    font-weight: bold;
+    font-size: 500%;
+    padding: 5%;
+}
+
+.pitch_subline_style {
+    text-align: center;
+    font-family: 'Piazzolla', serif;
+    font-weight: bold;
+    font-size: 200%;
+    padding: 5%;
+}
+
+.title_style {
+    font-family: 'Piazzolla', serif;
+    font-size: 100%;
+    padding: 5%;
+}
+
+.paragraph_style {
+    font-size: 150%;
+    padding-left: 8%;
+}

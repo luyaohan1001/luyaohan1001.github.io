@@ -11,19 +11,6 @@
         padding: 0px;
     }
 
-    /* Text styles. */
-    .title_style {
-        font-family: 'Piazzolla', serif;
-        font-weight: bold;
-        font-size: 200%;
-        padding: 5%;
-    }
- 
-    .paragraph_style {
-        font-size: 150%;
-        padding-left: 8%;
-    }
-
     /* Navigation Bar. */
     .navbar {
         cursor: pointer;
@@ -85,8 +72,7 @@
  
     .photography {
         background-color: whitesmoke;
-        /* height: 100%; browser force the body to be the height of the content. */
-        height: 700px;
+        height: 100%; /* browser force the body to be the height of the content. */
         scroll-margin-top: 300px; /* Prevent sticky navbar from hiding top of the section. */
     }
 
