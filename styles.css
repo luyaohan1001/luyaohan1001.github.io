@@ -86,7 +86,7 @@
         scroll-margin-top: 200px; /* Prevent sticky navbar from hiding top of the section. */
     }
 
-    .cooking {
+    .cuisine {
         background-color: snow;
         /* height: 100%; browser force the body to be the height of the content. */
         height: 600px;
