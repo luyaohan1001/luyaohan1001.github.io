@@ -38,7 +38,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0%;
     }
 
     .nav_profile_pic img {
@@ -74,7 +73,7 @@
     }
 
     .self_introduction {
-        background-color: seashell;
+        background-color: snow;
         /* height: 100%; browser force the body to be the height of the content. */
         height: 600px;
         scroll-margin-top: 200px;
@@ -88,7 +87,7 @@
     }
 
     .cooking {
-        background-color: seashell;
+        background-color: snow;
         /* height: 100%; browser force the body to be the height of the content. */
         height: 600px;
         scroll-margin-top: 200px;
