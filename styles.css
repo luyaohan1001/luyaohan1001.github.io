@@ -7,6 +7,10 @@
         padding: 0px;
     }
 
+    div * {
+        padding: 0px;
+    }
+
     /* Text styles. */
     .title_style {
         font-family: 'Piazzolla', serif;
@@ -24,7 +28,7 @@
     .navbar {
         cursor: pointer;
         display: flex;
-        height: 200px;
+        height: 300px;
         justify-content: center;
         position: sticky; /* Allows the navbar to be always within the page. */
         top: 0;
@@ -75,22 +79,22 @@
     .self_introduction {
         background-color: snow;
         /* height: 100%; browser force the body to be the height of the content. */
-        height: 600px;
-        scroll-margin-top: 200px;
+        height: 700px;
+        scroll-margin-top: 300px;
     }
  
     .photography {
         background-color: whitesmoke;
         /* height: 100%; browser force the body to be the height of the content. */
-        height: 600px;
-        scroll-margin-top: 200px; /* Prevent sticky navbar from hiding top of the section. */
+        height: 700px;
+        scroll-margin-top: 300px; /* Prevent sticky navbar from hiding top of the section. */
     }
 
     .cuisine {
         background-color: snow;
         /* height: 100%; browser force the body to be the height of the content. */
-        height: 600px;
-        scroll-margin-top: 200px;
+        height: 700px;
+        scroll-margin-top: 300px;
     }
 
     /* Footer (copyright statement section.) */
@@ -101,6 +105,9 @@
         display: flex;
         justify-content: center;
         color: white;
+        background: black;
+        background-blend-mode: darken;
+        background-size: cover;
     }
 
 </style>
