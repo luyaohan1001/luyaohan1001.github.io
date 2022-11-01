@@ -1,9 +1,26 @@
 <style>
+
+
+    /* Select all elements */
     * {
         margin: 0px;
         padding: 0px;
     }
+
+    /* Text styles. */
+    .title_style {
+        font-family: 'Piazzolla', serif;
+        font-weight: bold;
+        font-size: 200%;
+        padding: 5%;
+    }
  
+    .paragraph_style {
+        font-size: 150%;
+        padding-left: 8%;
+    }
+
+    /* Navigation Bar. */
     .navbar {
         cursor: pointer;
         display: flex;
@@ -11,79 +28,74 @@
         justify-content: center;
         position: sticky; /* Allows the navbar to be always within the page. */
         top: 0;
-    }
- 
-    .background {
         background: black;
         background-blend-mode: darken;
         background-size: cover;
     }
- 
-    .nav-list {
+
+    /* The profile picture in the navigation bar. */
+    .profile_pic {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0%;
+    }
+
+    .nav_profile_pic img {
+        width: 30%;
+        border-radius: 30%;
+    }
+
+    /* List of items in the navigation bar. */
+    .nav_list {
         align-items: center;
         display: flex;
         width: 70%;
     }
- 
-    .profile-pic {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
- 
-    .profile-pic img {
-        width: 30%;
-        border-radius: 30%;
-    }
- 
-    .nav-list li {
+
+    .nav_list li {
         list-style: none;
         padding: 26px 30px;
     }
  
-    .nav-list li a {
+    .nav_list li a {
         text-decoration: none;
         color: white;
     }
  
-    .nav-list li a:hover {
+    /* Text cover changes when a pointer is hovered over it. */
+    .nav_list li a:hover {
         color: silver;
     }
  
+    /* Wrapper for all the real content regions below. */
     section *{
-        margin: 0px;
+        margin: 0px;    /* Leave no white gap between sections. */
     }
 
-    .SelfIntroduction {
-        background-color: silver;
-        height: 100%;
+    .self_introduction {
+        background-color: seashell;
+        /* height: 100%; browser force the body to be the height of the content. */
+        height: 600px;
         scroll-margin-top: 200px;
     }
  
-    .Photography {
-        background-color: red;
-        height: 100%;
-        scroll-margin-top: 200px; /* Offset to the sticky navbar */
+    .photography {
+        background-color: whitesmoke;
+        /* height: 100%; browser force the body to be the height of the content. */
+        height: 600px;
+        scroll-margin-top: 200px; /* Prevent sticky navbar from hiding top of the section. */
     }
 
-    .Cooking {
-        background-color: burlywood;
-        height: 100%;
+    .cooking {
+        background-color: seashell;
+        /* height: 100%; browser force the body to be the height of the content. */
+        height: 600px;
         scroll-margin-top: 200px;
     }
- 
-    .text-big {
-        font-family: 'Piazzolla', serif;
-        font-weight: bold;
-        font-size: 35px;
-    }
- 
-    .text-small {
-        font-size: 18px;
-    }
 
-
-    .text-footer {
+    /* Footer (copyright statement section.) */
+    .footer {
         text-align: center;
         padding: 30px 0;
         font-family: 'Ubuntu', sans-serif;
@@ -91,4 +103,5 @@
         justify-content: center;
         color: white;
     }
+
 </style>
