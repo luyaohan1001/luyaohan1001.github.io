@@ -1,27 +1,42 @@
 /* Text styles. */
-.pitch_line_style {
+.pitch_title_style {
     text-align: center;
     font-family: 'Piazzolla', serif;
     font-weight: bold;
     font-size: 500%;
+    width: 80%;
     padding: 5%;
+    animation: typing 2s steps(30), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 5px solid;
+}
+@keyframes typing {
+    from {
+        width: 0%
+    }
+}    
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
 }
 
-.pitch_subline_style {
+.huge_title_style {
     text-align: center;
     font-family: 'Piazzolla', serif;
     font-weight: bold;
-    font-size: 200%;
-    padding: 5%;
+    font-size: 500%;
 }
+
 
 .title_style {
     font-family: 'Piazzolla', serif;
-    font-size: 100%;
+    font-size: 200%;
     padding: 5%;
 }
 
 .paragraph_style {
     font-size: 150%;
-    padding-left: 8%;
 }

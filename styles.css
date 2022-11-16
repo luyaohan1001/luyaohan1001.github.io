@@ -1,6 +1,4 @@
 <style>
-
-
     /* Select all elements */
     * {
         margin: 0px;
@@ -59,30 +57,32 @@
     }
  
     /* Wrapper for all the real content regions below. */
-    section *{
+    section * {
         margin: 0px;    /* Leave no white gap between sections. */
     }
 
-    .self_introduction {
-        background-color: snow;
-        /* height: 100%; browser force the body to be the height of the content. */
+    .pitch_line {
         height: 700px;
+        scroll-margin-top: 300px; /* Offset of sticky navbar with height 300px. */
+    }
+
+    .bibliography_paragraph {
+        background-color: snow;
+        height: 700px; /* Set 100% forces body to use height of the content. */ 
+        display: flex;
+        margin: 5%;
         scroll-margin-top: 300px;
     }
+
+    .bibliography_paragraph img {
+        background-color: snow; 
+        height: 60%;
+        width: auto;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
  
-    .photography {
-        background-color: whitesmoke;
-        height: 100%; /* browser force the body to be the height of the content. */
-        scroll-margin-top: 300px; /* Prevent sticky navbar from hiding top of the section. */
-    }
-
-    .cuisine {
-        background-color: snow;
-        /* height: 100%; browser force the body to be the height of the content. */
-        height: 700px;
-        scroll-margin-top: 300px;
-    }
-
     /* Footer (copyright statement section.) */
     .footer {
         text-align: center;
