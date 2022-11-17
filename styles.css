@@ -75,7 +75,7 @@
     }
 
     .bibliography_paragraph {
-        background-color: snow;
+        background-color: white;
         height: auto; /* Set 100% forces body to use height of the content. */ 
         width: 100%;
         display: flex;
@@ -88,15 +88,24 @@
 
     .bibliography_paragraph img {
         align-self: center;
-        background-color: snow; 
+        background-color: white; 
         max-width: 30%;
         /* Scale image. */ 
         object-fit: scale-down;
         /* Add empty space to left and right of the image. */
         padding-left: 5%;
         padding-right: 5%;
+        transition: 1s ease;
+    }
+
+    .bibliography_paragraph img:hover {
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+        transition: 1s ease;
     }
     
+
  
     /* Footer (copyright statement section.) */
     .footer {
