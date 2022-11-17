@@ -68,7 +68,7 @@
 
     .bibliography_paragraph {
         background-color: snow;
-        height: 700px; /* Set 100% forces body to use height of the content. */ 
+        height: 900px; /* Set 100% forces body to use height of the content. */ 
         display: flex;
         margin: 5%;
         scroll-margin-top: 300px;

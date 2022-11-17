@@ -1,0 +1,26 @@
+.photo_gallery {
+    padding: 0%;
+    margin: 0%;
+    display: grid;
+    height: fit-content;    /* Force height to be the sum of a column's picture heights. */
+    grid-template-columns: 1fr 1fr; /* Each row has two pictures. */
+    max-width: 30%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.photo_gallery img{
+    margin: 0%;
+    padding: 0%;
+    max-width: 100%; 
+    height: auto;
+    transition: 1s ease;
+}
+
+.photo_gallery img:hover{
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    transition: 1s ease;
+}
+
