@@ -1,22 +1,17 @@
 <style>
     /* Select all elements */
     * {
-        margin: 0px;
         padding: 0px;
     }
 
-    div * {
-        padding: 0px;
-    }
 
     /* Navigation Bar. */
     .navbar {
         cursor: pointer;
         display: flex;
-        height: 300px;
+        height: 40%;
         justify-content: center;
         position: sticky; /* Allows the navbar to be always within the page. */
-        top: 0;
         background: black;
         background-blend-mode: darken;
         background-size: cover;
@@ -31,7 +26,7 @@
 
     .nav_profile_pic img {
         width: 30%;
-        border-radius: 30%;
+        border-radius: 20%;
     }
 
     /* List of items in the navigation bar. */
@@ -44,6 +39,7 @@
     .nav_list li {
         list-style: none;
         padding: 26px 30px;
+        font-size: 140%;
     }
  
     .nav_list li a {
@@ -55,6 +51,9 @@
     .nav_list li a:hover {
         color: silver;
     }
+
+
+
  
     /* Wrapper for all the real content regions below. */
     section * {
@@ -62,22 +61,29 @@
     }
 
     .pitch_line {
-        height: 700px;
+        height: auto;
         scroll-margin-top: 300px; /* Offset of sticky navbar with height 300px. */
     }
 
     .bibliography_paragraph {
         background-color: snow;
-        height: 900px; /* Set 100% forces body to use height of the content. */ 
+        height: auto; /* Set 100% forces body to use height of the content. */ 
+        width: 100%;
         display: flex;
-        margin: 5%;
         scroll-margin-top: 300px;
+    }
+    
+    .bibliography_paragraph p {
+        padding-left: 5%;
     }
 
     .bibliography_paragraph img {
+        align-self: baseline;
         background-color: snow; 
-        height: 60%;
-        width: auto;
+        max-width: 40%;
+        /* Scale image. */ 
+        object-fit: scale-down;
+        /* Add empty space to left and right of the image. */
         padding-left: 5%;
         padding-right: 5%;
     }

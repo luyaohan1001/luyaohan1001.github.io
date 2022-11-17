@@ -4,7 +4,7 @@
     display: grid;
     height: fit-content;    /* Force height to be the sum of a column's picture heights. */
     grid-template-columns: 1fr 1fr; /* Each row has two pictures. */
-    max-width: 30%;
+    max-width: 40%;
     padding-left: 5%;
     padding-right: 5%;
 }
