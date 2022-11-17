@@ -4,17 +4,23 @@
         padding: 0px;
     }
 
+    * div {
+        padding: 0px;
+    }
+
 
     /* Navigation Bar. */
     .navbar {
         cursor: pointer;
-        display: flex;
-        height: 40%;
-        justify-content: center;
-        position: sticky; /* Allows the navbar to be always within the page. */
         background: black;
         background-blend-mode: darken;
         background-size: cover;
+        display: flex;
+        height: 40%;
+        justify-content: center;
+        /* top must be specified for the navbar to be sticky. */ 
+        top: 0%;
+        position: sticky; /* Allows the navbar to be always within the page. */
     }
 
     /* The profile picture in the navigation bar. */
@@ -61,8 +67,11 @@
     }
 
     .pitch_line {
-        height: auto;
+        height: 80%;
         scroll-margin-top: 300px; /* Offset of sticky navbar with height 300px. */
+        display: flex;
+        justify-content: center;
+        justify-items: center;
     }
 
     .bibliography_paragraph {
@@ -78,9 +87,9 @@
     }
 
     .bibliography_paragraph img {
-        align-self: baseline;
+        align-self: center;
         background-color: snow; 
-        max-width: 40%;
+        max-width: 30%;
         /* Scale image. */ 
         object-fit: scale-down;
         /* Add empty space to left and right of the image. */

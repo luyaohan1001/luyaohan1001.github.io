@@ -1,17 +1,19 @@
 /* Text styles. */
 .pitch_title_style {
-    text-align: center;
-    justify-self: center;
-    align-self: center;
     font-family: 'Piazzolla', serif;
     font-weight: bold;
     font-size: 300%;
-    width: 75%;
-    padding: 5%;
+    width: 80%;
     animation: typing 2s steps(30), blink .5s step-end infinite alternate;
+    padding-left: 5%;
+    padding-right: 5%;
+    /* Type and hide effects. */
+    border-right: 5px solid; /* type cursor '|' */
     white-space: nowrap;
     overflow: hidden;
-    border-right: 5px solid;
+    display: flex;
+    align-self: center;
+    justify-self: center;
 }
 @keyframes typing {
     from {
