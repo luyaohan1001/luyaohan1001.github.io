@@ -7,34 +7,54 @@
     <title>
         Lu's Website.
     </title>
-    <link rel="icon" type="image/png" href="media/misc/LuyaoHan_2x2_Photo.JPG">
+    <!-- The display icon of the -->
+    <link rel="icon" type="image/png" href="media/misc/website_favicon.png">
 </head>
+
 
 <!-- Body of the web page. -->
 <body>
-    <!-- Navigation Bar (Menu). -->
+
+    <!-- 01. Navigation Bar (Menu). -->
     <nav class="navbar background">
         <ul class="nav_list">
             <div class="nav_profile_pic">
                 <img src="media/misc/LuyaoHan_2x2_Photo.JPG">
             </div>
             <li><a href="#intro">Intro</a></li>
-            <li><a href="favorites_page.html">Favorites</a></li>
             <li><a href=https://www.linkedin.com/in/luyao-han>Linkedin</a></li>
         </ul>
     </nav>
  
-    <!-- Sections with actual contents. -->
-    <!-- 1. Self Introduction. -->
+    <!-- 02. Pitch Line Deck (blurred background, pictch line text.) -->
     <h1 class="title_style">
         About Me
     </h1>
-    <section class="pitch_line" id="intro">
-        <p class="pitch_title_style">
-            Passionate. Gritty. Resilient.
-        </p>
-    </section>
+    <div class="bg-image img1"></div>
+    <div class="bg-image img2"></div>
+    <div class="bg-image img3"></div>
+    <div class="bg-image img4"></div>
+    <div class="bg-image img5"></div>
+    <div class="bg-image img6" id="pitch_deck_end"></div>
+    <div class="bg-text" id="pitch_line">Passionate. Gritty. Resilient. </div>
 
+
+    <!-- JavaScript for dynamic element. -->
+    <script>
+        window.addEventListener('scroll', 
+            function(event) {
+                    /* If scrolling past the distance between 'childhood' section and the top of the page. Make element invisible. */
+                    const scrollDistanceLimit = document.getElementById('pitch_deck_end').offsetTop;
+                    if (document.body.scrollTop > scrollDistanceLimit) {
+                        document.getElementById('pitch_line').style.display = "none";
+                    } else {
+                        document.getElementById('pitch_line').style.display = "block"; 
+                    }
+            }
+        );
+    </script>
+
+    <!-- 03. Sections with actual paraphical contents. -->
     <p class="huge_title_style">
         Childhood
     </p>
@@ -51,7 +71,7 @@
 
 
     <p class="huge_title_style">
-        Teenage.
+        Teenage
     </p>
     <section class="bibliography_paragraph">
         <p class="paragraph_style">
@@ -66,9 +86,8 @@
     </section>
 
 
-
     <p class="huge_title_style">
-        High School.
+        High School
     </p>
     <section class="bibliography_paragraph">
         <p class="paragraph_style">
@@ -101,15 +120,17 @@
         <img src="media/contents/teenage/ushs_graduation_portrait.jpg">
     </section>
 
+
+
     <p class="huge_title_style">
         College.
     </p>
     <section class="bibliography_paragraph">
         <p class="paragraph_style">
             September 3rd, 2017, I landed in the Los Angeles Airport. <br> <br>
-            Four years of exciting undergraduate study ahead, my study in the United States had formally began.
+            Four years of exciting experience ahead, my study in the United States had formally began.
         </p>
-        <img src="media/contents/college/arriving_us_airplane.png">
+        <img src="media/contents/college/airport.jpg">
     </section>
 
 
@@ -133,8 +154,10 @@
         </div>
     </section>
 
+
+
     <p class="huge_title_style">
-        Transformation.
+        Enlightenment
     </p>
     <section class="bibliography_paragraph">
         <p class="paragraph_style">
@@ -149,26 +172,29 @@
         <div class="photo_gallery">
             <link rel="stylesheet" href="photo_gallery.css">
             <img src="media/contents/college/pcb_design_00.png">
-            <img src="media/contents/college/engineering00.png">
+            <img src="media/contents/college/engineering_05.jpg">
             <img src="media/contents/college/engineering01.png">
-            <img src="media/contents/college/engineering_02.jpg">
+            <img src="media/contents/college/drone.jpg">
         </div>
         
     </section>
+
+
 
     <p class="huge_title_style">
     </p>
     <section class="bibliography_paragraph">
         <p class="paragraph_style">
             Where did I see myself in the forthcoming future? <br> <br>
-            After trying multiple research assistance positions in labs I had clearly shown poor enthusiasm towards becoming a researcher. <br>  <br>
-            A will be an engineer for sure, I already was and will certainly keep myself in this track for career. <br> <br>
-            The future is all about solving new problems, and be a good man. And I will be ready for it. <br> <br>
+            We will see. As a young man, I have already figured out a lot about myself, the study, the career, the meaning of being in this world, and I did well. <br> <br>
+            All the rest of unknowns, I will be ready for it. <br> <br>
+            <br> <br>
+            End of text, composed on Nov 18 2022, Pittsburgh.
         </p>
         <img src="media/contents/college/baltimore_portrait.JPG">
     </section>
 
-    <!-- Footer: Copyright Statement & Contact Info. -->
+    <!-- 04. Footer: Copyright Statement & Contact Info. -->
     <footer class="footer">
         <p>
             Copyright © 2022 Luyao Han. All rights reserved.
