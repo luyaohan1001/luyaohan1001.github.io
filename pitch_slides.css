@@ -17,22 +17,27 @@
 
 /* List of background images in the pitch image slide. */
 .img0 { 
-    background-image: url("media/pitch_deck/pitch_deck_07.jpg"); 
+    background-image: url("media/pitch_slides/pitch_slides_00.jpg"); 
 }
+
 .img1 { 
-    background-image: url("media/pitch_deck/pitch_deck_05.jpg"); 
+    background-image: url("media/pitch_slides/pitch_slides_01.jpg"); 
 }
+
 .img2 { 
-    background-image: url("media/pitch_deck/pitch_deck_01.png"); 
+    background-image: url("media/pitch_slides/pitch_slides_02.png"); 
 }
+
 .img3 { 
-    background-image: url("media/pitch_deck/pitch_deck_06.png"); 
+    background-image: url("media/pitch_slides/pitch_slide_03.png");
 }
+
 .img4 { 
-    background-image: url("media/pitch_deck/pitch_deck_10.JPG"); 
+    background-image: url("media/pitch_slides/pitch_slides_04.JPG"); 
 }
+
 .img5 { 
-    background-image: url("media/pitch_deck/pitch_deck_15.jpg"); 
+    background-image: url("media/pitch_slides/pitch_slides_05.jpg"); 
 }
 
 .pitch_line {
