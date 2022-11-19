@@ -1,3 +1,5 @@
+/* fonts.css */
+/* Following styles are used for bibliography contents sections in index.html. */
 .huge_title_style {
     text-align: center;
     font-family: 'Piazzolla', serif;
@@ -7,5 +9,4 @@
 
 .paragraph_style {
     font-size: 150%;
-    
 }

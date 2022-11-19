@@ -12,49 +12,17 @@
 
 
 
-    /* 02. Pitch Images Slides. (blurred background, pictch line text.) */
-    .pitch_image_slide {
-        background-position: center;  /* Center the images. */
-        background-repeat: no-repeat;
-        background-size: cover; /* Crop images to fill entire horizontal space. */
-        filter: blur(3px);  /* Blur effects. */
-        -webkit-filter: blur(3px); 
-        height: 50%; 
-    }
-
-    /* List of background images in the pitch image slide. */
-    .img1 { background-image: url("media/pitch_deck/pitch_deck_07.jpg"); }
-    .img2 { background-image: url("media/pitch_deck/pitch_deck_09.JPG"); }
-    .img3 { background-image: url("media/pitch_deck/pitch_deck_01.png"); }
-    .img4 { background-image: url("media/pitch_deck/pitch_deck_06.png"); }
-    .img5 { background-image: url("media/pitch_deck/pitch_deck_10.JPG"); }
-    .img6 { background-image: url("media/pitch_deck/pitch_deck_15.jpg"); }
-
-    .pitch_line {
-        background-color: rgba(0, 0, 0, 0.7);  /* Make pitch line background black, with tranparency (alpha): 0.4. */ 
-        border: 10px solid #f1f1f1;
-        color: white; /* white font */
-        font-weight: bold;
-        font-size: 600%; /* Add empty space between the frame and text.  */
-        padding: 5%; /* Center the pitch line. */
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        width: auto;
-        height: auto;
-    }
-
+    /* 02. Pitch Images Slides. (blurred background, pictch line text.) are in pitch_slides.css. */
+    
 
   
-    /* 03. Bibliography sections with actual paraphical contents. */
+    /* 03. Bibliography sections with paraphical contents. */
     .bibliography_paragraph {
         background-color: white;
+        display: flex; /* Display all child elements horizontally. Text on the left, images on the right. */
         height: auto; /* Set 100% forces body to use height of the content. */ 
+        scroll-margin-top: 40%; /* This is equal to the height of the navbar, this offset is needed for jumping to an element. */ 
         width: 100%;
-        display: flex;
-        scroll-margin-top: 300px;
     }
     
     .bibliography_paragraph p {
@@ -68,14 +36,13 @@
         object-fit: scale-down; /* Scale image, keep height-width ratio. */ 
         padding-left: 5%; /* Add empty space to left and right of the image. */ 
         padding-right: 5%;
-        transition: 1s ease;
-        justify-content: center;
+        transition: 1s ease; /* When user's pointer stop hovering upon an image, it should be transitioned to an original size in 1 second. */
     }
 
     .bibliography_paragraph img:hover {
         -webkit-transform: scale(1.2);
         -ms-transform: scale(1.2);
-        transform: scale(1.2);
+        transform: scale(1.2); /* When user's pointer hovers over an image, it should be enlarged so to be better seen.*/
         transition: 1s ease;
     }
     
@@ -86,7 +53,7 @@
         color: white;
         display: flex; /* Display it in a row. */
         font-family: 'Ubuntu', sans-serif;
-        justify-content: center;
+        justify-content: center; /* Aligns the flex item (copyright texts) in the middle horizontally.*/
         padding: 30px 0;
         text-align: center;
     }

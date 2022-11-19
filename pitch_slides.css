@@ -1,0 +1,52 @@
+/* 02. Pitch Images Slides. (blurred background images, pictch line text). */
+.pitch_image_slide {
+    background-position: center;  /* Center the images. */
+    background-repeat: no-repeat;
+    background-size: cover; /* Crop images to fill entire horizontal space. */
+    filter: blur(7px);  /* Blur effects. */
+    -webkit-filter: blur(7px); 
+    height: 80%;  /* Each image slide with 80% height. */
+    transition: 1s; /* When user leaves from hovering, it should transition back to blurred image in 1 second. */
+}
+
+.pitch_image_slide:hover {
+    filter: blur(0px);  /* Blur effects. */
+    -webkit-filter: blur(0px);  
+    transition: 1.5s; /* When the user hovers on an image slide, it should clear the blur in 1 second.*/ 
+}
+
+/* List of background images in the pitch image slide. */
+.img0 { 
+    background-image: url("media/pitch_deck/pitch_deck_07.jpg"); 
+}
+.img1 { 
+    background-image: url("media/pitch_deck/pitch_deck_05.jpg"); 
+}
+.img2 { 
+    background-image: url("media/pitch_deck/pitch_deck_01.png"); 
+}
+.img3 { 
+    background-image: url("media/pitch_deck/pitch_deck_06.png"); 
+}
+.img4 { 
+    background-image: url("media/pitch_deck/pitch_deck_10.JPG"); 
+}
+.img5 { 
+    background-image: url("media/pitch_deck/pitch_deck_15.jpg"); 
+}
+
+.pitch_line {
+    background-color: rgba(0, 0, 0, 0.7);  /* Make pitch line background black, with tranparency (alpha): 0.4. */ 
+    border: 10px solid #f1f1f1;
+    color: white; /* white font */
+    font-weight: bold;
+    font-size: 450%; /* Add empty space between the frame and text.  */
+    padding: 5%; /* Center the pitch line vertical and horizontally. */
+    position: fixed; /* Make sure the pitch line stay in the middle of view when user is scrolling down the image slides.. */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: auto;
+    height: auto;
+}

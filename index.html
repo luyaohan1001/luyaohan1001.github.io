@@ -1,207 +1,240 @@
+<!-- Home Page. -->
 <html>
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="navbar.css">
 
-<!-- Website title to be displayed on the browser tab. Optional. -->
-<head>
-    <title>
-        Lu's Website.
-    </title>
-    <!-- The display icon of the -->
-    <link rel="icon" type="image/png" href="media/misc/website_favicon.png">
-</head>
+    <!-- Import style sheets. -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="pitch_slides.css">
+
+    <!-- Specify website title to be displayed on the browser tab. -->
+    <head>
+
+        <title>
+            Lu's Profolio.
+        </title>
+
+        <!-- The icon to be displayed onto the browser tab. -->
+        <link rel="icon" type="image/png" href="media/misc/website_favicon.png">
+
+    </head>
 
 
-<!-- Body of the web page. -->
-<body>
+    <!-- Body of the web page. -->
+    <body>
 
-    <!-- 01. Navigation Bar (Menu). -->
-    <nav class="navbar background">
-        <ul class="nav_list">
-            <div class="nav_profile_pic">
-                <img src="media/misc/LuyaoHan_2x2_Photo.JPG">
+        <!-- 01. Navigation Bar (Menu). -->
+        <nav class="navbar background">
+
+            <ul class="nav_list">
+                <!-- Profile picture. -->
+                <div class="nav_profile_pic">
+                    <img src="media/misc/LuyaoHan_2x2_Photo.JPG">
+                </div>
+
+                <!-- Intro Page. Dummy link, the user is viewing intro page in this index.html. -->
+                <li><a href="#intro">Intro</a></li>
+
+                <!-- LinkedIn tab.-->
+                <li><a href=https://www.linkedin.com/in/luyao-han>LinkedIn</a></li>
+            </ul>
+
+        </nav>
+    
+
+
+        <!-- 02. Pitch Images Slides. (blurred background images, pitch line text.) -->
+
+        <!-- Specify divs for multiple images, which actual files used to be specified in pitch_slides.css. -->
+        <div class="pitch_image_slide img0"></div>
+        <div class="pitch_image_slide img1"></div>
+        <div class="pitch_image_slide img2"></div>
+        <div class="pitch_image_slide img3"></div>
+        <div class="pitch_image_slide img4"></div>
+        <div class="pitch_image_slide img5" id="pitch_deck_end"></div>
+
+        <div class="pitch_line" id="pitch_line">Passionate. Determined. Resilient. </div>
+
+        <!-- JavaScript for dynamically hide the pitch line on following text elements.. -->
+        <script>
+            window.addEventListener('scroll', 
+
+                function(event) {
+                        /* If scrolling past the end of the pitch slides. Make the pitch line element invisible to user. */
+                        /* Make that disappear so that it does not block the actual texts in the bibliography. */
+                        const scrollDistanceLimit = document.getElementById('pitch_deck_end').offsetTop;
+                        if (document.body.scrollTop > scrollDistanceLimit) {
+                            document.getElementById('pitch_line').style.visibility = "hidden";
+                        } else {
+                            document.getElementById('pitch_line').style.visibility = "visible"; 
+                        }
+                }
+            );
+        </script>
+
+        <!-- 03. Bibliography sections with actual paraphical contents. -->
+        <p class="huge_title_style">
+            Childhood
+        </p>
+        <section class="bibliography_paragraph">
+
+            <p class="paragraph_style">
+                In 1999, I was born in East China, the city of Hangzhou. <br> <br>
+                Witnessing the economics' rise, the country soon pivoted its development around first-tier cities. <br> <br>
+                My family had decided to move to the city of Shanghai to seek better financial opportunities, and more importantly, education resources for their beloved children. <br> <br>
+                My story began from here. <br> <br>
+                <br>
+            </p>
+            <img src="media/contents/childhood/little_me.jpg">
+
+        </section>
+
+        <p class="huge_title_style">
+            Teenage
+        </p>
+        <section class="bibliography_paragraph">
+
+            <p class="paragraph_style">
+                I was the "mediocre kid" among the many. <br> <br>
+                And you kind of had to be the best to get into a good college, then to be successful enough to live a good life. -- Typical Asian view of this kind of outlook yet by and large a true statement in developing countries like where I was from. <br> <br>
+                December 16th, 2013, I got an admission letter from an international school that offered an equivalent high school curricula as those in the United States. <br> <br>
+                After some thoughtful discussions, my family and I decided that I shall pursue the journey. <br> <br>
+                That said, I was expected to earn a high school education enough to prepare for a U.S. college, deviating from what a normal student would experience at my age, and would take a path for higher education far away from home.  <br> <br>
+                I was proud that I had qualified as one of the few students who had done really well in the qualification exam. <br> <br> 
+            </p>
+            <img src="media/contents/teenage/ushs_admission_offer.png">
+
+        </section>
+
+
+        <p class="huge_title_style">
+            A Different Life Trajectory. 
+        </p>
+        <section class="bibliography_paragraph">
+
+            <p class="paragraph_style">
+                High school was fun. <br> <br>
+                As the school advocated -- "WHERE EAST MEETS WEST". <br> <br>
+                Halloweens, Secret Santas, Pep Rally, Talent Show, Academic Debate, Musical Theaters... opened my eyes to the western world. <br> <br>
+                I truly appreciated such an interesting cultural fusion. <br> <br>
+                I also got to understand myself better. That, I was a true adherent of pragmatism. Now in hindsight, I realized that some signs manifested early that I thought and treat my problems like an engineer.<br> <br>
+                Interestingly, I remembered once I programmed the auditorium stage lighting console for an entertaining Talent Show. I liked the sole magic power of machine intelligence. <br> <br>
+                I tried programming microprocessors and on Linux-based computers, though. By then I thought the technology was "magical". <br> <br>
+            </p>
+            <div class="photo_gallery">
+                <link rel="stylesheet" href="photo_gallery.css">
+                <img src="media/contents/teenage/ushs_00.jpg">
+                <img src="media/contents/teenage/ushs_01.jpg">
+                <img src="media/contents/teenage/ushs_02.png">
+                <img src="media/contents/teenage/ushs_03.jpg">
             </div>
-            <li><a href="#intro">Intro</a></li>
-            <li><a href=https://www.linkedin.com/in/luyao-han>Linkedin</a></li>
-        </ul>
-    </nav>
- 
+
+        </section>
 
 
-    <!-- 02. Pitch Images Slides. (blurred background, pictch line text.) -->
-    <div class="pitch_image_slide img1" id="pitch_slide_img1"></div>
-    <div class="pitch_image_slide img2"></div>
-    <div class="pitch_image_slide img3" id="pitch_slide_img3"></div>
-    <div class="pitch_image_slide img4"></div>
-    <div class="pitch_image_slide img5" id="pitch_slide_img5"></div>
-    <div class="pitch_image_slide img6" id="pitch_deck_end"></div>
-    <div class="pitch_line" id="pitch_line">Passionate. Gritty. Resilient. </div>
-    <!-- JavaScript for dynamically hide the pitch line on following text elements.. -->
-    <script>
-        window.addEventListener('scroll', 
-            function(event) {
-                    /* If scrolling past the end of the pitch slides. Make the pitch line element invisible. */
-                    const scrollDistanceLimit = document.getElementById('pitch_deck_end').offsetTop;
-                    if (document.body.scrollTop > scrollDistanceLimit) {
-                        document.getElementById('pitch_line').style.display = "none";
-                    } else {
-                        document.getElementById('pitch_line').style.display = "block"; 
-                    }
-            }
-        );
-    </script>
-
-    <!-- 03. Bibliography sections with actual paraphical contents. -->
-    <p class="huge_title_style">
-        Childhood
-    </p>
-    <section class="bibliography_paragraph">
-        <p class="paragraph_style">
-            In 1999, I was born in East China, the city of Hangzhou. <br> <br>
-            Witnessing the economics' rise, the country soon pivoted its development around first-tier cities. <br> <br>
-            My family had decided to move to the city of Shanghai to seek better financial opportunities, and more importantly, education resources for their beloved children. <br> <br>
-            My story began from here. <br> <br>
-            <br>
+        <p class="huge_title_style">
+            <!-- No actual text, using this empty title to add white space. -->
         </p>
-        <img src="media/contents/childhood/little_me.jpg">
-    </section>
+        <section class="bibliography_paragraph">
 
-    <p class="huge_title_style">
-        Teenage
-    </p>
-    <section class="bibliography_paragraph">
-        <p class="paragraph_style">
-            I was the "mediocre kid" among the many. <br> <br>
-            And you kind of had to be the best to get into a good college, then to be successful enough to live a good life. -- Typical Asian view of this kind of outlook yet by and large a true statement in developing countries like where I was from. <br> <br>
-            December 16th, 2013, I got an admission letter from an international school that offered an equivalent high school curricula as those in the United States. <br> <br>
-            After some thoughtful discussions, my family and I decided that I shall pursue the journey. <br> <br>
-            That said, I was expected to earn a high school education enough to prepare for a U.S. college, deviating from what a normal student would experience at my age, and would take a path for higher education far away from home.  <br> <br>
-            I was proud that I had qualified as one of the few students who had done really well in the qualification exam. <br> <br> 
+            <p class="paragraph_style">
+                The many virtues and personalities jointly encouraged me to become who I am today. <br> <br>
+                These qualities are Passion, Grittiness, Resilience, Aspiration, and Curiosity. <br> <br> 
+                They carried me on during the most difficult times and will be precious assets for life. <br> <br>
+            </p>
+            <img src="media/contents/teenage/ushs_graduation_portrait.jpg">
+
+        </section>
+
+
+        <p class="huge_title_style">
+            College, lots of college work.
         </p>
-        <img src="media/contents/teenage/ushs_admission_offer.png">
-    </section>
+        <section class="bibliography_paragraph">
+
+            <p class="paragraph_style">
+                September 3rd, 2017, I landed at the Los Angeles Airport. <br> <br>
+                Four years of exciting experience ahead, my study in the United States had formally begun.
+            </p>
+            <img src="media/contents/college/baltimore_airport_selfie.jpg">
+
+        </section>
 
 
-    <p class="huge_title_style">
-        A Different Life Trajectory. 
-    </p>
-    <section class="bibliography_paragraph">
-        <p class="paragraph_style">
-            High school was fun. <br> <br>
-            As the school advocated -- "WHERE EAST MEETS WEST". <br> <br>
-            Halloweens, Secret Santas, Pep Rally, Talent Show, Academic Debate, Musical Theaters... opened my eyes to the western world. <br> <br>
-            I truly appreciated such an interesting cultural fusion. <br> <br>
-            I also got to understand myself better. That, I was a true adherent of pragmatism. Now in hindsight, I realized that some signs manifested early that I thought and treat my problems like an engineer.<br> <br>
-            Interestingly, I remembered once I programmed the auditorium stage lighting console for an entertaining Talent Show. I liked the sole magic power of machine intelligence. <br> <br>
-            I tried programming microprocessors and on Linux-based computers, though. By then I thought the technology was "magical". <br> <br>
+        <p class="huge_title_style">
+            <!-- No actual text, using this empty title to add white space. -->
         </p>
-        <div class="photo_gallery">
-            <link rel="stylesheet" href="photo_gallery.css">
-            <img src="media/contents/teenage/ushs_00.jpg">
-            <img src="media/contents/teenage/ushs_01.jpg">
-            <img src="media/contents/teenage/ushs_02.png">
-            <img src="media/contents/teenage/ushs_03.jpg">
-        </div>
-    </section>
+        <section class="bibliography_paragraph">
+
+            <p class="paragraph_style">
+                The electrical engineering curriculum at UC Santa Barbara was composed of the lower-division and upper-dicision course sets. <br> <br>
+                The lower-division courses were fundamental, introductory courses to prepare the student ready for advanced upper-division engineering courses with proper theory and mathematical foundations. <br> <br>
+                During first-year I took Calculus, Differential Equations, Vector Calculus, Problem Solving with C++, and many others. <br> <br>
+                During Sophomore year, I enjoyed and probably also hated the "10 Series", which was a whole year of continuous series for analog and digital circuits systems designs and analysis. <br> <br>
+                Out of curiosity and with many C programming experiences in the past, I naturally enrolled in other more advanced C++ courses on Data Structures and Algorithms, Object-Oriented Programming, and Software Architectures Courses. <br> <br>
+                Countless times -- either it was a deeply hiding bug that existed in my program or an equation that turned out to be broken in the homework. I still recall the many nights in which I stumbled upon those hard problems I had faced. <br> <br>
+            </p>
+            <div class="photo_gallery">
+                <link rel="stylesheet" href="photo_gallery.css">
+                <img src="media/contents/college/ucsb_study_00.png">
+                <img src="media/contents/college/ucsb_study_01.png">
+                <img src="media/contents/college/ucsb_study_02.jpg">
+                <img src="media/contents/college/ucsb_study_03.png">
+            </div>
+
+        </section>
 
 
-    <p class="huge_title_style">
-    </p>
-    <section class="bibliography_paragraph">
-        <p class="paragraph_style">
-            The many virtues and personalities jointly encouraged me to become who I am today. <br> <br>
-            These qualities are Passion, Grittiness, Resilience, Aspiration, and Curiosity. <br> <br> 
-            They carried me on during the most difficult times and will be precious assets for life. <br> <br>
+        <p class="huge_title_style">
+            Engineer.
         </p>
-        <img src="media/contents/teenage/ushs_graduation_portrait.jpg">
-    </section>
+        <section class="bibliography_paragraph">
+
+            <p class="paragraph_style">
+                Having vaguely realized that my intrinsic curiosity lies in the digital hardware and lower-level software domain, I changed my major from Electrical Engineering to Computer Engineering. <br> <br>
+                Well, the two majors had ~70% curriculum overlap except that I got to allocate more time to the software side of the spectrum, and less messy Semiconductor Physics. <br> <br>
+                In my Junior and Senior year, my curriculum focused on Embedded Systems and Computer Architecture, which interestingly become the solid concentration of my master's study later. <br> <br>
+                Some more courses taken included Machine Learning, Computer Graphics, Contex Optimization, Signal Analysis, and a tasteful selection of General Educations Courses.
+                What I realized after taking these courses was that technicality and a college degree were merely the fundamentals of fundamentals. <br> <br>
+                During the course training, the most important qualities I picked up was the ability to quickly ramp up onto an unsolved problem, produce an effective strategy incrementally, and gain confidence from tackling hard problems. <br> <br>
+                When I started to realize I would no longer be afraid of certain problems, it meant I had gone through such cycles so many times and had already gained enough confidence in such areas. <br> <br>
+            </p>
+            <div class="photo_gallery">
+                <link rel="stylesheet" href="photo_gallery.css">
+                <img src="media/contents/college/now_engineer_00.png">
+                <img src="media/contents/college/now_engineer_01.jpg">
+                <img src="media/contents/college/now_engineer_02.png">
+                <img src="media/contents/college/now_engineer_03.jpg">
+            </div>
+
+        </section>
 
 
-    <p class="huge_title_style">
-        College, lots of college work.
-    </p>
-    <section class="bibliography_paragraph">
-        <p class="paragraph_style">
-            September 3rd, 2017, I landed at the Los Angeles Airport. <br> <br>
-            Four years of exciting experience ahead, my study in the United States had formally begun.
+        <p class="huge_title_style">
+            Keep going, Lu.
         </p>
-        <img src="media/contents/college/airport.jpg">
-    </section>
+        <section class="bibliography_paragraph">
+
+            <p class="paragraph_style">
+                Where did I see myself in the forthcoming future? <br> <br>
+                At this age, I have already figured out a lot about myself, my personality, the career, my loved ones, and the meaning of being in this world, and I did well. <br> <br>
+                There is already more to be done than to be said. <br> <br>
+                All the rest of the unknowns, I will be ready for it. <br> <br>
+                <br> <br>
+            </p>
+            <img src="media/contents/college/baltimore_aquarium_portrait.JPG">
+
+        </section>
 
 
-    <p class="huge_title_style">
-    </p>
-    <section class="bibliography_paragraph">
-        <p class="paragraph_style">
-            The electrical engineering curriculum at UC Santa Barbara was composed of the lower-division and upper-dicision course sets. <br> <br>
-            The lower-division courses were fundamental, introductory courses to prepare the student ready for advanced upper-division engineering courses with proper theory and mathematical foundations. <br> <br>
-            During first-year I took Calculus, Differential Equations, Vector Calculus, Problem Solving with C++, and many others. <br> <br>
-            During Sophomore year, I enjoyed and probably also hated the "10 Series", which was a whole year of continuous series for analog and digital circuits systems designs and analysis. <br> <br>
-            Out of curiosity and with many C programming experiences in the past, I naturally enrolled in other more advanced C++ courses on Data Structures and Algorithms, Object-Oriented Programming, and Software Architectures Courses. <br> <br>
-            Countless times -- either it was a deeply hiding bug that existed in my program or an equation that turned out to be broken in the homework. I still recall the many nights in which I stumbled upon those hard problems I had faced. <br> <br>
-        </p>
-        <div class="photo_gallery">
-            <link rel="stylesheet" href="photo_gallery.css">
-            <img src="media/contents/college/ucsb_study_life_00.png">
-            <img src="media/contents/college/engineering_03.png">
-            <img src="media/contents/college/engineering_04.jpg">
-            <img src="media/contents/college/ucsb_study_life_03.png">
-        </div>
-    </section>
 
+        <!-- 04. Footer: Copyright Statement & Contact Info. -->
+        <footer class="footer">
+            <p>
+                Copyright © 2022 Luyao Han. All rights reserved.
+            </p>
+        </footer>
 
-    <p class="huge_title_style">
-        Engineer.
-    </p>
-    <section class="bibliography_paragraph">
-        <p class="paragraph_style">
-            Having vaguely realized that my intrinsic curiosity lies in the digital hardware and lower-level software domain, I changed my major from Electrical Engineering to Computer Engineering. <br> <br>
-            Well, the two majors had ~70% curriculum overlap except that I got to allocate more time to the software side of the spectrum, and less messy Semiconductor Physics. <br> <br>
-            In my Junior and Senior year, my curriculum focused on Embedded Systems and Computer Architecture, which interestingly become the solid concentration of my master's study later. <br> <br>
-            Some more courses taken included Machine Learning, Computer Graphics, Contex Optimization, Signal Analysis, and a tasteful selection of General Educations Courses.
-            What I realized after taking these courses was that technicality and a college degree were merely the fundamentals of fundamentals. <br> <br>
-            During the course training, the most important qualities I picked up was the ability to quickly ramp up onto an unsolved problem, produce an effective strategy incrementally, and gain confidence from tackling hard problems. <br> <br>
-            When I started to realize I would no longer be afraid of certain problems, it meant I had gone through such cycles so many times and had already gained enough confidence in such areas. <br> <br>
-        </p>
-        <div class="photo_gallery">
-            <link rel="stylesheet" href="photo_gallery.css">
-            <img src="media/contents/college/pcb_design_00.png">
-            <img src="media/contents/college/engineering_05.jpg">
-            <img src="media/contents/college/engineering01.png">
-            <img src="media/contents/college/drone.jpg">
-        </div>
-        
-    </section>
-
-
-    <p class="huge_title_style">
-        Keep going, Lu.
-    </p>
-    <section class="bibliography_paragraph">
-        <p class="paragraph_style">
-            Where did I see myself in the forthcoming future? <br> <br>
-            At this age, I have already figured out a lot about myself, my personality, the career, my loved ones, and the meaning of being in this world, and I did well. <br> <br>
-            There is already more to be done than to be said. <br> <br>
-            All the rest of the unknowns, I will be ready for it. <br> <br>
-            
-            <br> <br>
-            End of text, composed on Nov 18, 2022.
-        </p>
-        <img src="media/contents/college/baltimore_portrait.JPG">
-    </section>
-
-    <section class="ending_banner">
-    </section>
-
-
-    <!-- 04. Footer: Copyright Statement & Contact Info. -->
-    <footer class="footer">
-        <p>
-            Copyright © 2022 Luyao Han. All rights reserved.
-        </p>
-    </footer>
-
-</body>
+    </body>
  
 </html>
