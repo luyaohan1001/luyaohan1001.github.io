@@ -1,6 +1,7 @@
 <html>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="navbar.css">
 
 <!-- Website title to be displayed on the browser tab. Optional. -->
 <head>
@@ -26,24 +27,21 @@
         </ul>
     </nav>
  
-    <!-- 02. Pitch Line Deck (blurred background, pictch line text.) -->
-    <h1 class="title_style">
-        About Me
-    </h1>
-    <div class="bg-image img1"></div>
-    <div class="bg-image img2"></div>
-    <div class="bg-image img3"></div>
-    <div class="bg-image img4"></div>
-    <div class="bg-image img5"></div>
-    <div class="bg-image img6" id="pitch_deck_end"></div>
-    <div class="bg-text" id="pitch_line">Passionate. Gritty. Resilient. </div>
 
 
-    <!-- JavaScript for dynamic element. -->
+    <!-- 02. Pitch Images Slides. (blurred background, pictch line text.) -->
+    <div class="pitch_image_slide img1" id="pitch_slide_img1"></div>
+    <div class="pitch_image_slide img2"></div>
+    <div class="pitch_image_slide img3" id="pitch_slide_img3"></div>
+    <div class="pitch_image_slide img4"></div>
+    <div class="pitch_image_slide img5" id="pitch_slide_img5"></div>
+    <div class="pitch_image_slide img6" id="pitch_deck_end"></div>
+    <div class="pitch_line" id="pitch_line">Passionate. Gritty. Resilient. </div>
+    <!-- JavaScript for dynamically hide the pitch line on following text elements.. -->
     <script>
         window.addEventListener('scroll', 
             function(event) {
-                    /* If scrolling past the distance between 'childhood' section and the top of the page. Make element invisible. */
+                    /* If scrolling past the end of the pitch slides. Make the pitch line element invisible. */
                     const scrollDistanceLimit = document.getElementById('pitch_deck_end').offsetTop;
                     if (document.body.scrollTop > scrollDistanceLimit) {
                         document.getElementById('pitch_line').style.display = "none";
@@ -54,7 +52,7 @@
         );
     </script>
 
-    <!-- 03. Sections with actual paraphical contents. -->
+    <!-- 03. Bibliography sections with actual paraphical contents. -->
     <p class="huge_title_style">
         Childhood
     </p>
@@ -68,7 +66,6 @@
         </p>
         <img src="media/contents/childhood/little_me.jpg">
     </section>
-
 
     <p class="huge_title_style">
         Teenage
@@ -87,7 +84,7 @@
 
 
     <p class="huge_title_style">
-        High School
+        A Different Life Trajectory. 
     </p>
     <section class="bibliography_paragraph">
         <p class="paragraph_style">
@@ -121,9 +118,8 @@
     </section>
 
 
-
     <p class="huge_title_style">
-        College.
+        College, lots of college work.
     </p>
     <section class="bibliography_paragraph">
         <p class="paragraph_style">
@@ -155,9 +151,8 @@
     </section>
 
 
-
     <p class="huge_title_style">
-        Enlightenment
+        Engineer.
     </p>
     <section class="bibliography_paragraph">
         <p class="paragraph_style">
@@ -180,19 +175,25 @@
     </section>
 
 
-
     <p class="huge_title_style">
+        Keep going, Lu.
     </p>
     <section class="bibliography_paragraph">
         <p class="paragraph_style">
             Where did I see myself in the forthcoming future? <br> <br>
-            We will see. As a young man, I have already figured out a lot about myself, the study, the career, the meaning of being in this world, and I did well. <br> <br>
+            At this age, I have already figured out a lot about myself, the personality, the career, my loved ones, and the meaning of being in this world, and I did well. <br> <br>
+            There is already more to be done than to be said. <br> <br>
             All the rest of unknowns, I will be ready for it. <br> <br>
+            
             <br> <br>
             End of text, composed on Nov 18 2022, Pittsburgh.
         </p>
         <img src="media/contents/college/baltimore_portrait.JPG">
     </section>
+
+    <section class="ending_banner">
+    </section>
+
 
     <!-- 04. Footer: Copyright Statement & Contact Info. -->
     <footer class="footer">

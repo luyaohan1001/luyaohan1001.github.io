@@ -1,0 +1,50 @@
+    /* 01. Navigation Bar (Menu). */
+    .navbar {
+        cursor: pointer;
+        background: black;
+        background-blend-mode: darken;
+        background-size: cover;
+        display: flex;
+        height: 40%;
+        justify-content: center;
+        /* top must be specified for the navbar to be sticky. */ 
+        top: 0%;
+        position: sticky; /* Allows the navbar to be always within the page. */
+    }
+
+    /* The profile picture in the navigation bar. */
+    .profile_pic {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav_profile_pic img {
+        width: 30%;
+        border-radius: 30%;
+    }
+
+    /* navigation List. */
+    .nav_list {
+        align-items: center;
+        display: flex;
+        width: 70%;
+    }
+
+    /* navigation list items. */
+    .nav_list li {
+        list-style: none;
+        padding: 5%;
+        font-size: 140%;
+    }
+ 
+    .nav_list li a {
+        text-decoration: none;
+        color: white;
+    }
+ 
+    /* Text cover changes when a pointer is hovered over it. */
+    .nav_list li a:hover {
+        color: silver;
+        transition: 1s ease;
+    }
