@@ -1,0 +1,39 @@
+/* featured.css */
+/* This style sheet constrains styles for the featured.html page. */
+<style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .featured_paragraph {
+        background-color: white;
+        display: block;
+        height: auto; /* Set 100% forces body to use height of the content. */
+        width: 100%;
+    }
+
+    .featured_paragraph p {
+        max-width: 40%;
+        margin-left: auto; /* Make paragraph text centered. */
+        margin-right: auto;
+    }
+
+    .featured_paragraph img {
+        display: block;
+        background-color: white;
+        max-width: 30%;
+        object-fit: scale-down; /* Scale image, keep height-width ratio. */
+        margin-left: auto; /* Center image. */
+        margin-right: auto;
+        transition: 1s ease; /* When user's pointer stop hovering upon an image, it should be transitioned to an original size in 1 second. */
+    }
+
+    .featured_paragraph img:hover {
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2); /* When user's pointer hovers over an image, it should be enlarged so to be better seen.*/
+        transition: 1s ease;
+    }
+</style>

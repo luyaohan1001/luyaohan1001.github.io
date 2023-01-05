@@ -2,20 +2,19 @@
 /* Following styles are used for four-pane-window-like gallery in bibliography contents sections in index.html. */
 .photo_gallery {
     align-self: center;
-    padding: 0%;
-    margin: 0%;
+    margin: auto;
     display: grid;
     height: fit-content;    /* Force height to be the sum of a column's picture heights. */
     grid-template-columns: 1fr 1fr; /* Each row has two pictures. */
-    max-width: 30%;
-    padding-left: 5%; /* Add space in beteeen the pictures.*/
-    padding-right: 5%;
+    max-width: 40%;
+    padding: 5%;
+    background-color: transparent; /* Padding uses default white background color, this sets transparent instead. */
 }
 
 .photo_gallery img{
     margin: 0%;
     padding: 0%;
-    max-width: 100%; 
+    max-width: 100%;
     height: auto;
     transition: 1s ease;
 }

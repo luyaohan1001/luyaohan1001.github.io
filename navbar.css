@@ -1,5 +1,5 @@
-/* navbar.css */ 
-/* Following styles are used for 01. Navigation Bar (Menu). */
+/* navbar.css */
+/* Following styles constrarins Navigation Bar (Menu) in index.css. */
 .navbar {
     cursor: pointer;
     background: black;
@@ -8,7 +8,7 @@
     display: flex;
     height: 40%;
     justify-content: center;
-    /* top must be specified for the navbar to be sticky. */ 
+    /* top must be specified for the navbar to be sticky. */
     top: 0%;
     position: sticky; /* Allows the navbar to be always within the page. */
 }
@@ -21,7 +21,7 @@
 }
 
 .nav_profile_pic img {
-    width: 30%;
+    max-width: 30%;
     border-radius: 30%;
 }
 
@@ -30,6 +30,7 @@
     align-items: center;
     display: flex;
     width: 70%;
+    height: 100%;
 }
 
 /* navigation list items. */
@@ -39,9 +40,16 @@
     font-size: 140%;
 }
 
+/* hyperlink text in the each item. */
 .nav_list li a {
     text-decoration: none;
     color: white;
+}
+
+/* multi-language icon image. */
+.nav_list li a img {
+    max-width: 50%;
+    max-height: 50%;
 }
 
 /* Text cover changes when a pointer is hovered over it. */

@@ -2,7 +2,7 @@
 <html>
 
     <!-- Import style sheets. -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="pitch_slides.css">
@@ -32,19 +32,20 @@
                     <img src="media/misc/LuyaoHan_2x2_Photo.JPG">
                 </div>
 
-                <!-- Intro Page. Dummy link, the user is viewing intro page in this index.html. -->
+                <!-- Intro Page. Dummy link, the user is now viewing intro page in this index.html. -->
                 <li><a href="#intro">Intro</a></li>
+
+                <!-- Featured tab.-->
+                <li><a href=featured.html>Featured</a></li>
 
                 <!-- LinkedIn tab.-->
                 <li><a href=https://www.linkedin.com/in/luyao-han>LinkedIn</a></li>
 
-                <!-- Switch language.-->
-                <li><a href=index-cn.html>中文</a></li>
+                <!-- Switch to the index page in Chinese.-->
+                <li><a href=index-cn.html><img src="media/misc/multilanguage.png"></a></li>
             </ul>
 
         </nav>
-    
-
 
         <!-- 02. Pitch Images Slides. (blurred background images, pitch line text.) -->
 
@@ -60,7 +61,7 @@
 
         <!-- JavaScript for dynamically hide the pitch line on following text elements.. -->
         <script>
-            window.addEventListener('scroll', 
+            window.addEventListener('scroll',
 
                 function(event) {
                         /* If scrolling past the end of the pitch slides. Make the pitch line element invisible to user. */
@@ -91,6 +92,7 @@
             <img src="media/contents/childhood/little_me.jpg">
 
         </section>
+
 
         <p class="huge_title_style">
             Teenage
@@ -149,7 +151,7 @@
 
 
         <p class="huge_title_style">
-            College, Lots of College Work.
+            College, Lots of College Work
         </p>
         <section class="bibliography_paragraph">
 
@@ -173,7 +175,7 @@
                 During my first year, I took Calculus, Differential Equations, Vector Calculus, Problem Solving with C++, and many others. <br> <br>
                 During my Sophomore year, I enjoyed and probably also hated the "10 Series", a whole year of continuous series for analog and digital circuits systems designs and analysis. <br> <br>
                 Out of curiosity and with many C programming experiences in the past, I naturally enrolled in other more advanced C++ courses on Data Structures and Algorithms, Object-Oriented Programming, and Software Architectures Courses. <br> <br>
-                I still recall the many nights I stumbled upon the problems I had faced. 
+                I still recall the many nights I stumbled upon the problems I had faced.
             </p>
             <div class="photo_gallery">
                 <link rel="stylesheet" href="photo_gallery.css">
@@ -187,7 +189,7 @@
 
 
         <p class="huge_title_style">
-            Engineer
+            An Engineer
         </p>
         <section class="bibliography_paragraph">
 
@@ -226,7 +228,6 @@
         </section>
 
 
-
         <!-- 04. Footer: Copyright Statement & Contact Info. -->
         <footer class="footer">
             <p>
@@ -235,5 +236,5 @@
         </footer>
 
     </body>
- 
+
 </html>

@@ -4,44 +4,44 @@
     background-repeat: no-repeat;
     background-size: cover; /* Crop images to fill entire horizontal space. */
     filter: blur(7px);  /* Blur effects. */
-    -webkit-filter: blur(7px); 
+    -webkit-filter: blur(7px);
     height: 80%;  /* Each image slide with 80% height. */
     transition: 1s; /* When user leaves from hovering, it should transition back to blurred image in 1 second. */
 }
 
 .pitch_image_slide:hover {
     filter: blur(0px);  /* Blur effects. */
-    -webkit-filter: blur(0px);  
+    -webkit-filter: blur(0px);
     transition: 1.5s; /* When the user hovers on an image slide, it should clear the blur in 1 second.*/ 
 }
 
 /* List of background images in the pitch image slide. */
-.img0 { 
-    background-image: url("media/pitch_slides/pitch_slides_00.jpg"); 
+.img0 {
+    background-image: url("media/pitch_slides/pitch_slides_00.jpg");
 }
 
-.img1 { 
-    background-image: url("media/pitch_slides/pitch_slides_01.jpg"); 
+.img1 {
+    background-image: url("media/pitch_slides/pitch_slides_01.jpg");
 }
 
-.img2 { 
-    background-image: url("media/pitch_slides/pitch_slides_02.png"); 
+.img2 {
+    background-image: url("media/pitch_slides/pitch_slides_02.png");
 }
 
-.img3 { 
+.img3 {
     background-image: url("media/pitch_slides/pitch_slides_03.png");
 }
 
-.img4 { 
-    background-image: url("media/pitch_slides/pitch_slides_04.JPG"); 
+.img4 {
+    background-image: url("media/pitch_slides/pitch_slides_04.JPG");
 }
 
-.img5 { 
-    background-image: url("media/pitch_slides/pitch_slides_05.jpg"); 
+.img5 {
+    background-image: url("media/pitch_slides/pitch_slides_05.jpg");
 }
 
 .pitch_line {
-    background-color: rgba(0, 0, 0, 0.7);  /* Make pitch line background black, with tranparency (alpha): 0.4. */ 
+    background-color: rgba(0, 0, 0, 0.7);  /* Make pitch line background black, with tranparency (alpha): 0.4. */
     border: 10px solid #f1f1f1;
     color: white; /* white font */
     font-weight: bold;

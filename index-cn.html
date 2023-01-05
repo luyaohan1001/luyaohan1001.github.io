@@ -2,7 +2,7 @@
 <html>
 
     <!-- Import style sheets. -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="pitch_slides.css">
@@ -33,18 +33,19 @@
                 </div>
 
                 <!-- Intro Page. Dummy link, the user is viewing intro page in this index.html. -->
-                <li><a href="#intro">关于我</a></li>
+                <li><a href="index-cn.html">介绍</a></li>
+
+                <!-- Featured tab.-->
+                <li><a href=featured-cn.html>精选</a></li>
 
                 <!-- LinkedIn tab.-->
                 <li><a href=https://www.linkedin.com/in/luyao-han>领英</a></li>
 
-                <!-- Switch language.-->
-                <li><a href=index.html>EN</a></li>
+                <!-- Switch to the index page in English.-->
+                <li><a href=index.html><img src="media/misc/multilanguage.png"></a></li>
             </ul>
 
         </nav>
-    
-
 
         <!-- 02. Pitch Images Slides. (blurred background images, pitch line text.) -->
 
@@ -60,7 +61,7 @@
 
         <!-- JavaScript for dynamically hide the pitch line on following text elements.. -->
         <script>
-            window.addEventListener('scroll', 
+            window.addEventListener('scroll',
 
                 function(event) {
                         /* If scrolling past the end of the pitch slides. Make the pitch line element invisible to user. */
@@ -239,5 +240,5 @@
         </footer>
 
     </body>
- 
+
 </html>
