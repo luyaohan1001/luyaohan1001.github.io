@@ -1,59 +1,39 @@
-/* navbar.css */
-/* Following styles constrarins Navigation Bar (Menu) in index.css. */
-.navbar {
-    cursor: pointer;
-    background: black;
-    background-blend-mode: darken;
-    background-size: cover;
-    display: flex;
-    height: 40%;
-    justify-content: center;
-    /* top must be specified for the navbar to be sticky. */
-    top: 0%;
-    position: sticky; /* Allows the navbar to be always within the page. */
-}
-
-/* The profile picture in the navigation bar. */
-.profile_pic {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.nav_profile_pic img {
-    max-width: 30%;
-    border-radius: 30%;
-}
-
 /* navigation List. */
 .nav_list {
     align-items: center;
     display: flex;
-    width: 70%;
-    height: 100%;
+    position: absolute;
+    top:0%;
+    left:7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* navigation list items. */
 .nav_list li {
     list-style: none;
     padding: 5%;
-    font-size: 140%;
 }
 
 /* hyperlink text in the each item. */
-.nav_list li a {
-    text-decoration: none;
-    color: white;
+.nav_list li{
+    font-family: 'Georgia';
+    position: relative;
+    font-weight: bold;
+    font-size: 120%;
+    background: linear-gradient(90deg, #ffffff, #aeeaf8, #fcfcfc);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background-position 0.6s ease-in-out;
+    cursor: pointer;
+    z-index: 1;
 }
 
-/* multi-language icon image. */
-.nav_list li a img {
-    max-width: 50%;
-    max-height: 50%;
-}
 
 /* Text cover changes when a pointer is hovered over it. */
-.nav_list li a:hover {
-    color: silver;
-    transition: 1s ease;
+.nav_list li:hover {
+    background-position: right center;
 }
+

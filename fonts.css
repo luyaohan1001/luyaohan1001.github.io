@@ -1,6 +1,44 @@
 /* fonts.css */
+.self_introduction_title {
+    top:40%;
+    left: 5%;
+    font-family: 'Piazzolla', serif;
+    font-weight: bold;
+    font-size: 500%;
+    color: black;
+    margin-bottom: 12px;
+}
+
+.self_introduction_font {
+    top:65%;
+    left: 5%;
+    font-family: 'Piazzolla', serif;
+    font-size: 100%;
+    color: black;
+}
+
+
+.pitch_name {
+    position: absolute;
+    top:40%;
+    left: 5%;
+    font-family: 'Piazzolla', serif;
+    font-weight: bold;
+    font-size: 500%;
+    color: white;
+}
+.pitch_description {
+    position: absolute;
+    top:65%;
+    left: 5%;
+    font-family: 'Piazzolla', serif;
+    font-size: 150%;
+    color: white;
+}
+
 /* Following styles are used for bibliography contents sections in index.html. */
 .huge_title_style {
+    position: relative;
     text-align: center;
     font-family: 'Piazzolla', serif;
     font-weight: bold;
@@ -10,3 +48,11 @@
 .paragraph_style {
     font-size: 150%;
 }
+
+.footer {
+    font-family: 'Piazzolla', serif;
+    font-size: 150%;
+    color: white;
+}
+
+

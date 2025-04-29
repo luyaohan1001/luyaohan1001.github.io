@@ -1,57 +1,140 @@
-/* 02. Pitch Images Slides. (blurred background images, pictch line text). */
-.pitch_image_slide {
+.portfolio_section {
     background-position: center;  /* Center the images. */
     background-repeat: no-repeat;
     background-size: cover; /* Crop images to fill entire horizontal space. */
-    filter: blur(7px);  /* Blur effects. */
-    -webkit-filter: blur(7px);
     height: 80%;  /* Each image slide with 80% height. */
     transition: 1s; /* When user leaves from hovering, it should transition back to blurred image in 1 second. */
 }
 
-.pitch_image_slide:hover {
-    filter: blur(0px);  /* Blur effects. */
-    -webkit-filter: blur(0px);
-    transition: 1.5s; /* When the user hovers on an image slide, it should clear the blur in 1 second.*/ 
-}
 
 /* List of background images in the pitch image slide. */
-.img0 {
-    background-image: url("media/pitch_slides/pitch_slides_00.jpg");
+.portfolio_section {
+    background-image: url("media/misc/IMG_2446.jpg");
+    height: 100%;
 }
 
-.img1 {
-    background-image: url("media/pitch_slides/pitch_slides_01.jpg");
+
+
+/* below are style of self introduction */
+.self_introduction {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; /* align left and right div vertically */
 }
 
-.img2 {
-    background-image: url("media/pitch_slides/pitch_slides_02.png");
+.self_introduction_left {
+    height: 40%;  /* Adjust size */
+    aspect-ratio: 1 / 1;
+    border-radius: 50%; /* Makes the div round */
+    overflow: hidden;  /* Hides anything outside the round shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 0%;
+    left: 0%;
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-right: 0%;
 }
 
-.img3 {
-    background-image: url("media/pitch_slides/pitch_slides_03.png");
+.self_introduction_left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Ensures the image covers the div area without distortion */
 }
 
-.img4 {
-    background-image: url("media/pitch_slides/pitch_slides_04.JPG");
+.self_introduction_right {
+    flex: 1;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 0%;
+    left: 0%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
-.img5 {
-    background-image: url("media/pitch_slides/pitch_slides_05.jpg");
-}
+/* below are for style of work experience time line. TODO: refactor out to a diffrent file */
+.experience_timeline {
+    position: relative;
+    width: 100%;
+  }
 
-.pitch_line {
-    background-color: rgba(0, 0, 0, 0.7);  /* Make pitch line background black, with tranparency (alpha): 0.4. */
-    border: 10px solid #f1f1f1;
-    color: white; /* white font */
-    font-weight: bold;
-    font-size: 450%; /* Add empty space between the frame and text.  */
-    padding: 5%; /* Center the pitch line vertical and horizontally. */
-    position: fixed; /* Make sure the pitch line stay in the middle of view when user is scrolling down the image slides.. */
+  .job-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .job {
+    position: relative;
+    width: 50%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+  }
+  
+  .job.left {
+    top:15vh;
+    padding-right: 10%;
+    text-align: right;
+  }
+  
+  .job.right {
+    top:15vh;
+    padding-left: 10%;
+    left: 50%;
+    text-align: left;
+  }
+  
+  .job-content {
+    background: white;
+    padding: 5%;
+    border-radius: 8px;
+    display: inline-block;
+    width: 30%;
+    /*box-shadow: 0 2px 8px rgba(0,0,0,0.1);*/
+    position: relative;
+  }
+
+  .logo-center {
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo-center img {
+    width: 10%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  
+  .huge_title_style {
     text-align: center;
-    width: auto;
-    height: auto;
-}
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+  }
+  
+  /* Optional: a vertical line down the center */
+  .experience_timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.1%;
+    height: 100%;
+    background: #363131;
+    z-index: 0;
+  }

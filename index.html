@@ -11,11 +11,8 @@
     <head>
 
         <title>
-            Lu's Profolio.
+            Luyao Han | Portfolio.
         </title>
-
-        <!-- The icon to be displayed onto the browser tab. -->
-        <link rel="icon" type="image/png" href="media/misc/website_favicon_penguin.png">
 
     </head>
 
@@ -24,208 +21,142 @@
     <body>
 
         <!-- 01. Navigation Bar (Menu). -->
-        <nav class="navbar background">
+
+        <div class="portfolio_section">
 
             <ul class="nav_list">
-                <!-- Profile picture. -->
-                <div class="nav_profile_pic">
-                    <img src="media/misc/LuyaoHan_2x2_Photo.JPG">
-                </div>
-
-                <!-- Intro Page. Dummy link, the user is now viewing intro page in this index.html. -->
-                <li><a href="#intro">Intro</a></li>
-
-                <!-- Featured tab.-->
-                <li><a href=featured.html>Featured</a></li>
-
-                <!-- LinkedIn tab.-->
-                <li><a href=https://www.linkedin.com/in/luyao-han>LinkedIn</a></li>
-
-                <!-- Switch to the index page in Chinese.-->
-                <li><a href=index-cn.html><img src="media/misc/multilanguage.png"></a></li>
+                <li><a>About</a></li>
+                <li><a>Experience</a></li>
+                <li><a>Projects</a></li>
+                <li><a href=featured.html>Photography</a></li>
             </ul>
 
-        </nav>
-
-        <!-- 02. Pitch Images Slides. (blurred background images, pitch line text.) -->
-
-        <!-- Specify divs for multiple images, which actual files used to be specified in pitch_slides.css. -->
-        <div class="pitch_image_slide img0"></div>
-        <div class="pitch_image_slide img1"></div>
-        <div class="pitch_image_slide img2"></div>
-        <div class="pitch_image_slide img3"></div>
-        <div class="pitch_image_slide img4"></div>
-        <div class="pitch_image_slide img5" id="pitch_deck_end"></div>
-
-        <div class="pitch_line" id="pitch_line">Passionate. Determined. Resilient. </div>
-
-        <!-- JavaScript for dynamically hide the pitch line on following text elements.. -->
-        <script>
-            window.addEventListener('scroll',
-
-                function(event) {
-                        /* If scrolling past the end of the pitch slides. Make the pitch line element invisible to user. */
-                        /* Make that disappear so that it does not block the actual texts in the bibliography. */
-                        const scrollDistanceLimit = document.getElementById('pitch_deck_end').offsetTop;
-                        if (document.body.scrollTop > scrollDistanceLimit) {
-                            document.getElementById('pitch_line').style.visibility = "hidden";
-                        } else {
-                            document.getElementById('pitch_line').style.visibility = "visible"; 
-                        }
-                }
-            );
-        </script>
-
-        <!-- 03. Bibliography sections with actual paraphical contents. -->
-        <p class="huge_title_style">
-            Childhood
-        </p>
-        <section class="bibliography_paragraph">
-
-            <p class="paragraph_style">
-                In 1999, I was born in Hangzhou, a city in East China. <br> <br>
-                After witnessing the economic rise, the country soon pivoted its development around first-tier cities. <br> <br>
-                My family had decided to move to the city of Shanghai to seek better financial opportunities and educational resources for their beloved children. <br> <br>
-                My story began from here. <br> <br>
-                <br>
+            <p class="pitch_name">
+                Hello, I'm Luyao!
             </p>
-            <img src="media/contents/childhood/little_me.jpg">
+        </div>
 
-        </section>
+        <div class="self_introduction">
+            <div class="self_introduction_left">
+                <img src="media/misc/IMG_8480.JPG" alt="Profile Picture">
+            </div>
+            <div class="self_introduction_right">
+                <p class="self_introduction_title">
+                    About Me
+                </p>
+                <p class="self_introduction_font">
+                    <b>NAME:</b> Luyao Han
+                    <hr>
+                    <b>PRONOUNS</b>: He/Him/His
+                    <hr>
+                    <b>EDUCATION</b>:
+                    <br>
+                    <b>Carnegie Mellon University</b>
+                    <br>
+                    M.S. Electrical and Computer Engineering
+                    <br>
+                    <b>University of California, Santa Barbara</b>
+                    <br>
+                    B.S. Electrical and Computer Engineering
+                    <hr>
+                    <b>INDUSTRY</b>: Semiconductor, Mobile Technology
+                    <hr>
+                    <b>HOMETOWN</b>: Hangzhou
+                    <hr>
+                    <br>
+                    I am deeply passionate about firmware engineering—the vital intersection of code and silicon—where I tackle complex challenges involving performance, concurrency, and reliability.
+                    <br><br>
+                    My career interest includes bare metal firmware, real time operating systems, time-critical and fault-tolerance engineering.
+                    <br><br>
+                    My effort continuous to bridge the gap between hardware and software with efficient, elegant solutions.
+                </p>
+            </div>
+        </div>
 
 
-        <p class="huge_title_style">
-            Teenage
-        </p>
-        <section class="bibliography_paragraph">
-
-            <p class="paragraph_style">
-                December 16th, 2013, I got an admission letter from an international school that offered equivalent high school curricula as those in the United States. <br> <br>
-                After some thoughtful discussions, my family and I decided that I shall pursue the journey. <br> <br>
-                That said, I needed to earn a high school education enough to prepare for a U.S. college, deviating from what an average student would experience at my age, and would take a path for higher education far away from home.  <br> <br>
-                I was proud that I had qualified as one of the few students who had done well in the qualification exam. <br> <br> 
+        <!-- 02. Experience experience_timeline -->
+        <div class="experience_title">
+            <p class="huge_title_style">
+                Experience
             </p>
-            <img src="media/contents/teenage/ushs_admission_offer.png">
+        </div>
 
-        </section>
-
-
-        <p class="huge_title_style">
-            A Different Life Trajectory
-        </p>
-        <section class="bibliography_paragraph">
-
-            <p class="paragraph_style">
-                High school was fun. <br> <br>
-                As the school advocated -- "WHERE EAST MEETS WEST." <br> <br>
-                Halloweens, Secret Santas, Pep Rally, Talent Show, Academic Debate, Theaters Arts -- numerous activities opened my eyes to the western world. <br> <br>
-                I truly appreciated such an interesting cultural fusion. <br> <br>
-                I also got to understand myself better. That, I was an adherent of pragmatism. In hindsight, I realized that the signs manifested as early as then, and I thought and treated my problems like an engineer.<br> <br>
-                Interestingly, once I programmed the auditorium stage lighting console for an entertaining Talent Show. I liked the sole magic power of machine intelligence. <br> <br>
-                I tried programming microprocessors and Linux-based computers, though. The technologies were magical to me. <br> <br>
-            </p>
-            <div class="photo_gallery">
-                <link rel="stylesheet" href="photo_gallery.css">
-                <img src="media/contents/teenage/ushs_00.jpg">
-                <img src="media/contents/teenage/ushs_01.jpg">
-                <img src="media/contents/teenage/ushs_02.png">
-                <img src="media/contents/teenage/ushs_03.jpg">
+        <div class="experience_timeline">
+            <div class="job-container">
+              <div class="job left">
+                <div class="job-content">
+                  <h3>Wireless Firmware Engineer</h3>
+                  <p>Apple, San Diego
+                    <br>2022 - Present
+                  </p>
+                </div>
+              </div>
+              <div class="logo-center">
+                <img src="media/experience/apple.png" alt="Apple Logo">
+              </div>
+            </div>
+          
+            <div class="job-container">
+              <div class="job right">
+                <div class="job-content">
+                  <h3>Firmware Intern</h3>
+                  <p>NVIDIA<br>2021 - 2023</p>
+                </div>
+              </div>
+              <div class="logo-center">
+                <img src="media/experience/nvidia.png" alt="NVIDIA Logo">
+              </div>
+            </div>
+          
+            <div class="job-container">
+              <div class="job left">
+                <div class="job-content">
+                  <h3>Intern</h3>
+                  <p>Qualcomm<br>2020 - 2021</p>
+                </div>
+              </div>
+              <div class="logo-center">
+                <img src="media/experience/qualcomm.png" alt="Qualcomm Logo">
+              </div>
             </div>
 
-        </section>
-
-
-        <p class="huge_title_style">
-            <!-- No actual text, using this empty title to add white space. -->
-        </p>
-        <section class="bibliography_paragraph">
-
-            <p class="paragraph_style">
-                The many virtues and personalities jointly encouraged me to become who I am today. <br> <br>
-                These qualities are Passion, Grittiness, Resilience, Aspiration, and Curiosity. <br> <br> 
-                They carried me on during tough times and will be precious assets for life. <br> <br>
-            </p>
-            <img src="media/contents/teenage/ushs_graduation_portrait.jpg">
-
-        </section>
-
-
-        <p class="huge_title_style">
-            College, Lots of College Work
-        </p>
-        <section class="bibliography_paragraph">
-
-            <p class="paragraph_style">
-                September 3rd, 2017, I landed at the Los Angeles Airport. <br> <br>
-                Four years of exciting experience ahead, my study in the United States had formally begun.
-            </p>
-            <img src="media/contents/college/baltimore_airport_selfie.jpg">
-
-        </section>
-
-
-        <p class="huge_title_style">
-            <!-- No actual text, using this empty title to add white space. -->
-        </p>
-        <section class="bibliography_paragraph">
-
-            <p class="paragraph_style">
-                The electrical engineering curriculum at UC Santa Barbara was composed of the lower-division and upper-division course sets. <br> <br>
-                The lower-division courses were introductory courses to prepare the student for advanced upper-division engineering courses with theoretical foundations. <br> <br>
-                During my first year, I took Calculus, Differential Equations, Vector Calculus, Problem Solving with C++, and many others. <br> <br>
-                During my Sophomore year, I enjoyed and probably also hated the "10 Series", a whole year of continuous series for analog and digital circuits systems designs and analysis. <br> <br>
-                Out of curiosity and with many C programming experiences in the past, I naturally enrolled in other more advanced C++ courses on Data Structures and Algorithms, Object-Oriented Programming, and Software Architectures Courses. <br> <br>
-                I still recall the many nights I stumbled upon the problems I had faced.
-            </p>
-            <div class="photo_gallery">
-                <link rel="stylesheet" href="photo_gallery.css">
-                <img src="media/contents/college/ucsb_study_00.png">
-                <img src="media/contents/college/ucsb_study_01.png">
-                <img src="media/contents/college/ucsb_study_02.jpg">
-                <img src="media/contents/college/ucsb_study_03.png">
+            <div class="job-container">
+                <div class="job right">
+                  <div class="job-content">
+                    <h3>Firmware Intern</h3>
+                    <p>NVIDIA<br>2021 - 2023</p>
+                  </div>
+                </div>
+                <div class="logo-center">
+                  <img src="media/experience/qualcomm.png" alt="NVIDIA Logo">
+                </div>
             </div>
 
-        </section>
-
-
-        <p class="huge_title_style">
-            An Engineer
-        </p>
-        <section class="bibliography_paragraph">
-
-            <p class="paragraph_style">
-                Having realized that my intrinsic curiosity lies in the digital hardware and lower-level software domain, I changed my major from Electrical Engineering to Computer Engineering. <br> <br>
-                The two majors had ~70% curriculum overlap except that I got to allocate more time to the software side of the engineering spectrum. <br> <br>
-                In my Junior and Senior years, my curriculum focused on Embedded Systems and Computer Architecture, which interestingly became the solid concentration of my master's study later. <br> <br>
-                During the course training, the most important qualities I picked up were quickly ramping up onto an unsolved problem, producing an effective strategy incrementally, and gaining confidence from tackling. <br> <br>
-                When I realized I would no longer be afraid of certain types of problems, it meant I had gone through such cycles so many times and had already gained enough confidence in such areas. <br> <br>
-            </p>
-            <div class="photo_gallery">
-                <link rel="stylesheet" href="photo_gallery.css">
-                <img src="media/contents/college/now_engineer_00.png">
-                <img src="media/contents/college/now_engineer_01.jpg">
-                <img src="media/contents/college/now_engineer_02.png">
-                <img src="media/contents/college/now_engineer_03.jpg">
+            <div class="job-container">
+                <div class="job left">
+                  <div class="job-content">
+                    <h3>Intern</h3>
+                    <p>Qualcomm<br>2020 - 2021</p>
+                  </div>
+                </div>
+                <div class="logo-center">
+                  <img src="media/experience/bruker.svg.png" alt="Qualcomm Logo">
+                </div>
             </div>
 
-        </section>
+            <div class="job-container">
+                <div class="job right">
+                  <div class="job-content">
+                    <h3>Student</h3>
+                    <p>UC Santa Barbara<br>2021 - 2023</p>
+                  </div>
+                </div>
+                <div class="logo-center">
+                  <img src="media/experience/gold-seal.png" alt="NVIDIA Logo">
+                </div>
+            </div>
+        </div>
 
-
-        <p class="huge_title_style">
-            Keep Going
-        </p>
-        <section class="bibliography_paragraph">
-
-            <p class="paragraph_style">
-                Where do I see myself in the forthcoming future? <br> <br>
-                At this age, I have already figured out a lot about myself. Overall, I think I did well. <br> <br>
-                There is already more to be done than to be said. <br> <br>
-                All the rest of the unknowns, I will be ready for it. <br> <br>
-                <br> <br>
-            </p>
-            <img src="media/contents/college/baltimore_aquarium_portrait.JPG">
-
-        </section>
 
 
         <!-- 04. Footer: Copyright Statement & Contact Info. -->
