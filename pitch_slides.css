@@ -1,13 +1,13 @@
+/* --- Portfolio Section Styles --- */
 .portfolio_section {
-    background-position: center;  /* Center the images. */
+    position: relative; /* Allows absolutely-positioned children like background to be anchored */
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; /* Crop images to fill entire horizontal space. */
-    height: 80%;  /* Each image slide with 80% height. */
-    transition: 1s; /* When user leaves from hovering, it should transition back to blurred image in 1 second. */
+    background-size: cover; /* Ensures the background image covers the entire area */
+    height: 100vh; /* Use viewport height for consistent layout */
+    transition: 1s; /* Smooth transition on state changes */
 }
 
-
-/* List of background images in the pitch image slide. */
 .background-image {
     background-image: url("media/misc/IMG_2446.JPG");
     background-size: cover;
@@ -16,99 +16,88 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: -1; /* Send it behind everything */
+    height: 100vh;
+    z-index: -1; /* Push behind content */
 }
 
-
-
-/* below are style of self introduction */
+/* --- Self Introduction Section --- */
 .self_introduction {
     width: 100%;
-    height: 100%;
+    min-height: 80vh; /* Ensures enough space to avoid overlap */
     display: flex;
-    flex-wrap: wrap;
-    align-items: center; /* align left and right div vertically */
+    flex-wrap: wrap; /* Allows responsive layout */
+    align-items: center; /* Align items vertically */
 }
 
 .self_introduction_left {
-    height: 40%;  /* Adjust size */
-    aspect-ratio: 1 / 1;
-    border-radius: 50%; /* Makes the div round */
-    overflow: hidden;  /* Hides anything outside the round shape */
+    width: 200px; /* Fixed size for profile photo */
+    aspect-ratio: 1 / 1; /* Maintain circular shape */
+    border-radius: 50%;
+    overflow: hidden; /* Trim image outside the circle */
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0% 0 5% 5%; /* Top, right, bottom, left margins */
     position: relative;
-    top: 0%;
-    left: 0%;
-    margin-left: 5%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-right: 0%;
 }
 
 .self_introduction_left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;  /* Ensures the image covers the div area without distortion */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crop image to fill circle */
 }
 
 .self_introduction_right {
-    flex: 1;
+    flex: 1; /* Take remaining space */
     width: auto;
     justify-content: center;
     align-items: center;
-    position: relative;
-    top: 0%;
-    left: 0%;
     margin-left: 5%;
     margin-right: 5%;
 }
 
-/* below are for style of work experience time line. TODO: refactor out to a diffrent file */
+/* --- Experience Timeline Section --- */
 .experience_timeline {
     position: relative;
     width: 100%;
-  }
+    padding: 2rem 0; /* Vertical spacing */
+}
 
-  .job-container {
+.job-container {
     position: relative;
     width: 100%;
-  }
+    display: flex;
+    justify-content: space-between; /* Align jobs left and right */
+    margin: 4rem 0; /* Vertical spacing between jobs */
+}
 
-  .job {
+.job {
     position: relative;
-    width: 50%;
-    padding: 20px 40px;
+    width: 45%;
     box-sizing: border-box;
-  }
-  
-  .job.left {
-    top:15vh;
+}
+
+.job.left {
     padding-right: 10%;
     text-align: right;
-  }
-  
-  .job.right {
-    top:15vh;
-    padding-left: 10%;
-    left: 50%;
-    text-align: left;
-  }
-  
-  .job-content {
-    background: white;
-    padding: 5%;
-    border-radius: 8px;
-    display: inline-block;
-    width: 30%;
-    /*box-shadow: 0 2px 8px rgba(0,0,0,0.1);*/
-    position: relative;
-  }
+}
 
-  .logo-center {
+.job.right {
+    padding-left: 10%;
+    left: 51%;
+    text-align: left;
+}
+
+.job-content {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
     position: relative;
+}
+
+.logo-center {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -116,32 +105,69 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+    transition: box-shadow 0.6s ease, transform 0.6s ease;
+}
 
-  .logo-center img {
-    width: 10%;
+.logo-center:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.6),
+                0 0 50px rgba(255, 255, 255, 0.4);
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.logo-center img {
+    width: 200px;
     aspect-ratio: 1 / 1;
     object-fit: contain;
     border-radius: 50%;
     background: white;
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  }
+}
 
-  .huge_title_style {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-  }
-
-  /* Optional: a vertical line down the center */
-  .experience_timeline::before {
+.experience_timeline::before {
     content: '';
     position: absolute;
-    top: 30vh;
     left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: #979595;
     transform: translateX(-50%);
-    width: 0.1%;
-    height: 230vh;
-    background: #363131;
-    z-index: 0;
-  }
+    z-index: 0; /* Behind all job content */
+}
+
+/* --- Responsive Fixes for Smaller Screens --- */
+/* --- Media Query for Small Screens --- */
+/*
+   The @media rule allows you to apply styles only under certain conditions.
+   Here, @media (max-width: 768px) targets screens where the width is 768px or smaller.
+   This is commonly used for responsive design to adjust layout and styling for smaller devices like tablets and mobile phones.
+   In this case, the styles inside this block will only be applied when the browser window or device screen is less than or equal to 768px wide.
+   This is typical for optimizing layouts for small screens.
+*/
+@media (max-width: 768px) {
+    .logo-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: box-shadow 0.6s ease, transform 0.6s ease;
+    }
+    .logo-center:hover {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.6),
+                    0 0 50px rgba(255, 255, 255, 0.4);
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .logo-center img {
+        width: 20vw;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+}

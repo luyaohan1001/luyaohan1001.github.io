@@ -2,7 +2,7 @@
 .self_introduction_title {
     top:40%;
     left: 5%;
-    font-family: 'Piazzolla', serif;
+    font-family: 'Georgia', serif;
     font-weight: bold;
     font-size: 500%;
     color: black;
@@ -11,9 +11,9 @@
 
 .self_introduction_font {
     top:65%;
-    left: 5%;
-    font-family: 'Piazzolla', serif;
-    font-size: 100%;
+    line-height: 200%;
+    font-family: 'Georgia', serif;
+    font-size: 120%;
     color: black;
 }
 
@@ -22,7 +22,7 @@
     position: absolute;
     top:40%;
     left: 5%;
-    font-family: 'Piazzolla', serif;
+    font-family: 'Georgia', serif;
     font-weight: bold;
     font-size: 500%;
     color: white;
@@ -31,7 +31,7 @@
     position: absolute;
     top:65%;
     left: 5%;
-    font-family: 'Piazzolla', serif;
+    font-family: 'Georgia', serif;
     font-size: 150%;
     color: white;
 }
@@ -40,9 +40,10 @@
 .huge_title_style {
     position: relative;
     text-align: center;
-    font-family: 'Piazzolla', serif;
+    font-family: 'Georgia', serif;
     font-weight: bold;
     font-size: 500%;
+    margin-bottom: 0;
 }
 
 .paragraph_style {
@@ -50,7 +51,7 @@
 }
 
 .footer {
-    font-family: 'Piazzolla', serif;
+    font-family: 'Georgia', serif;
     font-size: 150%;
     color: white;
 }
