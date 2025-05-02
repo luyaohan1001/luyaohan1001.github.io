@@ -20,7 +20,7 @@
 
 .pitch_name {
     position: absolute;
-    top:40%;
+    top:50%;
     left: 5%;
     font-family: 'Georgia', serif;
     font-weight: bold;
@@ -35,6 +35,11 @@
     font-size: 150%;
     color: white;
 }
+
+/* Following styles are used in experience tree */
+
+
+
 
 /* Following styles are used for bibliography contents sections in index.html. */
 .huge_title_style {
