@@ -11,17 +11,17 @@
 .self_introduction_font {
     line-height: 200%;
     font-family: 'Georgia', serif;
-    font-size: 120%;
+    font-size: 2vh;
     color: black;
 }
 
 .pitch_name {
     position: absolute;
     top:60vh;
-    left: 2%;
+    left: 10vw;
     font-family: 'Georgia', serif;
     font-weight: bold;
-    font-size: 500%;
+    font-size: 8vh;
     color: white;
 }
 
@@ -40,9 +40,12 @@
     text-align: center;
     font-family: 'Georgia', serif;
     font-weight: bold;
-    font-size: 500%;
+    font-size: 10vw;
     margin: 0;
-    padding: 0;
+    padding: 5vh;
+    /* gives shadow */
+    color: #222;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .paragraph_style {
@@ -51,7 +54,7 @@
 
 .footer {
     font-family: 'Georgia', serif;
-    font-size: 150%;
+    font-size: 2vh;
     color: white;
 }
 
