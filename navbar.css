@@ -3,25 +3,37 @@
     position: fixed; /* make the list stay as you scroll */
     top:0;
     padding: 0;
-    height: 28vh;
-    /* display: flex;*/
-    /* flex-direction: column;*/
+    height: 1vh;
     min-height: 5vh;
     border-radius: 0 0 8px 0px;
     background-color: rgba(203, 203, 203, 0.2); /* semi-opaque black */
     z-index: 999; /* ensure it stays above other elements */
     backdrop-filter: blur(5px); /* optional: gives a frosted glass effect */
     margin: 0; /* specify so to remove default margin assumed by browser */
+    overflow: hidden;
+    transition: width 0.3s ease, height 0.3s ease;  /* add transitions */
+    align-content: center;
+    justify-content: center;
 }
 
-/* navigation list items. */
+.nav_list:hover {
+    height: 100vh;
+}
+
+
 .nav_list li {
+    padding: 0;
+    margin: 0;
+    justify-items: center; /* align list items along the horizontal axis */
+}
+
+/* style on the link item itself  */
+.nav_list li a {
+    display: block; /* this expands the clickable area */
     width: auto;
     word-wrap: break-word;    /* or use overflow-wrap */
     overflow-wrap: break-word;
     list-style: none;
-    margin-left: 0;
-    padding-left: 0;
     padding-top: 3vh;
     padding-bottom: 3vh;
     font-family: 'Georgia';
@@ -37,10 +49,29 @@
     z-index: 1;
 }
 
+.nav_list li img {
+    margin-left: 1vw;
+    padding-left: 1vw;
+    width: 10px;
+    height: 10px;
+}
+
+.nav_list_menu{
+    padding-left: 1vw;
+    padding-right: 1vw;
+    display: flex;
+    align-items: center; /* Optional: vertically center the items */
+    gap: 8px; /* Optional: space between image and text */
+}
+
+.nav_list_menu img{
+    width: 30px;
+    height: 30px;
+}
 
 
 /* Text cover changes when a pointer is hovered over it. */
-.nav_list li:hover {
+.nav_list li a:hover {
     background-position: right center;
 }
 

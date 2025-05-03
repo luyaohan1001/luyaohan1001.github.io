@@ -128,14 +128,11 @@ html, body {
     cursor: pointer;
   }
 
-  .proj_image:hover {
-    transform: scale(3.5); /* Enlarges the image on hover */
-  }
 
   .scalable_img:hover {
     transform: scale(1.5); /* Enlarges the image on hover */
   }
-  
+
   .proj_description {
     margin: 10px 0;
     font-weight: normal;
@@ -160,6 +157,8 @@ html, body {
   }
 
   .proj_images {
+    justify-content: center;
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30vw, 1fr));
     gap: 10px;
