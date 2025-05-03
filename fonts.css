@@ -17,7 +17,7 @@
 
 .pitch_name {
     position: absolute;
-    top:75%;
+    top:60vh;
     left: 2%;
     font-family: 'Georgia', serif;
     font-weight: bold;
@@ -41,7 +41,8 @@
     font-family: 'Georgia', serif;
     font-weight: bold;
     font-size: 500%;
-    margin-bottom: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .paragraph_style {

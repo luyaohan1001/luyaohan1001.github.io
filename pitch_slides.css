@@ -32,32 +32,30 @@ html, body {
 .self_introduction {
     min-height: 80vh; /* Ensures enough space to avoid overlap */
     display: flex;
-    flex-wrap: wrap; /* Allows responsive layout */
+    flex-direction: row;
     align-items: center; /* Align items vertically */
     padding-left: 5vw;
     padding-right: 5vw;
 }
 
 .self_introduction_left {
-    width: 200px; /* Fixed size for profile photo */
+    width: auto;              /* Ensure it spans available width */
+    height: auto;             /* Or adjust this to suit layout */
     max-width: 300px;
     overflow: hidden; /* Trim image outside the circle */
-    display: flex;
     justify-content: center;
     align-items: center;
     margin: 0% 0% 0% 0%; /* Top, right, bottom, left margins */
-    padding: 0% 5% 0% 5%;
     position: relative;
-    height: 40vh;
+    /* background: rgba(255, 0, 0, 0.1); */ /* DEBUG */
 }
 
 .self_introduction_left img {
     object-fit: cover; /* Crop image to fill circle */
     border-radius: 50%;
     aspect-ratio: 1 / 1; /* Maintain circular shape */
-    width: auto;
-    height: 30vh;
-
+    width: 300px;
+    height: auto;
     transform: perspective(800px) rotateX(5deg) rotateY(-5deg);
     transition: transform 0.3s ease;
 }
@@ -68,7 +66,6 @@ html, body {
 
 
 .self_introduction_right {
-    flex: 1; /* Take remaining space */
     width: auto;
     justify-content: center;
     align-items: center;
@@ -77,13 +74,26 @@ html, body {
 /* Media query for smaller screens, to make items stack vertically */
 @media (max-width: 768px) {
     .self_introduction {
-        flex-direction: column; /* Stack vertically */
-        align-items: center; /* Center content */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .self_introduction_left {
-        margin-bottom: 0; /* Add space below the profile photo */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;            /* Make it span full width */
+        height: auto;
+        max-width: none;
+        margin-bottom: 20px;
+        /* background: rgba(255, 0, 0, 0.1); */ /* DEBUG */
     }
+    .self_introduction_left img {
+        width: 150px;           /* Shrink a bit on mobile */
+        height: 150px;
+      }
 
     .self_introduction_right {
         margin-right: 0;

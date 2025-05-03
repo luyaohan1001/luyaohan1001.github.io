@@ -3,28 +3,54 @@
     position: fixed; /* make the list stay as you scroll */
     top:0;
     padding: 0;
-    height: 1vh;
-    min-height: 5vh;
     border-radius: 0 0 8px 0px;
     background-color: rgba(203, 203, 203, 0.2); /* semi-opaque black */
     z-index: 999; /* ensure it stays above other elements */
     backdrop-filter: blur(5px); /* optional: gives a frosted glass effect */
     margin: 0; /* specify so to remove default margin assumed by browser */
     overflow: hidden;
-    transition: width 0.3s ease, height 0.3s ease;  /* add transitions */
     align-content: center;
     justify-content: center;
+    transition: width 0.3s ease, height 0.3s ease;  /* add transitions */
+    height: 4vh; /* by default nav list height = MENU icon + text height, which is 2 vh + padding top 1vh + padding bottom 1vh = 4vh*/
 }
 
+/* "MENU" icon and text */
+.nav_list_menu{
+    height: 2vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    display: flex;
+    align-items: center; /* Optional: vertically center the items */
+    gap: 8px; /* Optional: space between image and text */
+    font-size: 2vh;
+}
+
+/* "MENU" icon*/
+.nav_list_menu img{
+    width: 30px;
+    height: 30px;
+}
+
+/* Once hover over the nav_list, the menu expands to browser display height 100% */
 .nav_list:hover {
     height: 100vh;
 }
+
+/* Once hover over the nav_list, the menu list items shows up */
+.nav_list:hover li{
+    display: block;
+}
+
 
 
 .nav_list li {
     padding: 0;
     margin: 0;
-    justify-items: center; /* align list items along the horizontal axis */
+    justify-items: center; /* center navbar options */
+    display: none;
 }
 
 /* style on the link item itself  */
@@ -39,7 +65,7 @@
     font-family: 'Georgia';
     position: relative;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 3vw;
     background: linear-gradient(270deg, #ffffff, #7cc0ff, #0080ff);
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -55,20 +81,6 @@
     width: 10px;
     height: 10px;
 }
-
-.nav_list_menu{
-    padding-left: 1vw;
-    padding-right: 1vw;
-    display: flex;
-    align-items: center; /* Optional: vertically center the items */
-    gap: 8px; /* Optional: space between image and text */
-}
-
-.nav_list_menu img{
-    width: 30px;
-    height: 30px;
-}
-
 
 /* Text cover changes when a pointer is hovered over it. */
 .nav_list li a:hover {
