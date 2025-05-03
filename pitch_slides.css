@@ -1,4 +1,11 @@
 /* --- Portfolio Section Styles --- */
+
+html, body {
+    max-width: 100%;
+    margin: 0; /* specify so to remove default margin assumed by browser */
+    /* overflow-x: hidden; */ /* inelegant way of removing white space due to inproper layout, avoided. */
+  }
+
 .portfolio_section {
     position: relative; /* Allows absolutely-positioned children like background to be anchored */
     background-position: center;
@@ -9,7 +16,7 @@
 }
 
 .background-image {
-    background-image: url("media/misc/IMG_2446.JPG");
+    background-image: url("media/misc/IMG_2446 2.JPG");
     background-size: cover;
     background-position: center;
     position: absolute;
@@ -23,38 +30,48 @@
 /* --- Self Introduction Section --- */
 
 .self_introduction {
-    width: 100%;
     min-height: 80vh; /* Ensures enough space to avoid overlap */
     display: flex;
     flex-wrap: wrap; /* Allows responsive layout */
     align-items: center; /* Align items vertically */
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
 .self_introduction_left {
     width: 200px; /* Fixed size for profile photo */
-    aspect-ratio: 1 / 1; /* Maintain circular shape */
-    border-radius: 50%;
+    max-width: 300px;
     overflow: hidden; /* Trim image outside the circle */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0% 0 5% 5%; /* Top, right, bottom, left margins */
+    margin: 0% 0% 0% 0%; /* Top, right, bottom, left margins */
+    padding: 0% 5% 0% 5%;
     position: relative;
+    height: 40vh;
 }
 
 .self_introduction_left img {
-    width: 100%;
-    height: 100%;
     object-fit: cover; /* Crop image to fill circle */
+    border-radius: 50%;
+    aspect-ratio: 1 / 1; /* Maintain circular shape */
+    width: auto;
+    height: 30vh;
+
+    transform: perspective(800px) rotateX(5deg) rotateY(-5deg);
+    transition: transform 0.3s ease;
 }
+
+.self_introduction_left img:hover {
+    transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1.05);
+}
+
 
 .self_introduction_right {
     flex: 1; /* Take remaining space */
     width: auto;
     justify-content: center;
     align-items: center;
-    margin-left: 5%;
-    margin-right: 5%;
 }
 
 /* Media query for smaller screens, to make items stack vertically */
@@ -65,12 +82,12 @@
     }
 
     .self_introduction_left {
-        margin-bottom: 20px; /* Add space below the profile photo */
+        margin-bottom: 0; /* Add space below the profile photo */
     }
 
     .self_introduction_right {
-        margin-left: 0;
         margin-right: 0;
+        padding: 0;
     }
 }
 
@@ -90,7 +107,7 @@
     flex-direction: column;
     align-items: center;
     padding: 16px;
-    width: 100%;
+    width: 40%;
     text-align: center;
   }
 
@@ -109,6 +126,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
     cursor: pointer;
+  }
+
+  .proj_image:hover {
+    transform: scale(3.5); /* Enlarges the image on hover */
   }
 
   .scalable_img:hover {

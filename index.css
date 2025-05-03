@@ -11,35 +11,6 @@
     /* 02. Pitch Images Slides. (blurred background, pictch line text.) are in pitch_slides.css. */
 
     /* 03. Bibliography sections with paraphical contents. */
-    .bibliography_paragraph {
-        background-color: white;
-        display: flex; /* Display all child elements horizontally. Text on the left, images on the right. */
-        height: auto; /* Set 100% forces body to use height of the content. */
-        scroll-margin-top: 40%; /* This is equal to the height of the navbar, this offset is needed for jumping to an element. */ 
-        width: 100%;
-    }
-
-    .bibliography_paragraph p {
-        padding-left: 5%;
-    }
-
-    .bibliography_paragraph img {
-        align-self: center;
-        background-color: white;
-        max-width: 40%; /* Suggestion: Keep here same max-width with that of photo_gallery for consistency. */
-        object-fit: scale-down; /* Scale image, keep height-width ratio. */
-        padding-left: 5%; /* Add empty space to left and right of the image. This also vertical-aligns the images. */ 
-        padding-right: 5%;
-        background-color: transparent; /* Padding uses default white background color, this sets transparent instead. */
-        transition: 1s ease; /* When user's pointer stop hovering upon an image, it should be transitioned to an original size in 1 second. */
-    }
-
-    .bibliography_paragraph img:hover {
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2); /* When user's pointer hovers over an image, it should be enlarged so to be better seen.*/
-        transition: 1s ease;
-    }
 
     /* 04. Footer (copyright statement section.) */
     .footer {
@@ -47,7 +18,7 @@
         background-size: cover;
         color: white;
         display: flex; /* Display it in a row. */
-        font-family: 'Ubuntu', sans-serif;
+        font-family: 'Georgia', sans-serif;
         justify-content: center; /* Aligns the flex item (copyright texts) in the middle horizontally.*/
         padding: 30px 0;
         text-align: center;

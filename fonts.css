@@ -1,6 +1,5 @@
 /* fonts.css */
 .self_introduction_title {
-    top:40%;
     left: 5%;
     font-family: 'Georgia', serif;
     font-weight: bold;
@@ -10,23 +9,22 @@
 }
 
 .self_introduction_font {
-    top:65%;
     line-height: 200%;
     font-family: 'Georgia', serif;
     font-size: 120%;
     color: black;
 }
 
-
 .pitch_name {
     position: absolute;
-    top:50%;
-    left: 5%;
+    top:75%;
+    left: 2%;
     font-family: 'Georgia', serif;
     font-weight: bold;
     font-size: 500%;
     color: white;
 }
+
 .pitch_description {
     position: absolute;
     top:65%;
@@ -35,11 +33,6 @@
     font-size: 150%;
     color: white;
 }
-
-/* Following styles are used in experience tree */
-
-
-
 
 /* Following styles are used for bibliography contents sections in index.html. */
 .huge_title_style {

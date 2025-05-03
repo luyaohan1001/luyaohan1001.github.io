@@ -9,11 +9,9 @@
 
     <!-- Specify website title to be displayed on the browser tab. -->
     <head>
-
         <title>
             Luyao Han | Portfolio.
         </title>
-
     </head>
 
 
@@ -21,19 +19,20 @@
     <body>
 
         <!-- 01. Navigation Bar (Menu). -->
+        <ul class="nav_list">
+            <li><a href=index.html>About</a></li>
+            <li><a>YesRTOS</a></li>
+            <li><a href=featured.html>Photography</a></li>
+        </ul>
+
 
         <div class="portfolio_section">
             <div class="background-image"></div>
-
-            <ul class="nav_list">
-                <li><a>About</a></li>
-                <li><a>YesRTOS</a></li>
-                <li><a href=featured.html>Photography</a></li>
-            </ul>
-
-            <p class="pitch_name">
-                Hello, I'm Luyao!
-            </p>
+            <div class="pitch_name">
+                Hello.
+                <br>
+                I'm Luyao!
+            </div>
         </div>
 
         <p class="huge_title_style">
@@ -45,13 +44,14 @@
             </div>
             <div class="self_introduction_right">
                 <p class="self_introduction_font">
-                    I am a professional <b>firmware engineer</b> — bridging silicon to software with efficient, elegant solutions.
-                    <br>
-                    My career interest includes mobile embedded systems, time-critical systems and fault-tolerance engineering.
-                    <br>
-                    <b>PRONOUNS</b>: He/Him/His
+                    I am a professional <b>firmware engineer</b>, bridging silicon to software with efficient & elegant solution.
                 </p>
                 <hr>
+                <p class="self_introduction_font">
+                    <b>📇 Career Interests</b>:
+                    <br>
+                    Real-time embedded systems, digital signal processing, operating system kernel, computer architecture, fault-tolerance engineering.
+                </p>
                 <p class="self_introduction_font">
                     <b>🎓 EDUCATION</b>:
                     <br>
@@ -66,9 +66,9 @@
                 </p>
                 <hr>
                 <p class="self_introduction_font">
-                    <b>INDUSTRY</b>: Tech (Semiconductor)
-                    <b>HOMETOWN</b>: Hangzhou
+                    <b>🌇 HOMETOWN</b>: Hangzhou
                     <br>
+                    <b>INTERESTS</b>: Gourmet, photography, rollerskating, archery.
                 </p>
             </div>
         </div>
@@ -79,15 +79,29 @@
         </p>
         <div class="featured_projects">
             <div class="proj_card">
-                <h2 class="proj_title">RTOS from scratch</h2>
+                <h2 class="proj_title">YesRTOS Kernel -  Yet another Real-Time Operating System</h2>
                 <img class="proj_image" src="media/projects/YesRTOS_LOGO.png" alt="Project Thumbnail" />
                 <p class="proj_description">
-                  Built a cooperative and time-slice based multitasking scheduler for ARM Cortex-M7 with context switching via SysTick and PendSV.
+                  RTOS supporting various scheduling scheme, memory allocator, and network stack for ARM Cortex and RISC-V using modern C++ and assembly.
                 </p>
                 <div class="proj_tags">
                   <span class="tag">C++</span>
                   <span class="tag">ARMv7-M</span>
                   <span class="tag">Embedded</span>
+                </div>
+            </div>
+
+            <div class="proj_card">
+                <h2 class="proj_title">5-Stage Pipeline CPU with Branch Prediction, D-Cache, Hazard Control and Multiply-Add Unit.</h2>
+                <img class="proj_image" src="media/projects/mips.jpg"" alt="Project Thumbnail" />
+                <p class="proj_description">
+                  RTOS supporting various scheduling scheme, memory allocator, and network stack for ARM Cortex and RISC-V using modern C++ and assembly.
+                </p>
+                <div class="proj_tags">
+                  <span class="tag">Verilog</span>
+                  <span class="tag">TCL</span>
+                  <span class="tag">Modelsim</span>
+                  <span class="tag">Logisim</span>
                 </div>
             </div>
 
@@ -165,14 +179,14 @@
               </div>
 
             <div class="job-container">
-              <div class="job right">
+              <div class="job left">
                 <div class="job-content">
                     <h4>2022 Summer</h4>
                     <div class="company_name">
                       <h4>NVIDIA</h4>
                       <h4>San Jose, California</h4>
                     </div>
-                    <h3 class="position_description"> Wireless Firmware Engineer</h3>
+                    <h3 class="position_description">Firmware Engineer Intern</h3>
                 </div>
               </div>
               <div class="logo-center">
@@ -213,7 +227,7 @@
               </div>
 
             <div class="job-container">
-                <div class="job right">
+                <div class="job left">
                   <div class="job-content">
                     <h4>2019 Summer</h4>
                     <div class="company_name">

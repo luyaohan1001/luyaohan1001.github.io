@@ -1,28 +1,34 @@
 /* navigation List. */
 .nav_list {
-    align-items: center;
-    display: flex;
-    position: absolute;
-    top:0%;
-    left:7%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: fixed; /* make the list stay as you scroll */
+    top:0;
+    padding: 0;
+    height: 28vh;
+    /* display: flex;*/
+    /* flex-direction: column;*/
+    min-height: 5vh;
+    border-radius: 0 0 8px 0px;
+    background-color: rgba(203, 203, 203, 0.2); /* semi-opaque black */
+    z-index: 999; /* ensure it stays above other elements */
+    backdrop-filter: blur(5px); /* optional: gives a frosted glass effect */
+    margin: 0; /* specify so to remove default margin assumed by browser */
 }
 
 /* navigation list items. */
 .nav_list li {
+    width: auto;
+    word-wrap: break-word;    /* or use overflow-wrap */
+    overflow-wrap: break-word;
     list-style: none;
-    padding: 5%;
-}
-
-/* hyperlink text in the each item. */
-.nav_list li{
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
     font-family: 'Georgia';
     position: relative;
     font-weight: bold;
-    font-size: 120%;
-    background: linear-gradient(90deg, #ffffff, #aeeaf8, #fcfcfc);
+    font-size: 15px;
+    background: linear-gradient(270deg, #ffffff, #7cc0ff, #0080ff);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -30,6 +36,7 @@
     cursor: pointer;
     z-index: 1;
 }
+
 
 
 /* Text cover changes when a pointer is hovered over it. */
