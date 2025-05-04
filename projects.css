@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-content: center;
     padding: 16px;
     max-width: 80vw;
     text-align: center;
@@ -63,6 +64,7 @@
 
   .proj_images {
     justify-content: center;
+    justify-items: center;
     position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30vw, 1fr));

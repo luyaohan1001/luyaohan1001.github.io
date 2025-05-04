@@ -1,21 +1,56 @@
-/* navigation List. */
+/* styles: parent vertical navigation bar */
 .nav_list {
-    position: fixed; /* make the list stay as you scroll */
+    /* use default type of <div> */
+    display: block;
+
+    /* position: fixed on viewport on scrolling */
+    position: fixed;
     top:0;
     padding: 0;
-    border-radius: 0 0 8px 0px;
-    background-color: rgba(203, 203, 203, 0.2); /* semi-opaque black */
-    z-index: 999; /* ensure it stays above other elements */
-    backdrop-filter: blur(5px); /* optional: gives a frosted glass effect */
-    margin: 0; /* specify so to remove default margin assumed by browser */
-    overflow: hidden;
+    margin: 0;
+
+    /* shape: round corner */
+    border-bottom-right-radius: 1vw;
+
+    /* layer: above all other layer */
+    z-index: 999;
+
+    /* color and transparency */
+    background-color: rgba(203, 203, 203, 0.2);
+    /* effect: frosted glass effect */
+    backdrop-filter: blur(0.8vh);
+
+    /* centers multiple rows or columns along the cross axis*/
     align-content: center;
-    justify-content: center;
-    transition: width 0.3s ease, height 0.3s ease;  /* add transitions */
-    height: 4vh; /* by default nav list height = MENU icon + text height, which is 2 vh + padding top 1vh + padding bottom 1vh = 4vh*/
+
+    /* damping effect on sudden hover, gradual transition*/
+    transition: width 1.5s ease, height 1.5s ease;
+
+    /* by default nav list height = MENU icon + text height, which is 2 vh + padding top 1vh + padding bottom 1vh = 4vh */
+    /* this should show only 'MENU'(text) without list items */
+    height: 4vh;
+    overflow: hidden;
 }
 
-/* "MENU" icon and text */
+/* without user hovering on the menu, hide all list items explicitly */
+.nav_list li{
+    padding: 1vh;
+    margin: 0;
+    justify-items: center; /* center navbar options */
+    display: none;
+}
+
+/* on hover, the navbar expands to 100% viewport height, options are then visible to user. */
+.nav_list:hover {
+    height: 100vh;
+}
+
+/* all list items shows up */
+.nav_list:hover li{
+    display: block;
+}
+
+/* styles: "MENU" icon and text */
 .nav_list_menu{
     height: 2vh;
     padding-top: 1vh;
@@ -28,61 +63,53 @@
     font-size: 2vh;
 }
 
-/* "MENU" icon*/
+/* icon */
 .nav_list_menu img{
-    width: 30px;
-    height: 30px;
-}
-
-/* Once hover over the nav_list, the menu expands to browser display height 100% */
-.nav_list:hover {
-    height: 100vh;
-}
-
-/* Once hover over the nav_list, the menu list items shows up */
-.nav_list:hover li{
-    display: block;
-}
-
-
-
-.nav_list li {
-    padding: 0;
-    margin: 0;
-    justify-items: center; /* center navbar options */
-    display: none;
-}
-
-/* style on the link item itself  */
-.nav_list li a {
-    display: block; /* this expands the clickable area */
+    aspect-ratio: 1 / 1;
+    height: 2vw;
     width: auto;
-    word-wrap: break-word;    /* or use overflow-wrap */
+}
+
+/* styles: list item hyperlink */
+.nav_list li a {
+    /* make text like rectangle filling full width of parent, more click area */
+    display: block;
+    width: auto;
+
+    position: relative;
+
+    /* Allows long words or URLs to break and wrap to the next line. */
     overflow-wrap: break-word;
+
+    /* Removes default bullets or numbers */
     list-style: none;
+
+    /* add padding */
     padding-top: 3vh;
     padding-bottom: 3vh;
+
+    /* text font */
     font-family: 'Georgia';
-    position: relative;
     font-weight: bold;
-    font-size: 3vw;
+    font-size: 5vw;
+
+    /* slow transition on hover */
+    transition: background-position 0.6s ease-in-out;
+
+    /* clickable */
+    cursor: pointer;
+
+    /* layer */
+    z-index: 1;
+
+    /* text color - gradient, to be combined with li a:hover effect */
     background: linear-gradient(270deg, #ffffff, #7cc0ff, #0080ff);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: background-position 0.6s ease-in-out;
-    cursor: pointer;
-    z-index: 1;
 }
 
-.nav_list li img {
-    margin-left: 1vw;
-    padding-left: 1vw;
-    width: 10px;
-    height: 10px;
-}
-
-/* Text cover changes when a pointer is hovered over it. */
+/* On hover, shifts the gradient position to create a dynamic animation effect */
 .nav_list li a:hover {
     background-position: right center;
 }
