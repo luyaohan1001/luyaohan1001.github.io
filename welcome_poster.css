@@ -1,0 +1,41 @@
+
+.welcome_poster {
+    /* When set 'position: absolute;' on a child element, it will be positioned relative to the nearest ancestor with any positioning context, which is welcome_poster */
+    position:relative;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the background image covers the entire area */
+
+    /* Sets the height of the element to 100% of the viewport height, ensuring it takes up the entire screen. */
+    height: 100vh;
+
+    /* Smooth transition on background or position changes */
+    transition: 1s;
+}
+
+.welcome_poster_background {
+    background-image: url("media/misc/IMG_2446 2.JPG");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Push behind content */
+}
+
+.welcome_poster_text {
+  position: relative;
+  top: 60vh;
+  left: 5vw;
+
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  font-size: 8vh;
+
+  color: white;
+}
+
+

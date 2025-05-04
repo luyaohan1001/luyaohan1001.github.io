@@ -1,0 +1,86 @@
+
+/* --- Self Introduction Section --- */
+.pitch_statement {
+    display: flex;
+    flex-direction: row;  /* children arranged in the same row */
+    justify-content: center;     /* centers children horizontally */
+    align-items: center;         /* align items vertically */
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+.round_avatar {
+    display: flex;            /* helps the round_avatar img to center */
+    width: auto;              /* Ensure it spans available width */
+    height: auto;             /* Or adjust this to suit layout */
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    /*  15% of the viewport width. */
+    max-width: 15vw;
+
+    /* Trim image outside the circle */
+    overflow: hidden;
+
+    /* space around avatar */
+    padding: 1vw;
+
+    /* DEBUG */
+    /* background: rgba(255, 0, 0, 0.1); */
+}
+
+.round_avatar img {
+    /* Maintain circular shape, take width of parent container */
+    border-radius: 50%;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+
+    /* Crop image to fill circle */
+    object-fit: cover;
+
+    /* 3D effect */
+    transition: transform 0.3s ease;
+}
+
+.round_avatar img:hover {
+    /* 3D tile effect, perspective(px) creates a perspective effect like 3D*/
+    transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1.05);
+}
+
+/* Media query, conditional css for smaller screen (mobile) with width < 768 pixels */
+@media (max-width: 768px) {
+    .pitch_statement {
+      /* display avatar and pitch text vertically instead */
+      display: flex;
+      flex-direction: column;
+
+      /* center items in vertical axis */
+      align-items: center;
+
+      /* center items in horizontal axis*/
+      justify-content: center;
+    }
+
+    .round_avatar {
+        /* Make avatar span full width */
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+        /* background: rgba(255, 0, 0, 0.1); */ /* DEBUG */
+    }
+    .round_avatar img {
+        /* image size */
+        width: 150px;
+        height: 150px;
+      }
+
+    .pitch_text {
+        margin-right: 0;
+        padding: 0;
+    }
+}
+
+
+

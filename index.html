@@ -2,7 +2,6 @@
 <html>
     <!-- Specify website title to be displayed on the browser tab. -->
     <head>
-        <!-- Allows the htm-->
         <!-- Ensures responsive behavior on mobile devices by setting the viewport width to match the device. Required for media queries to work properly. -->
         <!-- width=device-width: The page width matches the device's screen width.
             initial-scale=1.0: The initial zoom level is set to 1, so the page loads at the correct size.
@@ -13,18 +12,23 @@
         <title>
             Luyao Han | Portfolio.
         </title>
+
         <!-- Import style sheets. -->
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="default_style.css">
         <link rel="stylesheet" href="fonts.css">
         <link rel="stylesheet" href="navbar.css">
-        <link rel="stylesheet" href="pitch_slides.css">
+        <link rel="stylesheet" href="welcome_poster.css">
+        <link rel="stylesheet" href="pitch.css">
+        <link rel="stylesheet" href="projects.css">
+        <link rel="stylesheet" href="experience_timeline.css">
+        <link rel="stylesheet" href="footer.css">
     </head>
 
 
-    <!-- Body of the web page. -->
+    <!-- Body of the web page layout. -->
     <body>
 
-        <!-- 01. Navigation Bar (Menu). -->
+        <!-- 00.navigation bar -->
         <ul class="nav_list">
             <div class="nav_list_menu">
                 <img src="media/misc/menu.png">
@@ -35,34 +39,35 @@
             <li><a href=featured.html>Photography</a></li>
         </ul>
 
-
-        <div class="portfolio_section">
-            <div class="background-image"></div>
-            <div class="pitch_name">
+        <!-- 01. welcome poster -->
+        <div class="welcome_poster">
+            <div class="welcome_poster_background"></div>
+            <div class="welcome_poster_text">
                 Hello!
                 <br>
                 I'm Luyao.
             </div>
         </div>
 
-        <p class="huge_title_style">
+        <p class="huge_title_font">
             About Me
         </p>
-        <div class="self_introduction">
-            <div class="self_introduction_left">
+        <div class="pitch_statement">
+            <div class="round_avatar">
                 <img src="media/misc/IMG_8480 2.JPG" alt="Profile Picture">
             </div>
-            <div class="self_introduction_right">
-                <p class="self_introduction_font">
+
+            <div class="pitch_text">
+                <p class="pitch_text_font">
                     I am a professional <b>firmware engineer</b>, bridging silicon to software with efficient & elegant solution.
                 </p>
                 <hr>
-                <p class="self_introduction_font">
+                <p class="pitch_text_font">
                     <b>📇 Career Interests</b>:
                     <br>
                     Real-time embedded systems, DSP, OS kernel, computer architecture, fault-tolerance engineering.
                 </p>
-                <p class="self_introduction_font">
+                <p class="pitch_text_font">
                     <b>🎓 EDUCATION</b>:
                     <br>
                     <b>Carnegie Mellon University</b>
@@ -75,21 +80,22 @@
                     <br>
                 </p>
                 <hr>
-                <p class="self_introduction_font">
+                <p class="pitch_text_font">
                     <b>🌇 HOMETOWN</b>: Hangzhou
                     <br>
                     <b>INTERESTS</b>: photography, rollerskating, archery.
                 </p>
             </div>
+
         </div>
 
 
-        <p class="huge_title_style">
-            Projects
+        <p class="huge_title_font">
+            Highlights
         </p>
         <div class="featured_projects">
             <div class="proj_card">
-                <h2 class="proj_title">YesRTOS Kernel -  Yet another Real-Time Operating System</h2>
+                <h2 class="proj_title_font">YesRTOS Kernel</h2>
                 <img class="proj_image" src="media/projects/YesRTOS_LOGO.png" alt="Project Thumbnail" />
                 <p class="proj_description">
                   RTOS supporting various scheduling scheme, memory allocator, and network stack for ARM Cortex and RISC-V using modern C++ and assembly.
@@ -102,10 +108,10 @@
             </div>
 
             <div class="proj_card">
-                <h2 class="proj_title">5-Stage Pipeline CPU with Branch Prediction, D-Cache, Hazard Control and Multiply-Add Unit.</h2>
+                <h2 class="proj_title_font">MIPS ISA CPU</h2>
                 <img class="proj_image" src="media/projects/mips.jpg"" alt="Project Thumbnail" />
                 <p class="proj_description">
-                  RTOS supporting various scheduling scheme, memory allocator, and network stack for ARM Cortex and RISC-V using modern C++ and assembly.
+                    5-Stage Pipeline CPU with Branch Prediction, D-Cache, Hazard Control and Multiply-Add Unit.
                 </p>
                 <div class="proj_tags">
                   <span class="tag">Verilog</span>
@@ -116,7 +122,7 @@
             </div>
 
             <div class="proj_card">
-                <h2 class="proj_title">Past Projects</h2>
+                <h2 class="proj_title_font">Past Projects</h2>
                 <div class="proj_images">
                     <img class="proj_image scalable_img" src="media/projects/drone/drone39.jpg" alt="Project Thumbnail" />
                     <img class="proj_image scalable_img" src="media/projects/STLINK/stlink03.jpg" alt="Project Thumbnail" />
@@ -142,131 +148,115 @@
                 </div>
             </div>
 
-
-
-
-
         </div>
 
 
 
         <!-- 02. Experience experience_timeline -->
-        <p class="huge_title_style">
+        <p class="huge_title_font">
             Experience
         </p>
 
         <div class="experience_timeline">
-            <div class="job-container">
-              <div class="job left">
-                <div class="job-content">
-                  <h4>2023 Spring - Present</h4>
-                  <div class="company_name">
-                    <h4>Apple</h4>
-                    <h4>San Diego, California</h4>
-                  </div>
-                  <h3 class="position_description"> Wireless Firmware Engineer</h3>
+
+            <div class="job_container">
+                <div class="job_info">
+                    <h4>2023 Spring - Present</h4>
+                    <div class="company_name">
+                        <h4>Apple</h4>
+                        <h4>San Diego, California</h4>
+                    </div>
+                    <h3 class="position"> Wireless Firmware Engineer</h3>
                 </div>
-              </div>
-              <div class="logo-center">
-                <img src="media/experience/apple.jpg" alt="Apple Logo">
-              </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/apple.jpg" alt="Apple Logo">
+                </div>
             </div>
 
-            <div class="job-container">
-                <div class="job left">
-                  <div class="job-content">
+            <div class="job_container">
+                <div class="job_info">
                     <h4>Graduation 2022 Winter</h4>
                     <div class="company_name">
-                      <h4>Carnegie Mellon University</h4>
-                      <h4>Pittsburgh, Pennsylvania</h4>
+                        <h4>Carnegie Mellon University</h4>
+                        <h4>Pittsburgh, Pennsylvania</h4>
                     </div>
-                    <h3 class="position_description">Graduate Student</h3>
-                  </div>
+                    <h3 class="position">Graduate Student</h3>
                 </div>
-                <div class="logo-center">
-                  <img src="media/experience/cmu.png" alt="Apple Logo">
+                <div class="centered_company_logo">
+                    <img src="media/experience/cmu.png" alt="Apple Logo">
                 </div>
-              </div>
+            </div>
 
-            <div class="job-container">
-              <div class="job left">
-                <div class="job-content">
+            <div class="job_container">
+                <div class="job_info">
                     <h4>2022 Summer</h4>
                     <div class="company_name">
-                      <h4>NVIDIA</h4>
-                      <h4>San Jose, California</h4>
+                        <h4>NVIDIA</h4>
+                        <h4>San Jose, California</h4>
                     </div>
-                    <h3 class="position_description">Firmware Engineer Intern</h3>
+                    <h3 class="position">Firmware Engineer Intern</h3>
                 </div>
-              </div>
-              <div class="logo-center">
-                <img src="media/experience/nvidia.jpeg" alt="NVIDIA Logo">
-              </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/nvidia.jpeg" alt="NVIDIA Logo">
+                </div>
             </div>
 
-            <div class="job-container">
-              <div class="job left">
-                <div class="job-content">
+            <div class="job_container">
+                <div class="job_info">
                     <h4>2021 Summer</h4>
                     <div class="company_name">
-                      <h4>Qualcomm</h4>
-                      <h4>San Jose, California</h4>
+                        <h4>Qualcomm</h4>
+                        <h4>San Jose, California</h4>
                     </div>
-                    <h3 class="position_description">Hardware Engineer Intern</h3>
+                    <h3 class="position">Hardware Engineer Intern</h3>
                 </div>
-              </div>
-              <div class="logo-center">
-                <img src="media/experience/qualcomm.png" alt="Qualcomm Logo">
-              </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/qualcomm.png" alt="Qualcomm Logo">
+                </div>
             </div>
 
-            <div class="job-container">
-                <div class="job left">
-                  <div class="job-content">
+            <div class="job_container">
+                <div class="job_info">
                     <h4>2020 Summer</h4>
                     <div class="company_name">
-                      <h4>Qualcomm</h4>
-                      <h4>San Diego, California</h4>
+                        <h4>Qualcomm</h4>
+                        <h4>San Diego, California</h4>
                     </div>
-                    <h3 class="position_description">Hardware Engineer Intern</h3>
-                  </div>
+                    <h3 class="position">Hardware Engineer Intern</h3>
                 </div>
-                <div class="logo-center">
-                  <img src="media/experience/qualcomm.png" alt="Qualcomm Logo">
-                </div>
-              </div>
-
-            <div class="job-container">
-                <div class="job left">
-                  <div class="job-content">
-                    <h4>2019 Summer</h4>
-                    <div class="company_name">
-                      <h4>Bruker</h4>
-                      <h4>Goleta, California</h4>
-                    </div>
-                    <h3 class="position_description">Electrical Engineer Intern</h3>
-                  </div>
-                </div>
-                <div class="logo-center">
-                  <img src="media/experience/bruker.jpg" alt="NVIDIA Logo">
+                <div class="centered_company_logo">
+                    <img src="media/experience/qualcomm.png" alt="Qualcomm Logo">
                 </div>
             </div>
 
-            <div class="job-container">
-                <div class="job left">
-                  <div class="job-content">
+            <div class="job_container">
+                <div class="job_info">
+                    <h4>2019 Summer</h4>
+                    <div class="company_name">
+                        <h4>Bruker</h4>
+                        <h4>Goleta, California</h4>
+                    </div>
+                    <h3 class="position">Electrical Engineer Intern</h3>
+                </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/bruker.jpg" alt="NVIDIA Logo">
+                </div>
+            </div>
+
+            <div class="job_container">
+                <div class="job_info">
                     <h4>2017</h4>
                     <div class="company_name">
-                      <h4>University of California</h4>
-                      <h4>Santa Barbara, California</h4>
+                        <h4>University of California</h4>
+                        <h4>Santa Barbara, California</h4>
                     </div>
-                    <h3 class="position_description">Started College in Electrical Engineering</h3>
-                  </div>
+                    <h3 class="position">Started College in Electrical Engineering</h3>
                 </div>
-                <div class="logo-center">
-                  <img src="media/experience/ucsb.jpg" alt="Qualcomm Logo">
+                <div class="centered_company_logo">
+                    <img src="media/experience/ucsb.jpg" alt="Qualcomm Logo">
                 </div>
-              </div>
+            </div>
+            
         </div>
 
 

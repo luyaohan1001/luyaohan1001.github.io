@@ -1,48 +1,22 @@
 /* fonts.css */
-.self_introduction_title {
-    left: 5%;
-    font-family: 'Georgia', serif;
-    font-weight: bold;
-    font-size: 500%;
-    color: black;
-    margin-bottom: 12px;
-}
-
-.self_introduction_font {
-    line-height: 200%;
+.pitch_text_font {
+    line-height: 200%;  /* vertical distance between each line */
     font-family: 'Georgia', serif;
     font-size: 2vh;
     color: black;
 }
 
-.pitch_name {
-    position: absolute;
-    top:60vh;
-    left: 10vw;
-    font-family: 'Georgia', serif;
-    font-weight: bold;
-    font-size: 8vh;
-    color: white;
-}
-
-.pitch_description {
-    position: absolute;
-    top:65%;
-    left: 5%;
-    font-family: 'Georgia', serif;
-    font-size: 150%;
-    color: white;
-}
 
 /* Following styles are used for bibliography contents sections in index.html. */
-.huge_title_style {
+.huge_title_font {
     position: relative;
     text-align: center;
     font-family: 'Georgia', serif;
     font-weight: bold;
-    font-size: 10vw;
+    font-size: 6vw;
     margin: 0;
-    padding: 5vh;
+    padding-top: 20vh;
+    padding-bottom: 10vh;
     /* gives shadow */
     color: #222;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -50,12 +24,6 @@
 
 .paragraph_style {
     font-size: 150%;
-}
-
-.footer {
-    font-family: 'Georgia', serif;
-    font-size: 2vh;
-    color: white;
 }
 
 

@@ -1,0 +1,12 @@
+.footer {
+  background: black;
+  background-size: cover;
+  color: white;
+  display: flex; /* Display it in a row. */
+  font-family: 'Georgia', sans-serif;
+  font-size: 2vh;
+  justify-content: center; /* Aligns the flex item (copyright texts) in the middle horizontally.*/
+  padding: 30px 0;
+  text-align: center;
+}
+
