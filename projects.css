@@ -19,8 +19,24 @@
 
   .proj_title_font {
     margin: 0;
-    font-size: 5vw;
+    font-size: 2vw;
     margin-bottom: 12px;
+  }
+
+  .proj_images {
+    justify-content: center;
+    justify-items: center;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 80%;
+    margin-bottom: 12px;
+  }
+
+  .proj_images img:hover {
+    transform: scale(3);
   }
 
   .proj_image {
@@ -62,14 +78,11 @@
     font-size: 0.9rem;
   }
 
-  .proj_images {
-    justify-content: center;
-    justify-items: center;
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30vw, 1fr));
-    gap: 10px;
-    width: 100%;
-    max-width: 80%;
+
+@media (max-width: 768px) {
+  .proj_title_font {
+    margin: 0;
+    font-size: 5vw;
     margin-bottom: 12px;
   }
+}
