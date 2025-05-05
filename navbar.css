@@ -91,7 +91,7 @@
     /* text font */
     font-family: 'Georgia';
     font-weight: bold;
-    font-size: 5vw;
+    font-size: 2vw;
 
     /* slow transition on hover */
     transition: background-position 0.6s ease-in-out;
@@ -113,3 +113,11 @@
 .nav_list li a:hover {
     background-position: right center;
 }
+
+/* style for mobile device of small max-width */
+@media (max-width: 768px) {
+    .nav_list li a {
+        font-size: 6vw;
+    }
+}
+

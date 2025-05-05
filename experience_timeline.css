@@ -11,6 +11,7 @@
     white-space: normal; /* default: allows wrapping */
     font-size: 3vw;
   }
+
 .experience_timeline {
     position: relative;
     width: 100%;
@@ -20,27 +21,17 @@
 .job_container {
     position: relative;
     width: 100%;
+    max-height: 40vh;
     display: flex;
     justify-content: space-between; /* Align jobs left and right */
     margin: 4rem 0; /* Vertical spacing between jobs */
 }
 
-.job {
-    position: relative;
-    width: 45%;
-    box-sizing: border-box;
-}
-
 .job_info {
-    background: white;
-    padding: 1rem;
-    border-radius: 8px;
-    width: 100%;
     position: relative;
-}
-
-.job_info h4 {
-  font-size: 2vw;
+    padding-left: 10%;
+    width: 35%;
+    background: linear-gradient(to right, rgba(179, 179, 179, 0.5), rgba(200, 200, 200, 0.1));
 }
 
 .job_info h3 {
@@ -49,27 +40,31 @@
   font-size: 1.5vw;
   font-family: 'Open Sans', sans-serif; /* Optional for better aesthetics */
 }
+.job_info h4 {
+  font-size: 2vw;
+}
 
 .centered_company_logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: box-shadow 0.6s ease, transform 0.6s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: box-shadow 0.6s ease, transform 0.6s ease;
+  width: 15%;
 }
 
 .centered_company_logo:hover {
     box-shadow: 0 0 25px rgba(255, 255, 255, 0.6),
                 0 0 50px rgba(255, 255, 255, 0.4);
-    transform: translate(-50%, -50%) scale(1.05);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 .centered_company_logo img {
-    width: 200px;
+    max-width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: contain;
     border-radius: 50%;
@@ -77,7 +72,7 @@
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 
-/* 'before' is the dashline above each log */
+/* style for the dashline*/
 .experience_timeline::before {
     content: '';
     position: absolute;
@@ -88,42 +83,4 @@
     background: repeating-linear-gradient(to bottom, #979595 0%, #979595 5px, transparent 10px, transparent 20px);
     transform: translateX(-50%);
     z-index: 0; /* Behind all job content */
-}
-
-/* --- Responsive Fixes for Smaller Screens --- */
-/* --- Media Query for Small Screens --- */
-/*
-   The @media rule allows you to apply styles only under certain conditions.
-   Here, @media (max-width: 768px) targets screens where the width is 768px or smaller.
-   This is commonly used for responsive design to adjust layout and styling for smaller devices like tablets and mobile phones.
-   In this case, the styles inside this block will only be applied when the browser window or device screen is less than or equal to 768px wide.
-   This is typical for optimizing layouts for small screens.
-*/
-@media (max-width: 768px) {
-    .centered_company_logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 3;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: box-shadow 0.6s ease, transform 0.6s ease;
-    }
-
-    .centered_company_logo:hover {
-        box-shadow: 0 0 25px rgba(255, 255, 255, 0.6),
-                    0 0 50px rgba(255, 255, 255, 0.4);
-        transform: translate(-50%, -50%) scale(1.05);
-    }
-
-    .centered_company_logo img {
-        width: 30vw;
-        aspect-ratio: 1 / 1;
-        object-fit: contain;
-        border-radius: 50%;
-        background: white;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    }
 }
