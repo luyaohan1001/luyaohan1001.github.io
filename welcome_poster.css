@@ -14,7 +14,7 @@
     transition: 1s;
 }
 
-.welcome_poster_background {
+.welcome_poster_home {
     background-image: url("media/misc/IMG_2446 2.JPG");
     background-size: cover;
     background-position: center;
@@ -28,6 +28,7 @@
 
 .welcome_poster_text {
   position: relative;
+  max-width: 80vw;
   top: 60vh;
   left: 5vw;
 

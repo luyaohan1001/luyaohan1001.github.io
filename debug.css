@@ -1,0 +1,10 @@
+/* colorize background to understand element boundary */
+html, body {
+  background: rgb(255, 157, 0);
+}
+
+/* draw visual outline for each element to understand width boundary */
+body * {
+  background: rgba(0, 255, 0, 0.1);
+  outline: 1px solid blue;
+}

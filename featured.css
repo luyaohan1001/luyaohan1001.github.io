@@ -1,36 +1,100 @@
-/* featured.css */
-<style>
-/* This style sheet constrains styles for the featured.html page. */
-    .photo_gallery {
-        display: flex;
-        flex-direction: column;  /* children arranged in the same row */
-        justify-content: center;     /* centers children horizontally */
-        align-items: center;         /* align items vertically */
-    }
+.featured_poster {
+    position:relative;
 
-    .featured_paragraph p {
-        max-width: 40%;
-        margin-left: auto; /* Make paragraph text centered. */
-        margin-right: auto;
-    }
+    /* Sets the height of the element to 100% of the viewport height, ensuring it takes up the entire screen. */
+    height: 100vh;
 
-    .featured_paragraph {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2vw; /* space between images */
-        margin: 4vw 0;
-    }
+    /* Smooth transition on background or position changes */
+    transition: 1s;
 
-    .featured_paragraph img {
-        width: 60vw; /* responsive width: 60% of the viewport */
-        max-width: 100vw;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.8s ease;
+    /* Place text in the middle x-axis */
+    justify-items: center;
+}
+
+.featured_poster_background {
+    /* background image */
+    background-image: url("media/contents/IMG_3563-Picsart-AiImageEnhancer.png");
+    background-size: cover;
+    background-position: center;
+
+    /* make background stay behind poster text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Push behind content */
+}
+
+.featured_poster_text {
+    /* poster text */
+    position: relative;
+    max-width: 80vw;
+    top: 60vh;
+    /* text font */
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 8vh;
+    color: white;
+  }
+
+/* text before each group of photographs */
+.featured_title {
+    position: relative;
+
+    /* adding space */
+    margin: 0;
+    padding-top: 10vh;
+    padding-bottom: 2vh;
+
+    /* text font */
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 4vw;
+    /* text shadow */
+    color: #222;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* group of photographs */
+.featured_gallery {
+    /* display on y-axis */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* gap between images */
+    gap: 5vh;
+}
+
+/* single photograph */
+.featured_gallery img {
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+    /* by default image is grey'd out */
+    width: 60vw;
+    /* The filter property will take 300 seconds (5 minutes) to transition back to its original state after a hover ends.
+       This is an intentionally extreme delay, often used as a trick to "hold" the hover effect, so that:
+            When the user hovers over an image, it changes instantly (e.g. becomes clear or colored),
+            And when they stop hovering, the image very slowly fades back, effectively keeping the effect active as long as the user interacts occasionally.
+    */
+    filter: grayscale(100%);
+  }
+
+.featured_gallery img:hover {
+    /* As user hover, the image will be color'd in 0.4s */
+    filter: grayscale(0);
+    transition: filter 0.4s ease-in;
+}
+
+
+/* style for mobile device of small max-width */
+@media (max-width: 768px) {
+    .featured_gallery img {
+        /* allow higher width of photos in smaller screen */
+        width: 90vw;
     }
-    
-    .featured_paragraph img:hover {
-        transform: scale(1.2);
-    }
-</style>
+}
