@@ -31,10 +31,13 @@
 
         <!-- 00.navigation bar -->
         <ul class="nav_list">
-            <div class="nav_list_menu">
+            <!-- Clicking the <label> toggles the checkbox. -->
+            <input type="checkbox" id="menu_toggle" hidden>
+            <label for="menu_toggle" class="nav_list_menu">
                 <img src="media/misc/menu.png">
                 <p>MENU</p>
-            </div>
+            </label>
+
             <li><a href=index.html>About</a></li>
             <li><a>YesRTOS</a></li>
             <li><a href=featured.html>Photography</a></li>

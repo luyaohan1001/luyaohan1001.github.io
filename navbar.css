@@ -119,5 +119,15 @@
     .nav_list li a {
         font-size: 6vw;
     }
+
+    /* Touch devices don't support :hover reliably - so we rely on checkbox to implement clickable menu to expand/collapse. */
+    /* When menu_toggle is checked, expand nav_list height */
+    #menu_toggle:checked ~ .nav_list {
+        height: 100vh;
+    }
+    /* Show menu items when expanded */
+    #menu_toggle:checked ~ .nav_list li {
+        display: block;
+    }
 }
 
