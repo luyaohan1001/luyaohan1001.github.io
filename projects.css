@@ -33,6 +33,7 @@
     width: 100%;
     max-width: 90%;
     margin-bottom: 12px;
+    transition: transform 1.0s ease;
   }
 
   .proj_image_set img {
@@ -48,9 +49,6 @@
     cursor: pointer;
   }
 
-  .proj_image_set img:hover {
-    /* transform: scale(3); */
-  }
 
   .proj_image {
     width: 80%;
@@ -63,9 +61,16 @@
     cursor: pointer;
   }
 
+  #yesrtos_logo {
+    max-width: 20vw;
+    aspect-ratio: 1 / 1;
+    height: auto;
+  }
 
-  .scalable_img:hover {
-    transform: scale(1.5); /* Enlarges the image on hover */
+  /* on hover, the item specifying this class will be able to be scaled to view better */
+  .hover_scalable:hover {
+    transform: scale(2.0);
+    transition: transform 1.0s ease;
   }
 
   .proj_description {
@@ -74,7 +79,7 @@
     max-width: 90%;
     font-size: 1rem;
   }
-  
+
   .proj_tags {
     margin-top: 10px;
     display: flex;
@@ -90,10 +95,6 @@
     border-radius: 4px;
     font-size: 0.9rem;
   }
-
-#fill_vw_width {
-  width: 100%;
-}
 
 @media (max-width: 768px) {
   .proj_title_font {
