@@ -81,6 +81,7 @@
             When the user hovers over an image, it changes instantly (e.g. becomes clear or colored),
             And when they stop hovering, the image very slowly fades back, effectively keeping the effect active as long as the user interacts occasionally.
     */
+    transition: filter 300s ease-out;
     filter: grayscale(100%);
   }
 
