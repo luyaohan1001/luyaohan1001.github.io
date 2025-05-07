@@ -31,12 +31,29 @@
 
         <!-- 00.navigation bar -->
         <ul class="nav_list">
-            <!-- Clicking the <label> toggles the checkbox. -->
-            <input type="checkbox" id="menu_toggle" hidden>
-            <label for="menu_toggle" class="nav_list_menu">
+            <div class="nav_list_menu" id="menu_button">
                 <img src="media/misc/menu.png">
                 <p>MENU</p>
-            </label>
+            </div>
+            <script>
+                const button = document.getElementById('menu_button');
+                // selects by class name
+                const navlist = document.querySelector('.nav_list');
+
+                // toggle ".navlist.expanded"
+                button.addEventListener('click', (e) => {
+                    navlist.classList.toggle('expanded');
+                });
+
+                // clicking outside, toggle ".navlist.expanded"
+                document.addEventListener('click', (e) => {
+                    if (!navlist.contains(e.target)) {
+                        navlist.classList.remove('expanded');
+                    }
+                });
+
+            </script>
+
 
             <li><a href=index.html>About</a></li>
             <li><a>YesRTOS</a></li>
@@ -371,7 +388,7 @@
         <!-- 05. footer -->
         <footer class="footer">
             <p>
-            Copyright © 2026 by Luyao Han.
+            Copyright © 2026 by Luyao Han. Crafted with HTML, CSS & Chrome DevTools.
             <br><br>
             </p>
         </footer>

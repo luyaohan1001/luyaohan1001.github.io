@@ -28,7 +28,7 @@
 
     /* by default nav list height = MENU icon + text height, which is 2 vh + padding top 1vh + padding bottom 1vh = 4vh */
     /* this should show only 'MENU'(text) without list items */
-    height: 4vh;
+    height: 5vh;
     overflow: hidden;
 }
 
@@ -41,12 +41,12 @@
 }
 
 /* on hover, the navbar expands to 100% viewport height, options are then visible to user. */
-.nav_list:hover {
+.nav_list.expanded {
     height: 100vh;
 }
 
 /* all list items shows up */
-.nav_list:hover li{
+.nav_list.expanded li{
     display: block;
 }
 
@@ -58,9 +58,14 @@
     padding-left: 1vw;
     padding-right: 1vw;
     display: flex;
-    align-items: center; /* Optional: vertically center the items */
+
     gap: 8px; /* Optional: space between image and text */
     font-size: 2vh;
+
+    /* center y-axis */
+    align-items: center;
+    /* center x-axis*/
+    justify-content: center;
 }
 
 /* icon */
@@ -68,6 +73,11 @@
     aspect-ratio: 1 / 1;
     height: 2vw;
     width: auto;
+}
+
+/* 'MENU' text font */
+.nav_list_menu p {
+    font-family: 'Georgia', serif;
 }
 
 /* styles: list item hyperlink */
@@ -116,18 +126,12 @@
 
 /* style for mobile device of small max-width */
 @media (max-width: 768px) {
+    .nav_list {
+        min-width: 26vw;
+        min-height: 8vh;
+    }
     .nav_list li a {
         font-size: 6vw;
-    }
-
-    /* Touch devices don't support :hover reliably - so we rely on checkbox to implement clickable menu to expand/collapse. */
-    /* When menu_toggle is checked, expand nav_list height */
-    #menu_toggle:checked ~ .nav_list {
-        height: 100vh;
-    }
-    /* Show menu items when expanded */
-    #menu_toggle:checked ~ .nav_list li {
-        display: block;
     }
 }
 
