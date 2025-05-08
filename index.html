@@ -35,25 +35,8 @@
                 <img src="media/misc/menu.png">
                 <p>MENU</p>
             </div>
-            <script>
-                const button = document.getElementById('menu_button');
-                // selects by class name
-                const navlist = document.querySelector('.nav_list');
-
-                // toggle ".navlist.expanded"
-                button.addEventListener('click', (e) => {
-                    navlist.classList.toggle('expanded');
-                });
-
-                // clicking outside, toggle ".navlist.expanded"
-                document.addEventListener('click', (e) => {
-                    if (!navlist.contains(e.target)) {
-                        navlist.classList.remove('expanded');
-                    }
-                });
-
-            </script>
-
+            <!-- Script runs after elements are parsed, so they exist when selected -->
+            <script src="navbar_toggle.js"></script>
 
             <li><a href=index.html>About</a></li>
             <li><a>YesRTOS</a></li>

@@ -29,14 +29,18 @@
 
         <!-- 00. Navigation Bar -->
         <ul class="nav_list">
-            <div class="nav_list_menu">
+            <div class="nav_list_menu" id="menu_button">
                 <img src="media/misc/menu.png">
                 <p>MENU</p>
             </div>
+            <!-- Script runs after elements are parsed, so they exist when selected -->
+            <script src="navbar_toggle.js"></script>
+
             <li><a href=index.html>About</a></li>
             <li><a>YesRTOS</a></li>
             <li><a href=featured.html>Photography</a></li>
         </ul>
+
 
         <!-- 01. welcome poster -->
         <div class="featured_poster">
