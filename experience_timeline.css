@@ -25,7 +25,7 @@
     max-height: 80vh;
     display: flex;
     justify-content: space-between; /* Align jobs left and right */
-    margin: 5vh 0; /* Vertical spacing between jobs */
+    margin: 10vh 0; /* Vertical spacing between jobs */
 }
 
 .job_info {
@@ -86,4 +86,19 @@
   background: repeating-linear-gradient(to bottom, #979595 0%, #979595 5px, transparent 10px, transparent 20px);
   transform: translateX(-50%);
   z-index: 0; /* Behind all job content */
+}
+
+/* style on a mobile device */
+@media (max-width: 768px) {
+  .experience_timeline {
+    /* adjust top and bottom (length of dash line extended outside of experience)*/
+    padding: 0.1vh 0;
+  }
+
+  .job_container {
+    /* adjust vertical spacing between jobs */
+      margin: 4vh 0;
+  }
+
+
 }

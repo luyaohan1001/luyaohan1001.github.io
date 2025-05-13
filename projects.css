@@ -110,11 +110,13 @@
     margin-bottom: 12px;
   }
 
+  /* adjust project image width */
   .proj_image {
-    max-width: 90vw;
+    max-width: 95vw;
     height: auto;
   }
 
+  /* make project image sets scalable on click */
   .proj_image_set img:hover {
     transform: scale(3);
   }
