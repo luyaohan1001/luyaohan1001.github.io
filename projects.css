@@ -47,6 +47,12 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
     cursor: pointer;
+    transition: 2s ease;
+  }
+
+  .proj_image_set img:hover {
+    transform: scale(3);
+    transition: 3s ease;
   }
 
 

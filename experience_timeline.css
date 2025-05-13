@@ -37,9 +37,9 @@
 .job_info h3 {
   margin: 10px 0;
   font-weight: 300; /* Thin font */
-  font-size: 1.5vw;
-  font-family: 'Open Sans', sans-serif; /* Optional for better aesthetics */
+  font-size: 1.2vw;
 }
+
 .job_info h4 {
   font-size: 2vw;
 }
@@ -58,29 +58,41 @@
 }
 
 .centered_company_logo:hover {
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.6),
-                0 0 50px rgba(255, 255, 255, 0.4);
-    transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.6),
+              0 0 50px rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .centered_company_logo img {
-    max-width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: contain;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.sidenote {
+  position: relative;
+  width: 40%;
+  height:20vh;
+  background: linear-gradient(to left, rgba(200, 179, 179, 0.1), rgba(200, 200, 200, 0.1));
+  left: 50%;
+}
+
+.sidenote h3 {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 /* style for the dashline*/
 .experience_timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 0.1vw;
-    height: 100%;
-    background: repeating-linear-gradient(to bottom, #979595 0%, #979595 5px, transparent 10px, transparent 20px);
-    transform: translateX(-50%);
-    z-index: 0; /* Behind all job content */
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 0.1vw;
+  height: 100%;
+  background: repeating-linear-gradient(to bottom, #979595 0%, #979595 5px, transparent 10px, transparent 20px);
+  transform: translateX(-50%);
+  z-index: 0; /* Behind all job content */
 }

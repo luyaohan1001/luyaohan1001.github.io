@@ -36,9 +36,26 @@
     font-weight: bold;
     font-size: 8vh;
     color: white;
-  }
+}
 
-/* text before each group of photographs */
+
+.preface_text {
+    position: absolute;
+    width: 100%;
+    bottom: 0; /* Stick it to the bottom */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Correct the centering */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1vh;
+    text-align: center;
+    white-space: normal;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 0.5vh;
+    border-radius: 8px;
+    z-index: 1000;
+}
+
 .featured_title {
     position: relative;
 
