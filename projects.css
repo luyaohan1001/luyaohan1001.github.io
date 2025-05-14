@@ -52,10 +52,12 @@
     transition: 2s ease;
   }
 
+  /*
   .proj_image_set img:hover {
     transform: scale(3);
     transition: 3s ease;
   }
+  */
 
   .proj_image {
     max-width: auto;
