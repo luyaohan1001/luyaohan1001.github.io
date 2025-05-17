@@ -2,9 +2,10 @@
 /* --- Self Introduction Section --- */
 .my_profile_page {
     display: flex;
-    flex-direction: row;  /* children arranged in the same row */
-    justify-content: center;     /* centers children horizontally */
-    align-items: center;         /* align items vertically */
+    flex-direction: row;        /* horizontal layout */
+    justify-content: center;    /* center along the main axis (X-axis) */
+    align-items: center;        /* center vertically (Y-axis) */
+    width: 100%;                /* ensure it spans horizontally */
 }
 
 .round_avatar {
@@ -54,11 +55,9 @@
         display: flex;
         flex-direction: column;
 
-        /* place in middle in x-axis direction */
-        justify-self: center;
-
-        /* constrain max-width to allow space from border */
+        align-items: center;      /* <-- horizontally center items in column layout */
         max-width: 90vw;
+        margin: 0 auto;           /* <-- horizontally center the container itself if it has a parent */
     }
 
     .round_avatar {
