@@ -1,8 +1,6 @@
 /* --- Experience Timeline Section --- */
 #disclaimer {
   /* center in x-axis */
-  max-width: 80vw;
-  justify-self: center;
   text-align: center;
   font-size: 10px;  /* optional: adjust text size */
   color: #666;      /* optional: softer text color */
