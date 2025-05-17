@@ -1,9 +1,13 @@
 /* --- Experience Timeline Section --- */
 #disclaimer {
+  /* center in x-axis */
+  max-width: 80vw;
+  justify-self: center;
   text-align: center;
-  margin: 0 auto;
   font-size: 10px;  /* optional: adjust text size */
   color: #666;      /* optional: softer text color */
+  word-wrap: break-word;  /* Allows long words to break and wrap */
+  overflow-wrap: break-word; /* Preferred modern syntax */
   font-style: italic;
 }
 
