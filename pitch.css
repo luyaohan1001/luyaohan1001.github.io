@@ -1,6 +1,6 @@
 
 /* --- Self Introduction Section --- */
-.pitch_statement {
+.my_profile_page {
     display: flex;
     flex-direction: row;  /* children arranged in the same row */
     justify-content: center;     /* centers children horizontally */
@@ -49,16 +49,16 @@
 
 /* Media query, conditional css for smaller screen (mobile) with width < 768 pixels */
 @media (max-width: 768px) {
-    .pitch_statement {
-      /* display avatar and pitch text vertically instead */
-      display: flex;
-      flex-direction: column;
+    .my_profile_page {
+        /* display avatar and pitch text vertically instead */
+        display: flex;
+        flex-direction: column;
 
-      /* center items in vertical axis */
-      align-items: center;
+        /* place in middle in x-axis direction */
+        justify-self: center;
 
-      /* center items in horizontal axis*/
-      justify-content: center;
+        /* constrain max-width to allow space from border */
+        max-width: 90vw;
     }
 
     .round_avatar {

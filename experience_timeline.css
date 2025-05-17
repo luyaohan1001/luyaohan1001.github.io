@@ -1,4 +1,12 @@
 /* --- Experience Timeline Section --- */
+#disclaimer {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 10px;  /* optional: adjust text size */
+  color: #666;      /* optional: softer text color */
+  font-style: italic;
+}
+
 .company_name {
     font-family: 'Georgia', serif;
     color: rgb(0, 0, 0);
