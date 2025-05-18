@@ -9,5 +9,6 @@
   justify-content: center; /* Aligns the flex item (copyright texts) in the middle horizontally.*/
   padding: 30px 0;
   text-align: center;
+  width: 100%;
 }
 
