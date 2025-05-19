@@ -1,0 +1,13 @@
+# robots.txt tells crawlers which parts of the site to allow or disallow.
+
+User-agent: *
+# Disallow crawling the media folder (e.g., images, videos)
+Disallow: /media/
+
+# Disallow crawling the README.md file at the root
+Disallow: /README.md
+
+# Allow everything else
+
+# Sitemap location helps crawlers find your sitemap quickly
+Sitemap: https://www.luyaohan.com/sitemap.xml
