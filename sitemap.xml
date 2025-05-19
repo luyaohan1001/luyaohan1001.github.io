@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This is the sitemap file for the website.
+  It helps search engine crawlers (like Googlebot) discover and index web pages more efficiently.
+  Each <url> entry tells crawlers the URL, how often it changes, and how important it is relative to other pages.
+-->
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Homepage -->
+  <url>
+    <!-- Full URL of the page -->
+    <loc>https://www.luyaohan.com/index.html</loc>
+    <!-- Last time this page was modified -->
+    <lastmod>2025-05-19</lastmod>
+    <!-- Suggested frequency for crawlers to revisit -->
+    <changefreq>monthly</changefreq>
+    <!-- Relative importance of this page (0.0 to 1.0) -->
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Featured page -->
+  <url>
+    <loc>https://www.luyaohan.com/featured.html</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
+
