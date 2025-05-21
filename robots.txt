@@ -2,7 +2,7 @@
 
 User-agent: *
 # Disallow crawling the media folder (e.g., images, videos)
-Disallow: /media/
+# Disallow: /media/
 
 # Disallow crawling the README.md file at the root
 Disallow: /README.md
