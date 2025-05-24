@@ -15,7 +15,7 @@
 }
 
 .welcome_poster_home {
-    background-image: url("media/poster/webp/welcome.webp;
+    background-image: url("media/poster/webp/welcome.webp");
     background-size: cover;
     background-position: center;
     position: absolute;
