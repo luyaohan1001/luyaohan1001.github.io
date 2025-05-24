@@ -102,8 +102,9 @@
             </div>
             <!-- Script runs after elements are parsed, so they exist when selected -->
             <script src="navbar_toggle.js"></script>
-
-            <li><a href=index.html>About</a></li>
+            <li><a href=#my_profile_container>About Me</a></li>
+            <li><a href=#highlights_title>Highlights</a></li>
+            <li><a href=#timeline_title>Timeline</a></li>
             <li><a href=featured.html>Photography</a></li>
         </ul>
 
@@ -117,46 +118,53 @@
             </div>
         </div>
 
-        <p class="huge_title_font">
-            - About Me -
-        </p>
-        <div class="my_profile_page">
-            <div class="round_avatar">
-                <img src="media/misc/webp/profile_cropped.webp" alt="Luyao's profile picture">
-            </div>
+        <div id="my_profile_container">
+            <p id= "about_me_title" class="huge_title_font">
+                - About Me -
+            </p>
+            <div id="my_profile">
+                <div class="round_avatar">
+                    <img src="media/misc/webp/profile_cropped.webp" alt="Luyao's profile picture">
+                </div>
 
-            <div class="pitch_text">
-                <p class="pitch_text_font">
-                    <b>Firmware engineer</b>
-                </p>
-                <hr>
-                <p class="pitch_text_font">
-                    <b>📇 Career Interests</b>:
-                    <br>
-                    Real-time embedded systems, DSP, OS kernel, computer architecture, fault-tolerance engineering.
-                </p>
-                <p class="pitch_text_font">
-                    <b>🎓 EDUCATION</b>:
-                    <br>
-                    <b>Carnegie Mellon University</b>
-                    <br>
-                    M.S. Electrical and Computer Engineering
-                    <br>
-                    <b>University of California, Santa Barbara</b>
-                    <br>
-                    B.S. Computer Engineering
-                    <br>
-                </p>
-                <hr>
-                <p class="pitch_text_font">
-                    <b>INTERESTS</b>: Photography & Traveling
-                </p>
+                <div class="pitch_text">
+                    <p class="pitch_text_font">
+                        <b>🫆 NAME</b>:
+                        Luyao Han (pronounced <em>Loo-yow-Hahn</em>).
+                    </p>
+                    <hr>
+                    <p class="pitch_text_font">
+                        I'm a technology enthusiast and firmware engineer, passionate about bridging hardware and software with efficient solutions that eventually delivers experience to product user.
+                        Taking on new challenges pushes me to grow and keeps me motivated, both in work and in life.
+                        Throughout my career, I have embraced opportunities that test my skills and expand my knowledge, believing that continuous learning is key to success. I’m grateful for the mentors, colleagues, and my family who have supported me along the way and look forward to tackling future challenges with the same dedication and curiosity.
+                    </p>
+                    <hr>
+                    <p class="pitch_text_font">
+                        <b>📇 CAREER INTERESTS</b>:
+                        Real-time embedded systems, IoT solutions, computer architecture, signal processing, IoT, and system engineering.
+                    </p>
+                    <p class="pitch_text_font">
+                        <b>🎓 EDUCATION</b>:
+                        <br>
+                        <b>Carnegie Mellon University</b>
+                        <br>
+                        M.S. Electrical and Computer Engineering
+                        <br>
+                        <b>University of California, Santa Barbara</b>
+                        <br>
+                        B.S. Computer Engineering
+                        <br>
+                    </p>
+                    <hr>
+                    <p class="pitch_text_font">
+                        <b>🧗 HOBBY</b>: Top roping, gym and fitness, and photography!
+                    </p>
+                </div>
             </div>
-
         </div>
 
         <!-- 02. highlights (recent projects) -->
-        <p class="huge_title_font">
+        <p id="highlights_title" class="huge_title_font">
             - Highlights -
         </p>
         <div class="featured_projects">
@@ -217,10 +225,6 @@
             </div>
         </div>
 
-        <!-- 03. hobby projects -->
-        <p class="huge_title_font">
-            - Hobby Projects -
-        </p>
         <div class="featured_projects">
             <div class="proj_card">
                 <h2 class="proj_title_font">Custom Drone Controller</h2>
@@ -350,7 +354,7 @@
 
 
         <!-- 04. Experience experience_timeline -->
-        <p class="huge_title_font">
+        <p id="timeline_title" class="huge_title_font">
             - Experience -
         </p>
         <p id="disclaimer">

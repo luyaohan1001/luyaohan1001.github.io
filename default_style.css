@@ -4,5 +4,6 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
   /* overflow-x: hidden; */ /* inelegant way of removing white space due to inproper layout, avoided. */
 }

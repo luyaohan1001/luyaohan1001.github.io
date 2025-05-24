@@ -16,6 +16,7 @@
   word-wrap: break-word;  /* Allows long words to break and wrap */
   overflow-wrap: break-word; /* Preferred modern syntax */
   font-style: italic;
+  max-width: 95vw;
 }
 
 .company_name {

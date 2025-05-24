@@ -1,10 +1,4 @@
 /* fonts.css */
-.pitch_text_font {
-    line-height: 200%;  /* vertical distance between each line */
-    font-family: 'Georgia', serif;
-    font-size: 2vh;
-    color: black;
-}
 
 
 /* Following styles are used for bibliography contents sections in index.html. */
@@ -15,8 +9,6 @@
     font-weight: bold;
     font-size: 4vw;
     margin: 0;
-    padding-top: 10vh;
-    padding-bottom: 5vh;
     /* gives shadow */
     color: #222;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -30,6 +22,7 @@
 @media (max-width: 768px) {
     .huge_title_font {
         font-size: 6vw;
+        padding: 5vh;
     }
 }
 
