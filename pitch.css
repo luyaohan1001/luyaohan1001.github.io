@@ -3,7 +3,7 @@
 #my_profile_container {
     min-height: 100vh;
     align-content: center;
-    max-width: 80vw;
+    width: 80vw;
     margin: 0 auto;  /* top/bottom 0, left/right auto centers horizontally */
 }
 
@@ -24,6 +24,7 @@
     align-items: center;
 
     /*  15% of the viewport width. */
+    min-width: 300px;
     max-width: 15vw;
 
     /* Trim image outside the circle */
