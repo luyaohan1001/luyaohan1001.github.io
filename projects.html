@@ -1,0 +1,292 @@
+<!-- Home Page. -->
+<html>
+    <!-- Specify website title to be displayed on the browser tab. -->
+    <head>
+        <!-- Ensures responsive behavior on mobile devices by setting the viewport width to match the device. Required for media queries to work properly. -->
+        <!-- width=device-width: The page width matches the device's screen width.
+            initial-scale=1.0: The initial zoom level is set to 1, so the page loads at the correct size.
+            maximum-scale=1.0: Prevents the user from zooming in beyond the original scale.
+            user-scalable=no: Disables pinch-to-zoom on mobile devices.
+        -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="description" content="Luyao Han's portfolio featuring embedded systems projects, photography, and blogs.">
+
+        <title>
+            Luyao Han's Website
+        </title>
+
+        <link rel="icon" href="media/favicon/favicon.webp" type="image/x-icon">
+
+        <!-- JSON-LD structured data for Person, to allow search engine optimization -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          "dateCreated": "2025-05-21T12:34:00-05:00",
+          "dateModified": "2025-05-21T12:34:00-05:00",
+          "mainEntity": {
+            "@type": "Person",
+            "name": "Luyao Han",
+            "alternateName": "Luyao",
+            "description": "Luyao Han's portfolio featuring embedded systems projects, photography, and blogs.",
+            "url": "https://www.linkedin.com/in/luyao-han/",
+            "image": "https://luyaohan.com/media/misc/webp/profile02_cropped.webp",
+            "knowsAbout": [
+              "Embedded Systems",
+              "RTOS",
+              "Linux Kernel Development",
+              "Verilog",
+              "ARM",
+              "RISCV",
+              "LoRaWAN",
+              "Camera Firmware",
+              "Image Signal Processing",
+              "PCB Design",
+              "U-Boot",
+              "3GPP LTE/NR Standards"
+            ],
+            "affiliation": [
+              {
+                "@type": "Organization",
+                "name": "IEEE",
+                "sameAs": "https://www.ieee.org"
+              }
+            ],
+            "jobTitle": "Firmware Engineer",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Apple",
+                "sameAs": "https://www.apple.com"
+            },
+            "alumniOf": [
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "University of California, Santa Barbara",
+                "sameAs": "https://www.ucsb.edu/"
+              },
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "Carnegie Mellon University",
+                "sameAs": "https://www.cmu.edu/"
+              }
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/in/luyao-han",
+              "https://github.com/luyaohan"
+            ]
+          }
+        }
+        </script>
+
+        <!-- Import style sheets. -->
+        <!-- <link rel="stylesheet" href="debug.css"> -->
+        <link rel="stylesheet" href="default_style.css">
+        <link rel="stylesheet" href="fonts.css">
+        <link rel="stylesheet" href="navbar.css">
+        <link rel="stylesheet" href="welcome_poster.css">
+        <link rel="stylesheet" href="pitch.css">
+        <link rel="stylesheet" href="blogs.css">
+        <link rel="stylesheet" href="projects.css">
+        <link rel="stylesheet" href="experience_timeline.css">
+        <link rel="stylesheet" href="footer.css">
+    </head>
+
+
+    <!-- Body of the web page layout. -->
+    <body>
+        <!-- 00.navigation bar -->
+        <ul class="nav_list">
+            <div class="nav_list_menu" id="menu_button">
+                <img src="media/icon/icons8-engineer-64.png" alt="menu icon">
+                <p>Menu</p>
+            </div>
+            <!-- Script runs after elements are parsed, so they exist when selected -->
+            <script src="navbar_toggle.js"></script>
+            <li><a href=index.html>About Me</a></li>
+            <li><a href=projects.html>Engineering Projects</a></li>
+            <li><a href=experiences.html>Experience</a></li>
+            <li><a href=featured.html>Photography</a></li>
+        </ul>
+
+        <div class="featured_projects">
+            <p id="engineering_projects_title" class="huge_title_font">
+                - Engineering Projects -
+            </p>
+
+            <div class="proj_card">
+                <img class="proj_image" src="media/projects/drive_sim/webp/drive_sim_poster.webp" alt="drive-by-wire simulator poster" />
+                <p class="proj_description">
+                    A Drive-by-Wire simulator that digitizes input from a Logitech game wheel and emulates vehicle input and force feedback.
+                </p>
+                <div class="proj_tags">
+                    <span class="tag">OOP in C</span>
+                    <span class="tag">System Design</span>
+                    <span class="tag">RTOS</span>
+                    <span class="tag">Performance Profiling</span>
+                    <span class="tag">Unit Testing</span>
+                    <span class="tag">Drive-by-Wire Simulator</span>
+                    <span class="tag">Force Feedback</span>
+                    <span class="tag">HID Device Interface</span>
+                </div>
+            </div>
+
+
+            <div class="proj_card">
+                <img class="proj_image" src="media/projects/umips/selected/webp/umips_poster.webp" alt="uMIPS project poster" />
+                <p class="proj_description">
+                    5-Stage Pipeline CPU with Branch Prediction, D-Cache, Hazard Control on single issues, and supporting dual issue VLIW on static scheduling.
+                </p>
+                <div class="proj_tags">
+                    <span class="tag">5-Stage Pipeline CPU</span>
+                    <span class="tag">Branch Prediction</span>
+                    <span class="tag">Data Cache</span>
+                    <span class="tag">Hazard Control</span>
+                    <span class="tag">Single Issue Pipeline</span>
+                    <span class="tag">CPU Architecture</span>
+                    <span class="tag">Microarchitecture Design</span>
+                </div>
+            </div>
+
+            <div class="proj_card">
+                <img class="proj_image" src="media/projects/parkingbase/selected/webp/parkingbase_poster.webp" alt="ParkingBase project poster" />
+                <p class="proj_description">
+                    A distributed wireless embedded device for intelligent vehicle-detection on parking lot spot.
+                </p>
+                <div class="proj_tags">
+                    <span class="tag">IoT Firmware</span>
+                    <span class="tag">ARM Cortex</span>
+                    <span class="tag">Smart Parking Solution</span>
+                    <span class="tag">LoRaWAN</span>
+                </div>
+            </div>
+
+            <p id="engineering_projects_title" class="huge_title_font">
+                - Earlier Projects -
+            </p>
+            <div class="proj_card">
+                <h2 class="proj_title_font">Custom Drone Controller</h2>
+                <div class="proj_image_set">
+                    <!-- <img src="media/projects/drone/drone73.jpg" alt="Project Thumbnail" /> -->
+                    <img src="media/projects/drone/selected/webp/drone_controller_00.webp" alt="drone controller thumbnail 0" />
+                    <img src="media/projects/drone/selected/webp/drone_controller_01.webp" alt="drone controller thumbnail 1" />
+                    <img src="media/projects/drone/selected/webp/drone_controller_02.webp" alt="drone controller thumbnail 2" />
+                    <img src="media/projects/drone/selected/webp/drone_controller_03.webp" alt="drone controller thumbnail 3" />
+                </div>
+                <p class="proj_description">
+                    I developed a drone flight controller PCB design in Altium Designer, integrating real-time inertial measurement unit (IMU) data acquisition and processing for precise motion acceleration tracking. The system implements a closed-loop PID control algorithm to dynamically regulate motor speed via PWM signals, ensuring stable and responsive flight control.
+                </p>
+                <div class="proj_tags">
+                    <span class="tag">Drone Flight Controller</span>
+                    <span class="tag">Embedded C</span>
+                    <span class="tag">PID Control Loop</span>
+                    <span class="tag">IMU Sensor Integration</span>
+                    <span class="tag">Altium PCB Design</span>
+                    <span class="tag">Real-time DSP</span>
+                </div>
+            </div>
+
+            <div class="proj_card">
+                <h2 class="proj_title_font">Custom ST-LINK Compatible Debugger</h2>
+                <div class="proj_image_set">
+                    <img src="media/projects/serial_wire_debugger/selected/webp/serial_wire_debugger_00.webp" alt="serial wire debugger project thumbnail 0" />
+                    <img src="media/projects/serial_wire_debugger/selected/webp/serial_wire_debugger_01.webp" alt="serial wire debugger project thumbnail 1" />
+                    <img src="media/projects/serial_wire_debugger/selected/webp/serial_wire_debugger_02.webp" alt="serial wire debugger project thumbnail 2" />
+                    <img src="media/projects/serial_wire_debugger/selected/webp/serial_wire_debugger_03.webp" alt="serial wire debugger project thumbnail 3" />
+                </div>
+                <p class="proj_description">
+                    PCB layout design for an ST-LINK in-circuit debugger supporting both SWD and JTAG interfaces.
+                </p>
+                <div class="proj_tags">
+                  <span class="tag">SWD (Serial Wire Debug)</span>
+                  <span class="tag">In-Circuit Debugging</span>
+                  <span class="tag">MCU Programming Interface</span>
+                  <span class="tag">Schematic & PCB Design</span>
+                </div>
+            </div>
+
+            <div class="proj_card">
+                <h2 class="proj_title_font">Custom LCD Module Design</h2>
+                <div class="proj_image_set">
+                    <img src="media/projects/tft_lcd/selected/webp/tft_lcd_00.webp" alt="lcd display project thumbnail 0" />
+                    <img src="media/projects/tft_lcd/selected/webp/tft_lcd_01.webp" alt="lcd display project thumbnail 1" />
+                    <img src="media/projects/tft_lcd/selected/webp/tft_lcd_02.webp" alt="lcd display project thumbnail 2" />
+                    <img src="media/projects/tft_lcd/selected/webp/tft_lcd_03.webp" alt="lcd display project thumbnail 3" />
+                    <img src="media/projects/tft_lcd/selected/webp/tft_lcd_04.webp" alt="lcd display project thumbnail 4" />
+                    <img src="media/projects/tft_lcd/selected/webp/tft_lcd_05.webp" alt="lcd display project thumbnail 5" />
+                </div>
+                <p class="proj_description">
+                    I designed and assembled this LCD controller PCB to display images in embedded projects.
+                </p>
+                <div class="proj_tags">
+                    <span class="tag">Custom PCB</span>
+                    <span class="tag">LCD Controller</span>
+                    <span class="tag">Display Interface</span>
+                    <span class="tag">TFT Display</span>
+                    <span class="tag">Firmware Development</span>
+                    <span class="tag">Image Buffering</span>
+                    <span class="tag">Bare-Metal Programming</span>
+                </div>
+            </div>
+
+            <div class="proj_card">
+                <h2 class="proj_title_font">Custom Microcontroller Development Board Design</h2>
+                <div class="proj_image_set">
+                    <img src="media/projects/mcu_dev_board/selected/webp/mcu_dev_board_00.webp" alt="mcu development project thumbnail 0" />
+                    <img src="media/projects/mcu_dev_board/selected/webp/mcu_dev_board_01.webp" alt="mcu development project thumbnail 1" />
+                    <!-- <img src="media/projects/STM32 DEV BOARD/IMG_6495.jpg" alt="Project Thumbnail" /> -->
+                </div>
+                <p class="proj_description">
+                    Designed a custom microcontroller development board to enable tailored peripheral support and streamline board support package (BSP) bring-up for future projects.
+                </p>
+                <div class="proj_tags">
+                    <span class="tag">Microcontroller</span>
+                    <span class="tag">Development Board</span>
+                    <span class="tag">Embedded Systems</span>
+                    <span class="tag">Board Support Package</span>
+                    <span class="tag">BSP Bring-up</span>
+                    <span class="tag">Peripheral Integration</span>
+                    <span class="tag">Schematic Capture</span>
+                </div>
+            </div>
+
+            <div class="proj_card">
+                <h2 class="proj_title_font">Full Adder from MOSFET</h2>
+                <div class="proj_image_set">
+                    <img src="media/projects/binary_full_adder/selected/webp/cmos_full_adder_00.webp" alt="cmos full adder project thumbnail 0" />
+                    <img src="media/projects/binary_full_adder/selected/webp/cmos_full_adder_01.webp" alt="cmos full adder project thumbnail 1" />
+                    <img src="media/projects/binary_full_adder/selected/webp/cmos_full_adder_02.webp" alt="cmos full adder project thumbnail 2" />
+                    <img src="media/projects/binary_full_adder/selected/webp/cmos_full_adder_03.webp" alt="cmos full adder project thumbnail 3" />
+                </div>
+                <p class="proj_description">
+                    Built a binary full adder using discrete MOSFET transistors.
+                </p>
+                <div class="proj_tags">
+                        <span class="tag">CMOS Logic</span>
+                        <span class="tag">Digital Electronics</span>
+                        <span class="tag">Transistor-level Design</span>
+                        <span class="tag">Boolean Algebra</span>
+                        <span class="tag">Circuit Simulation</span>
+                        <span class="tag">Binary Arithmetic</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05. footer -->
+        <footer class="footer">
+            <div class="footer_icons">
+              <a href="mailto:luyaohan7@gmail.com" aria-label="Email">
+                <img src="media/icon/icons8-email-48.png" alt="Email" width="24" height="24">
+              </a>
+              <a href="https://www.linkedin.com/in/luyao-han/" target="_blank" aria-label="LinkedIn">
+                <img src="media/icon/icons8-linkedin-48.png" alt="LinkedIn" width="24" height="24">
+              </a>
+            </div>
+
+            <p>
+            Copyright © 2025 by Luyao Han.
+            </p>
+        </footer>
+
+    </body>
+
+</html>

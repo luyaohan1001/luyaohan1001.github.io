@@ -3,6 +3,7 @@
   background-size: cover;
   color: white;
   display: flex; /* Display it in a row. */
+  flex-direction: column;
   font-family: 'Georgia', sans-serif;
   font-size: 2vh;
   align-content: center;
@@ -10,5 +11,12 @@
   padding: 30px 0;
   text-align: center;
   width: 100%;
+}
+
+.footer_icons {
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+  place-self: center;
 }
 

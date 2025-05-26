@@ -1,0 +1,51 @@
+.highlight_section {
+  max-width: 100%;
+  text-align: center;
+  padding: 2rem;
+}
+
+.highlight_grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  max-width: 80vw;
+  place-self: center;
+  gap: 2vh;
+}
+
+.highlight_grid img {
+  width: 20vw;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight_grid img:hover{
+  transform: scale(1.5) rotate(3deg);
+  box-shadow: 0 10px 20px rgba(74, 144, 226, 0.6);
+}
+
+
+.highlight_button a {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #0057ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.highlight_button a:hover {
+  background-color: #003fcc;
+}
+
+/* style on a mobile device */
+@media (max-width: 768px) {
+  .highlight_grid img {
+    width: 80vw;
+  }
+}

@@ -4,10 +4,8 @@
     flex-direction: column; /* Stack items vertically */
     gap: 20px;              /* Space between rows */
     align-items: center;    /* Center items horizontally */
-    margin: 20px auto;
     /* paint background color */
     background: rgba(210, 240, 255, 0.074); /* translucent white */
-    padding: 1vh;
     backdrop-filter: blur(10px); /* creates the frosted glass effect */
     -webkit-backdrop-filter: blur(10px); /* for Safari */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

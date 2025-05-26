@@ -140,5 +140,7 @@
       margin: 4vh 0;
   }
 
-
+  .job_description p {
+    font-size: 2%;
+  }
 }

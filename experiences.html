@@ -1,0 +1,334 @@
+<!-- Home Page. -->
+<html>
+    <!-- Specify website title to be displayed on the browser tab. -->
+    <head>
+        <!-- Ensures responsive behavior on mobile devices by setting the viewport width to match the device. Required for media queries to work properly. -->
+        <!-- width=device-width: The page width matches the device's screen width.
+            initial-scale=1.0: The initial zoom level is set to 1, so the page loads at the correct size.
+            maximum-scale=1.0: Prevents the user from zooming in beyond the original scale.
+            user-scalable=no: Disables pinch-to-zoom on mobile devices.
+        -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="description" content="Luyao Han's portfolio featuring embedded systems projects, photography, and blogs.">
+
+        <title>
+            Luyao Han's Website
+        </title>
+
+        <link rel="icon" href="media/favicon/favicon.webp" type="image/x-icon">
+
+        <!-- JSON-LD structured data for Person, to allow search engine optimization -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          "dateCreated": "2025-05-21T12:34:00-05:00",
+          "dateModified": "2025-05-21T12:34:00-05:00",
+          "mainEntity": {
+            "@type": "Person",
+            "name": "Luyao Han",
+            "alternateName": "Luyao",
+            "description": "Luyao Han's portfolio featuring embedded systems projects, photography, and blogs.",
+            "url": "https://www.linkedin.com/in/luyao-han/",
+            "image": "https://luyaohan.com/media/misc/webp/profile02_cropped.webp",
+            "knowsAbout": [
+              "Embedded Systems",
+              "RTOS",
+              "Linux Kernel Development",
+              "Verilog",
+              "ARM",
+              "RISCV",
+              "LoRaWAN",
+              "Camera Firmware",
+              "Image Signal Processing",
+              "PCB Design",
+              "U-Boot",
+              "3GPP LTE/NR Standards"
+            ],
+            "affiliation": [
+              {
+                "@type": "Organization",
+                "name": "IEEE",
+                "sameAs": "https://www.ieee.org"
+              }
+            ],
+            "jobTitle": "Firmware Engineer",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Apple",
+                "sameAs": "https://www.apple.com"
+            },
+            "alumniOf": [
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "University of California, Santa Barbara",
+                "sameAs": "https://www.ucsb.edu/"
+              },
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "Carnegie Mellon University",
+                "sameAs": "https://www.cmu.edu/"
+              }
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/in/luyao-han",
+              "https://github.com/luyaohan"
+            ]
+          }
+        }
+        </script>
+
+        <!-- Import style sheets. -->
+        <!-- <link rel="stylesheet" href="debug.css"> -->
+        <link rel="stylesheet" href="default_style.css">
+        <link rel="stylesheet" href="fonts.css">
+        <link rel="stylesheet" href="navbar.css">
+        <link rel="stylesheet" href="pitch.css">
+        <link rel="stylesheet" href="projects.css">
+        <link rel="stylesheet" href="skills.css">
+        <link rel="stylesheet" href="experience_timeline.css">
+        <link rel="stylesheet" href="footer.css">
+    </head>
+
+
+    <!-- Body of the web page layout. -->
+    <body>
+
+        <!-- 00.navigation bar -->
+        <ul class="nav_list">
+            <div class="nav_list_menu" id="menu_button">
+                <img src="media/icon/icons8-engineer-64.png" alt="menu icon">
+                <p>Menu</p>
+            </div>
+            <!-- Script runs after elements are parsed, so they exist when selected -->
+            <script src="navbar_toggle.js"></script>
+            <li><a href=index.html>About Me</a></li>
+            <li><a href=projects.html>Engineering Projects</a></li>
+            <li><a href=experiences.html>Experience</a></li>
+            <li><a href=featured.html>Photography</a></li>
+        </ul>
+
+        <section class="skills-section">
+            <h2 class="skills-title">Technical Skills</h2>
+
+                <div class="skills_category">
+                    <h3 class="skills_category_title">Programming / HDL Languages</h3>
+                    <ul class="skills_list">
+                        <li class="skill_item">C</li>
+                        <li class="skill_item">C++ 11 / 14</li>
+                        <li class="skill_item">ARM Cortex ISA</li>
+                        <li class="skill_item">RISC-V ISA</li>
+                        <li class="skill_item">Python</li>
+                        <li class="skill_item">Bash</li>
+                        <li class="skill_item">Verilog</li>
+                        <li class="skill_item">Perl</li>
+                    </ul>
+                </div>
+
+                <div class="skills_category">
+                    <h3 class="skills_category_title">Development Tools</h3>
+                    <ul class="skills_list">
+                        <li class="skill_item">Unix</li>
+                        <li class="skill_item">Vim</li>
+                        <li class="skill_item">QEMU</li>
+                        <li class="skill_item">Git / Perforce</li>
+                        <li class="skill_item">GNU Toolchain</li>
+                        <li class="skill_item">LLVM/Clang</li>
+                        <li class="skill_item">Cppcheck</li>
+                        <li class="skill_item">Valgrind</li>
+                        <li class="skill_item">CMake</li>
+                        <li class="skill_item">Jenkins</li>
+                        <li class="skill_item">Doxygen</li>
+                        <li class="skill_item">Intel Quartus Prime</li>
+                    </ul>
+                </div>
+
+                <div class="skills_category">
+                    <h3 class="skills_category_title">Firmware</h3>
+                    <ul class="skills_list">
+                        <li class="skill_item">Bare-metal</li>
+                        <li class="skill_item">FreeRTOS</li>
+                        <li class="skill_item">LwIP</li>
+                        <li class="skill_item">Linux Kernel Development</li>
+                    </ul>
+                </div>
+          
+                <div class="skills_category">
+                    <h3 class="skills_category_title">Interfaces & Protocols</h3>
+                    <ul class="skills_list">
+                        <li class="skill_item">Cellular OTA</li>
+                        <li class="skill_item">CAN</li>
+                        <li class="skill_item">Ethernet</li>
+                        <li class="skill_item">TCP/IP</li>
+                        <li class="skill_item">I2C / SPI / UART</li>
+                        <li class="skill_item">USB</li>
+                        <li class="skill_item">BLE</li>
+                    </ul>
+                </div>
+          
+                <div class="skills_category">
+                    <h3 class="skills_category_title">Hardware & Debugging</h3>
+                    <ul class="skills_list">
+                        <li class="skill_item">Oscilloscope</li>
+                        <li class="skill_item">Logic Analyzer</li>
+                        <li class="skill_item">JTAG / SWD</li>
+                        <li class="skill_item">PCB Design</li>
+                    </ul>
+                </div>
+        </section>
+
+        <!-- 04. Experience experience_timeline -->
+        <p id="experience_title" class="huge_title_font">
+            - Experience -
+        </p>
+        <p id="disclaimer">
+            The company trademarks below are the property of their owners, provided solely for illustrative purposes to indicate prior employment.
+            It does not imply any commercial affiliation, endorsement, or authorization.
+            Details of professional work conducted are not described on this page and will not be disclosed.
+        </p>
+
+        <div class="experience_timeline">
+
+            <div class="job_container">
+                <div class="job_info">
+                    <h4>Spring 2023 to Present</h4>
+                    <div class="company_name">
+                        <h4>Apple</h4>
+                    </div>
+                    <h3> Wireless Firmware Engineer</h3>
+                </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/webp/apple.webp" alt="Apple logo">
+                </div>
+            </div>
+
+            <div class="job_container">
+                <div class="job_info">
+                    <h4>2022 Winter</h4>
+                    <div class="company_name">
+                        <h4>Carnegie Mellon University</h4>
+                    </div>
+                    <h3>Graduate Student</h3>
+                </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/webp/cmu.webp" alt="Carnegie Mellon University logo">
+                </div>
+                <div class="job_description">
+                    <p>
+                        Distributed Embedded Systems / Wireless Networks
+                    </p>
+                </div>
+            </div>
+
+            <div class="job_container">
+                <div class="job_info">
+                    <h4>Summer 2022</h4>
+                    <div class="company_name">
+                        <h4>NVIDIA</h4>
+                    </div>
+                    <h3>Firmware Engineer Intern</h3>
+                </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/webp/nvidia.webp" alt="NVIDIA logo">
+                </div>
+                <div class="job_description">
+                    <p>
+                        GPU Context Switch Firmware
+                    </p>
+                </div>
+            </div>
+
+            <div class="job_container">
+                <div class="job_info">
+                    <h4>Summer 2021</h4>
+                    <div class="company_name">
+                        <h4>Qualcomm</h4>
+                    </div>
+                    <h3>Hardware Engineer Intern</h3>
+                </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/webp/qualcomm.webp" alt="Qualcomm logo">
+                </div>
+                <div class="job_description">
+                    <p>
+                        Network Processor
+                    </p>
+                </div>
+            </div>
+
+            <div class="job_container">
+                <div class="job_info">
+                    <h4>Summer 2020</h4>
+                    <div class="company_name">
+                        <h4>Qualcomm</h4>
+                    </div>
+                    <h3>Hardware Engineer Intern</h3>
+                </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/webp/qualcomm.webp" alt="Qualcomm logo">
+                </div>
+                <div class="job_description">
+                    <p>
+                        Power Management IC
+                    </p>
+                </div>
+            </div>
+
+            <div class="job_container">
+                <div class="job_info">
+                    <h4>Summer 2019</h4>
+                    <div class="company_name">
+                        <h4>Bruker</h4>
+                    </div>
+                    <h3>Electrical Engineer Intern</h3>
+                </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/webp/bruker.webp" alt="Bruker logo">
+                </div>
+                <div class="job_description">
+                    <p>
+                        Bruker Atomic Force Microscope
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="job_container">
+                <div class="job_info">
+                    <h4>Fall 2017</h4>
+                    <div class="company_name">
+                        <h4>University of California</h4>
+                        <h4>Santa Barbara, California</h4>
+                    </div>
+                    <h3>ECE student</h3>
+                </div>
+                <div class="centered_company_logo">
+                    <img src="media/experience/webp/ucsb.webp" alt="UC Santa Barbara logo">
+                </div>
+                <div class="job_description">
+                    <p>
+                        Computer Engineering (hybrid of EE and CS)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05. footer -->
+        <footer class="footer">
+            <div class="footer_icons">
+              <a href="mailto:luyaohan7@gmail.com" aria-label="Email">
+                <img src="media/icon/icons8-email-48.png" alt="Email" width="24" height="24">
+              </a>
+              <a href="https://www.linkedin.com/in/luyao-han/" target="_blank" aria-label="LinkedIn">
+                <img src="media/icon/icons8-linkedin-48.png" alt="LinkedIn" width="24" height="24">
+              </a>
+            </div>
+
+            <p>
+            Copyright © 2025 by Luyao Han.
+            </p>
+        </footer>
+
+    </body>
+
+</html>
