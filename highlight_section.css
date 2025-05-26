@@ -1,4 +1,8 @@
 .highlight_section {
+  /* display along y-axis*/
+  display: flex;
+  flex-direction: column;
+
   max-width: 100%;
   text-align: center;
   padding: 2rem;

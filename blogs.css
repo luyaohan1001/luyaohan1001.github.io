@@ -1,9 +1,9 @@
 #blog_posts_container {
   background-color: rgba(0, 51, 255, 0.017);
 
-  /* shorthand for align-items and justify-items */
-  place-items: center;
-  place-content: center; /* centers the full content block */
+  /* flex along y-axis */
+  display: flex;
+  flex-direction: column;
 }
 
 .blog_card {
