@@ -6,12 +6,13 @@
 
 .highlight_grid {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
   max-width: 80vw;
-  place-self: center;
   gap: 2vh;
+  place-self: center;
+  place-items: center;
+  place-content: center;
 }
 
 .highlight_grid img {
