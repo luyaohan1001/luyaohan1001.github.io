@@ -1,0 +1,16 @@
+@startuml
+
+Climber -> Belayer: BELAY!
+Belayer --> Climber: BELAY ON!
+
+Climber -> Belayer: CLIMB!
+Belayer --> Climber: CLIMB ON
+
+
+Climber -> Belayer: TAKE!
+Belayer --> Climber: GOTCHA!
+
+
+Climber -> Belayer: LOWER!
+Belayer --> Climber: LOWERING!
+@enduml
