@@ -1,0 +1,155 @@
+<body>
+  <h1>
+    Modular CMake - Why It's Good Practice
+  </h1>
+  <h2>
+    The importance of Modularity in Engineering
+  </h2>
+  <p>
+    Imagine an engineering team tasked with delivering a large-scale project under a tight timeline.
+    For continuous progress, development, testing, and integration must function in parallel as efficiently as possible. However, dependencies across teams and components often introduce bottlenecks. <br><br>
+
+    For instance, a testing expert must wait until the development completion to start testing.
+    Similarly, the integration personnel will need to wait for sanity coverage to complete before integration to avoid component degrade.
+    These blocking dependencies reduce efficiency and delay delivery.<br><br>
+
+    To streamline the entire process, an emphasis on modularity must be introduced by the early stage of the process.
+    Modularity measures the degree to which a system is composed of independent, decoupled sub-systems.
+    It allows the team to divide a complex design into smaller, manageable units, each handled by a specific individual or team.
+    From the developer's perspective, the decoupled components could be developed on in parallel and delivered independently, minimizing shorter turn-around time.
+    From the testing and integration perspective, smaller modules are easier to test in isolation, and bugs can be localized and resolved quickly due to a limited scope. <br><br>
+  </p>
+
+  <h2>
+    Embedding Modularity Into Build System
+  </h2>
+  <p>
+    CMake is an extensively build system that supports modular project structures. Using CMake to enforce modularity brings several advantages beyond team workflow efficiency.
+  </p>
+
+  <p> <b>Improved Code Reuse</b>: shared libraries can be compiled once and linked into multiple targets, promoting reuse and reducing duplication. <br>
+    For instance, the LibBareMetal library can be reused across projects.</p>
+  <pre><code class="language-cmake">
+    # Add library which includes all other bare metal code.
+    add_library(LibBareMetal
+      ${CMAKE_CURRENT_LIST_DIR}/startup_rv32i.s
+      ${CMAKE_CURRENT_LIST_DIR}/trace.c
+      ${CMAKE_CURRENT_LIST_DIR}/atomic.cpp
+      ${CMAKE_CURRENT_LIST_DIR}/timeslice.cpp
+    )
+    target_include_directories(LibBareMetal PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}
+      ${CMAKE_CURRENT_LIST_DIR}/../../include
+    )
+  </code></pre>
+
+  <p><b>Cleaner Project Structure</b>: each component—such as the application, RTOS kernel, and hardware abstraction layer—can be organized into logical layers and built independently.</p>
+  <pre><code class="language-cmake"></code>
+      set(PROJECT_NAME multi_thread)
+
+      add_executable(${PROJECT_NAME})
+      target_sources(${PROJECT_NAME} PRIVATE
+        main.cpp
+      )
+
+      ......
+
+
+      # Add the kernel module as a subproject. This allows its CMakeLists.txt to define targets
+      # (e.g., libraries or executables) that can be built and linked in this parent project.
+      add_subdirectory(
+        ${CMAKE_CURRENT_LIST_DIR}/../../kernel
+        ${CMAKE_CURRENT_LIST_DIR}/../../kernel/build
+      )
+
+      ......
+
+      target_link_libraries(${PROJECT_NAME} PRIVATE
+        LibYesRTOSKernel
+        LibBareMetal
+      )
+  </code></pre>
+
+
+  <p><b>Unit Testing Enablement</b>: decoupled library with explicitly defined interfaces and functional requirement are ideal for unit testing. Individual modules can be validated in isolation before system-wide integration.</p>
+  <pre><code class="language-cmake"></code>
+    project(UnitTest)
+
+    ......
+
+    # Include project source
+    # message(STATUS "LHDBG CMakeList.txt in unit_tests directory CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
+
+    # Enable compile command dumping to json
+    set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+
+    # Build flags
+    add_compile_definitions("-DHOST_PLATFORM")
+
+    add_executable(mempool_unit_test
+      ${CMAKE_SOURCE_DIR}/mempool_unit_test.cpp
+      ${CMAKE_SOURCE_DIR}/../../kernel/src/mempool.cpp
+    )
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+      LibYesRTOSKernel
+    )
+
+    ......
+
+    enable_testing()
+    add_test(NAME mempool_unit_test0 COMMAND ./mempool_unit_test 0)
+    add_test(NAME mempool_unit_test1 COMMAND ./mempool_unit_test 1)
+    add_test(NAME mempool_unit_test2 COMMAND ./mempool_unit_test 2)
+    add_test(NAME mempool_unit_test3 COMMAND ./mempool_unit_test 3)
+    add_test(NAME mempool_unit_test4 COMMAND ./mempool_unit_test 4)
+    add_test(NAME mempool_unit_test5 COMMAND ./mempool_unit_test 5)
+  </code></pre>
+
+  <p><b>Building Time Saving</b>: static library not to be recompiled without actual source change. Further, decoupled library could be compiled to object files in parallel. This improves developer productivity and speeds up CI pipelines.</p>
+
+  <p><b>Platform-Specific Module Isolation</b>:</p>
+  <pre><code class="language-cmake">
+    # Platform detection and module selection
+    if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+      add_subdirectory(linux_drivers)
+    elseif(CMAKE_SYSTEM_NAME STREQUAL "FreeRTOS")
+      add_subdirectory(baremetal_drivers)
+    endif()
+
+    # Conditional compilation with generator expressions
+    target_compile_definitions(LibBareMetal PRIVATE
+      $<$<PLATFORM_ID:Linux>:LINUX_BACKEND=1>
+      $<$<PLATFORM_ID:FreeRTOS>:EMBEDDED_BACKEND=1>
+    )
+  </code></pre>
+
+  <p><b>Toolchain-Aware Module Configuration</b>:</p>
+  <pre><code class="language-cmake">
+    # Toolchain-specific optimization flags
+    set(MODULE_OPTIMIZATION_FLAGS
+      $<$<CXX_COMPILER_ID:GNU>:-O3 -flto>
+      $<$<CXX_COMPILER_ID:MSVC>:/O2 /GL>
+    )
+    target_compile_options(LibBareMetal PRIVATE
+      ${MODULE_OPTIMIZATION_FLAGS}
+    )
+  </code></pre>
+
+  <p><b>Incremental Builds in CI Pipelines</b>:</p>
+  <pre><code class="language-cmake">
+    # Cache build artifacts for CI
+    set(CMAKE_CACHE_DIR "${CMAKE_BINARY_DIR}/cache")
+    file(MAKE_DIRECTORY ${CMAKE_CACHE_DIR})
+
+    # Only rebuild changed modules
+    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE
+      "ccache -d ${CMAKE_CACHE_DIR}"
+    )
+  </code></pre>
+
+
+
+
+
+</body>
