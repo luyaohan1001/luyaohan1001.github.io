@@ -34,4 +34,18 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blogs -->
+  <url>
+    <loc>https://luyaohan.com/blogs/2025_05/top_roping_experience.html</loc>
+    <lastmod>2025-05-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://luyaohan.com/blogs/2025_06/modular_cmake.html</loc>
+    <lastmod>2025-06-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

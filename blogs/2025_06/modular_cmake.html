@@ -6,29 +6,28 @@
     The importance of Modularity in Engineering
   </h2>
   <p>
-    Imagine an engineering team tasked with delivering a large-scale project under a tight timeline.
-    For continuous progress, development, testing, and integration must function in parallel as efficiently as possible. However, dependencies across teams and components often introduce bottlenecks. <br><br>
+    Imagine an engineering team tasked with delivering a large-scale project under a tight timeline. <br>
+    To streamline the delivery, the development, testing, and integration must function in parallel as efficiently as possible. <br>
+    However, dependencies across team functions often introduce bottlenecks. <br><br>
 
-    For instance, a testing expert must wait until the development completion to start testing.
-    Similarly, the integration personnel will need to wait for sanity coverage to complete before integration to avoid component degrade.
+    For instance, the testing team must wait until the development completes to start testing. <br>
+    Similarly, the integration personnel will need to wait for sanity coverage to complete before integration in order to avoid component degrade. <br>
     These blocking dependencies reduce efficiency and delay delivery.<br><br>
 
-    To streamline the entire process, an emphasis on modularity must be introduced by the early stage of the process.
-    Modularity measures the degree to which a system is composed of independent, decoupled sub-systems.
-    It allows the team to divide a complex design into smaller, manageable units, each handled by a specific individual or team.
-    From the developer's perspective, the decoupled components could be developed on in parallel and delivered independently, minimizing shorter turn-around time.
-    From the testing and integration perspective, smaller modules are easier to test in isolation, and bugs can be localized and resolved quickly due to a limited scope. <br><br>
+    To streamline the entire process, an emphasis on modularity must be introduced by the early stage of the process. <br>
+    Modularity measures the degree to which a system is composed of independent, decoupled sub-systems. <br>
+    It allows the team to divide a complex design into smaller, manageable units, each handled by a specific individual or team. <br><br>
   </p>
 
   <h2>
     Embedding Modularity Into Build System
   </h2>
   <p>
-    CMake is an extensively build system that supports modular project structures. Using CMake to enforce modularity brings several advantages beyond team workflow efficiency.
+    CMake is the most commonly used build system for C, C++ projects that supports modular project structures. <br>
+    I have listed several key usage from my experience.
   </p>
 
-  <p> <b>Improved Code Reuse</b>: shared libraries can be compiled once and linked into multiple targets, promoting reuse and reducing duplication. <br>
-    For instance, the LibBareMetal library can be reused across projects.</p>
+  <p> <b>Source Code Isolation</b>: Instead of compiling and linking all source files together for each target, I prefer creating static libraries that can be compiled once and reused across multiple targets.<br>
   <pre><code class="language-cmake">
     # Add library which includes all other bare metal code.
     add_library(LibBareMetal
@@ -42,8 +41,14 @@
       ${CMAKE_CURRENT_LIST_DIR}/../../include
     )
   </code></pre>
+  <p>
+    The translation unit benefits from small object size thanks to the limited set of source files.<br>
+    Often in embedded engineering it is necessary to inspect assembly instructions translated from high level language. <br>
+    Instead of generating disassembly from final executable, the library itself could be disassembled. <br>
+    The command <i>riscv64-unknown-elf-objdump -d libLibYesRTOSKernel.a </i> dumps only the disassembly for this library. <br>
+  </p>
 
-  <p><b>Cleaner Project Structure</b>: each component—such as the application, RTOS kernel, and hardware abstraction layer—can be organized into logical layers and built independently.</p>
+  <p><b>Hierarchical Project Structure</b>: Each component—such as the application, RTOS kernel, or hardware abstraction layer—can be organized into logical layers and built independently.</p>
   <pre><code class="language-cmake"></code>
       set(PROJECT_NAME multi_thread)
 
@@ -54,14 +59,12 @@
 
       ......
 
-
       # Add the kernel module as a subproject. This allows its CMakeLists.txt to define targets
       # (e.g., libraries or executables) that can be built and linked in this parent project.
       add_subdirectory(
         ${CMAKE_CURRENT_LIST_DIR}/../../kernel
-        ${CMAKE_CURRENT_LIST_DIR}/../../kernel/build
+        ${CMAKE_CURRENT_LIST_DIR}/../../bsp
       )
-
       ......
 
       target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -69,9 +72,13 @@
         LibBareMetal
       )
   </code></pre>
+  <p>
+    The <i>add_subdirectory</i> keyword specifies a directory in which another sub-project is defined a separate <i>CMakeLists.txt</i> <br>
+    By design, the hierarchy of project structures must be clearly defined to avoid circular dependency between modules.
+  </p>
 
 
-  <p><b>Unit Testing Enablement</b>: decoupled library with explicitly defined interfaces and functional requirement are ideal for unit testing. Individual modules can be validated in isolation before system-wide integration.</p>
+  <p><b>Unit Testing Enablement</b>: Small libraries are ideal for unit testing. Individual modules could be linked to testbench executables, and to be validated in isolation before system-wide integration.</p>
   <pre><code class="language-cmake"></code>
     project(UnitTest)
 
@@ -105,10 +112,9 @@
     add_test(NAME mempool_unit_test4 COMMAND ./mempool_unit_test 4)
     add_test(NAME mempool_unit_test5 COMMAND ./mempool_unit_test 5)
   </code></pre>
+  <p> In above example, <i>enable_testing()</i> enables <i>ctest</i>, allowing the user to invoke the specific set of unit tests in command line.</p>
 
-  <p><b>Building Time Saving</b>: static library not to be recompiled without actual source change. Further, decoupled library could be compiled to object files in parallel. This improves developer productivity and speeds up CI pipelines.</p>
-
-  <p><b>Platform-Specific Module Isolation</b>:</p>
+  <p><b>Fine Grain Control for Build Optimization</b>: In embedded systems, cross-compilation for various platforms is ubiquitous.</p>
   <pre><code class="language-cmake">
     # Platform detection and module selection
     if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
@@ -123,33 +129,5 @@
       $<$<PLATFORM_ID:FreeRTOS>:EMBEDDED_BACKEND=1>
     )
   </code></pre>
-
-  <p><b>Toolchain-Aware Module Configuration</b>:</p>
-  <pre><code class="language-cmake">
-    # Toolchain-specific optimization flags
-    set(MODULE_OPTIMIZATION_FLAGS
-      $<$<CXX_COMPILER_ID:GNU>:-O3 -flto>
-      $<$<CXX_COMPILER_ID:MSVC>:/O2 /GL>
-    )
-    target_compile_options(LibBareMetal PRIVATE
-      ${MODULE_OPTIMIZATION_FLAGS}
-    )
-  </code></pre>
-
-  <p><b>Incremental Builds in CI Pipelines</b>:</p>
-  <pre><code class="language-cmake">
-    # Cache build artifacts for CI
-    set(CMAKE_CACHE_DIR "${CMAKE_BINARY_DIR}/cache")
-    file(MAKE_DIRECTORY ${CMAKE_CACHE_DIR})
-
-    # Only rebuild changed modules
-    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE
-      "ccache -d ${CMAKE_CACHE_DIR}"
-    )
-  </code></pre>
-
-
-
-
-
+  <p>Depending on target platform, the compilation could be switched conveniently with minimal porting effort.</p>
 </body>
