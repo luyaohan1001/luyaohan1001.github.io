@@ -1,0 +1,493 @@
+<body>
+  <h1>
+    Emulating RISC-V Bare-Metal on macOS with QEMU — A Retrospective
+  </h1>
+  <p>
+    Recently I have ported a project and enabled cross-compilation for 32 bit RISC-V ISA.<br>
+    There have been several issues during the process that I wish to highlight.
+    The compilation is on MacOS Sequoia 15.5, and target platform is RV32IM emulated using QEMU.<br>
+  </p>
+
+  <h2>
+    Installing toolchain
+  </h2>
+  <p>
+    <pre><code class="language-bash">
+    brew install riscv-software-src/riscv/riscv-gnu-toolchain<br>
+    brew install qemu<br>
+    </code></pre>
+  </p>
+  <p>
+    Even though the name suggests a 64-bit executable, the toolchain allows you to specify the machine word size to generate a 32-bit binary. <br>
+    The following binary utilities will be used for compilation and inspection:
+  </p>
+  <pre><code class="language-bash">
+    riscv64-unknown-elf-gcc
+    riscv64-unknown-elf-g++
+    riscv64-unknown-elf-nm
+    riscv64-unknown-elf-objdump
+  </code></pre>
+
+  <h2>
+    Configure Compiler from CMake
+  </h2>
+  <p>
+    I created <b>gcc-riscv-none-eabi.cmake</b> to contain all the reusable macros specific to RISC-V compilation. <br>
+    It could be included by other CMakeLists.txt files to centralize configuration, reduce redundancy, and ensure consistent toolchain behavior across modules.
+  </p>
+  <pre><code class="language-cmake">
+    # This cmake module: cross compilation configuration to compile for RISCV32I (target platform) on MACOS (host).
+
+    # Avoids recursive inclusion.
+    include_guard(GLOBAL)
+
+    # Specify a generic embedded target system and RISCV architecture for cross-compilation.
+    set(CMAKE_SYSTEM_NAME               Generic)
+    set(CMAKE_SYSTEM_PROCESSOR          "riscv32")
+
+    # Force CMake to treat specified compilers as valid GNU C/C++ compilers without detection.
+    set(CMAKE_C_COMPILER_FORCED TRUE)
+    set(CMAKE_CXX_COMPILER_FORCED TRUE)
+    set(CMAKE_C_COMPILER_ID GNU)
+    set(CMAKE_CXX_COMPILER_ID GNU)
+
+    # Ensure the toolchain is installed via Homebrew on macOS if not already found.
+    find_program(RISCV_GCC riscv64-unknown-elf-gcc)
+
+    if(NOT RISCV_GCC)
+        message(STATUS "riscv64-unknown-elf-gcc not found. Attempting to install via Homebrew...")
+        execute_process(
+            COMMAND brew install riscv-tools
+            RESULT_VARIABLE BREW_RESULT
+        )
+        if(NOT BREW_RESULT EQUAL 0)
+            message(FATAL_ERROR "Failed to install riscv-tools using Homebrew.")
+        endif()
+    else()
+        message(STATUS "Found arm-none-eabi-gcc: ${RISCV_GCC}")
+    endif()
+
+    # Define tool chain path.
+    set(TOOLCHAIN_PATH_MACOS            /opt/homebrew/bin)
+    set(TOOLCHAIN_PREFIX                ${TOOLCHAIN_PATH_MACOS}/riscv64-unknown-elf-)
+
+    set(CMAKE_C_COMPILER                ${TOOLCHAIN_PREFIX}gcc)
+    set(CMAKE_ASM_COMPILER              ${CMAKE_C_COMPILER})
+    set(CMAKE_CXX_COMPILER              ${TOOLCHAIN_PREFIX}g++)
+    set(CMAKE_LINKER                    ${TOOLCHAIN_PREFIX}g++)
+    set(CMAKE_OBJCOPY                   ${TOOLCHAIN_PREFIX}objcopy)
+    set(CMAKE_SIZE                      ${TOOLCHAIN_PREFIX}size)
+
+    # Set output executable suffix to .elf for ASM, C, and C++ targets.
+    set(CMAKE_EXECUTABLE_SUFFIX_ASM     ".elf")
+    set(CMAKE_EXECUTABLE_SUFFIX_C       ".elf")
+    set(CMAKE_EXECUTABLE_SUFFIX_CXX     ".elf")
+
+    set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
+    # target specific flags.
+    set(TARGET_FLAGS "-march=rv32imac -mabi=ilp32")
+    set(LINKER_SCRIPT_PATH ${CMAKE_CURRENT_LIST_DIR})
+
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${TARGET_FLAGS}")
+
+    # Enable additional C compiler warnings (-Wall, -Wextra, -Wpedantic) and optimize code by placing data and functions in separate sections (-fdata-sections, -ffunction-sections) for better linker garbage collection.
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Wpedantic -fdata-sections -ffunction-sections")
+
+    # Set different optimization and debug flags based on build type: Debug (-O0, -g3) and Release (-Os, -g0).
+    if(CMAKE_BUILD_TYPE MATCHES Debug)
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -g3")
+    endif()
+    if(CMAKE_BUILD_TYPE MATCHES Release)
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Os -g0")
+    endif()
+
+    # Set assembler flags to enable preprocessor, generate dependency files (-MMD, -MP) for ASM files.
+    set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -x assembler-with-cpp -MMD -MP")
+
+    # Set C++ compiler flags to disable RTTI, exceptions, and thread-safe statics for reduced binary size and performance in embedded systems.
+    set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -fno-rtti -fno-exceptions -fno-threadsafe-statics")
+
+    set(CMAKE_C_LINK_FLAGS "${TARGET_FLAGS}")
+    set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -T \"${LINKER_SCRIPT_PATH}/riscv_qemu_virt.ld\"")
+    set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -Wl,-Map=${CMAKE_PROJECT_NAME}.map -Wl,--gc-sections")
+    set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -Wl,--start-group -lc -lm -Wl,--end-group")
+    set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -Wl,--print-memory-usage")
+    set(CMAKE_CXX_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -Wl,--start-group -lstdc++ -lsupc++ -Wl,--end-group")
+  </code></pre>
+
+  <p>
+    <b>-march=rv32im</b>: machine architecture as risc-v 32 bit and extensions (i: integer, m: mul/div) <br><br>
+    <b>-mabi=ilp32</b>: machine abstraction binary interface as 32-bit int, long, and pointer — required to match libraries/toolchain <br><br>
+    <b>-T</b> \"${LINKER_SCRIPT_PATH}/riscv_qemu_virt.ld\": specify a custom linker script <br><br>
+  </p>
+
+  <h2>
+    Including RISC-V Compiler Configuration in CMakeLists.txt
+  </h2>
+  <p>
+    In CMakeLists.txt, include above cmake script conditionally by <i>ARCH_DEFINED</i> passed by user in cmake command.
+  </p>
+  <pre><code class="language-cmake">
+  ...
+  if (ARCH_DEFINED STREQUAL "ARMV7M")
+    include(${CMAKE_CURRENT_LIST_DIR}/../../kernel/arch/armv7m/gcc-arm-none-eabi.cmake)
+    set(LINKER_SCRIPT_PATH ${CMAKE_CURRENT_LIST_DIR}/../../kernel/arch/armv7m/STM32F767ZITx_FLASH.ld)
+  elseif (ARCH_DEFINED STREQUAL "RV32I")
+    include(${CMAKE_CURRENT_LIST_DIR}/../../kernel/arch/rv32i/gcc-riscv-none-eabi.cmake)
+    set(LINKER_SCRIPT_PATH ${CMAKE_CURRENT_LIST_DIR}/../../kernel/arch/rv32i/riscv_qemu_virt.ld)
+  else()
+    message("'ARCH_DEFINED' is not recognized: ${ARCH_DEFINED}")
+  endif()
+  ...
+  </code></pre>
+  <p>
+    The target architecture is passed to CMake:
+  </p>
+  <pre><code class="language-bash">
+    cmake .. -DARCH_DEFINED=RV32I -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    make -j12
+  </code></pre>
+
+  <h2>
+    Resolving Linker Warning
+  </h2>
+  <pre><code class="language-bash">
+    /opt/homebrew/Cellar/riscv-gnu-toolchain/main/lib/gcc/riscv64-unknown-elf/14.2.0/../../../../riscv64-unknown-elf/bin/ld:/Users/lhan/Projects/YesRTOS/example/multi_thread/../../kernel/arch/rv32i/riscv_qemu_virt.ld:7:  <br>
+    warning: redeclaration of memory region `RAM' <br>
+    /opt/homebrew/Cellar/riscv-gnu-toolchain/main/lib/gcc/riscv64-unknown-elf/14.2.0/../../../../riscv64-unknown-elf/bin/ld:/Users/lhan/Projects/YesRTOS/example/multi_thread/../../kernel/arch/rv32i/riscv_qemu_virt.ld:8:  <br>
+    warning: redeclaration of memory region `FLASH' <br>
+  </code></pre>
+  <p>
+    Unexpected warning despite RAM and FLASH being defined only once in the linker script.
+  </p>
+  <b>Strategy</b>: Enabling verbose mode in linker. I added below flag to CMAKE_C_LINK_FLAGS.<br>
+  <pre><code class="language-cmake">
+    ...
+    # -Wl specifies verbose for linker.
+    set(CMAKE_CXX_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -Wl,--verbose")
+    ...
+  </code></pre>
+  <pre><code class="language-bash">
+    ...
+    [ 81%] Built target LibYesRTOSKernel
+    [ 90%] Building CXX object CMakeFiles/multi_thread.dir/main.cpp.obj
+    [100%] Linking CXX executable multi_thread.elf
+    GNU ld (GNU Binutils) 2.43.1
+      Supported emulations:
+       elf64lriscv
+       elf32lriscv
+       elf64briscv
+       elf32briscv
+    opened script file /Users/lhan/Projects/YesRTOS/kernel/arch/rv32i/riscv_qemu_virt.ld
+    opened script file /Users/lhan/Projects/YesRTOS/example/multi_thread/../../kernel/arch/rv32i/riscv_qemu_virt.ld
+    /opt/homebrew/Cellar/riscv-gnu-toolchain/main/lib/gcc/riscv64-unknown-elf/14.2.0/../../../../riscv64-unknown-elf/bin/ld:/Users/lhan/Projects/YesRTOS/example/multi_thread/../../kernel/arch/rv32i/riscv_qemu_virt.ld:7: warning: redeclaration of memory region `RAM'
+    /opt/homebrew/Cellar/riscv-gnu-toolchain/main/lib/gcc/riscv64-unknown-elf/14.2.0/../../../../riscv64-unknown-elf/bin/ld:/Users/lhan/Projects/YesRTOS/example/multi_thread/../../kernel/arch/rv32i/riscv_qemu_virt.ld:8: warning: redeclaration of memory region `FLASH'
+    using external linker script: /Users/lhan/Projects/YesRTOS/example/multi_thread/../../kernel/arch/rv32i/riscv_qemu_virt.ld
+  </code></pre>
+  <p>
+    The linker messages show that riscv_qemu_virt.ld is opened twice at two different level of the project.<br>
+
+  </p>
+  <img src="duplicate_linker_flag_screenshot.png" height="300">
+  <p>
+    <b>Solution</b>: removing duplicate -T switch added to the compilation command due to mistake.<br>
+  </p>
+
+  <h2>
+    Loading executable on QEMU
+  </h2>
+  <pre><code class="language-bash">
+    qemu-system-riscv32 -machine virt -bios multi_thread.elf -nographic  -gdb tcp::1234 -s
+  </code></pre>
+  <p>
+    From https://github.com/qemu/qemu/blob/master/hw/riscv/virt.c#L78-L99, 0x80000000 address is the location where the first instruction is to be executed. <br>
+    In the linker script, same start address is mapped to contain .text, .data, .rodata, etc.
+  </p>
+
+  <h2>
+    Clash of Memory Region on QEMU
+  </h2>
+  <pre><code class="language-bash">
+    qemu-system-riscv32: Some ROM regions are overlapping
+    These ROM regions might have been loaded by direct user request or by default.
+    They could be BIOS/firmware images, a guest kernel, initrd or some other file loaded into guest memory.
+    Check whether you intended to load all this guest code, and whether it has been built to load to the correct addresses.
+
+    The following two regions overlap (in the memory address space):
+      multi_thread.elf ELF program header segment 1 (addresses 0x0000000000000000 - 0x0000000000004238)
+      mrom.reset (addresses 0x0000000000001000 - 0x0000000000001028)
+  </code></pre>
+  <p>
+    From the error message, it looks like there's object allocated to address segment in range  0x0000000000000000 - 0x0000000000004238. <br>
+    However, in the linker script, I have allocate everything to 0x80000000. <br>
+    The question is what is being added to this clashed segment? <br>
+  </p>
+
+  <pre><code class="language-bash">
+
+  OUTPUT_ARCH("riscv")
+  ENTRY(_start)
+
+  /* Memory layout */
+  MEMORY
+  {
+    /* FLASH   (xrw) : ORIGIN = 0x20000000, LENGTH = 10K */
+    FLASH (wrx)  : ORIGIN = 0x80000000, LENGTH = 128K
+  }
+
+  /* Stack and heap configuration */
+  _estack           = ORIGIN(FLASH) + LENGTH(FLASH);  /* End of FLASH */
+  _alloc_heap_size  = 0x100;                     /* 8KB heap */
+  _alloc_stack_size = 0x800;                     /* No reserved stack (can be handled in startup) */
+
+  /* Sections layout */
+  SECTIONS
+  {
+    /* Code */
+    .text :
+    {
+      . = ALIGN(4);
+      KEEP(*(.init)) KEEP(*(.fini))
+      *(.text) *(.text*)
+      *(.rodata) *(.rodata*)
+      *(.eh_frame)
+      . = ALIGN(4);
+      _etext = .;
+    } > FLASH
+
+    /* Initialized data section in FLASH (copied from FLASH at runtime) */
+    .data :
+    {
+      . = ALIGN(4);
+      _sdata = .;
+      *(.data) *(.data*)
+      . = ALIGN(4);
+      _edata = .;
+    } > FLASH
+
+    /* Uninitialized data (zero-initialized) */
+    .bss :
+    {
+      . = ALIGN(4);
+      _sbss = .; __bss_start = _sbss;
+      *(.bss) *(.bss*) *(COMMON)
+      . = ALIGN(4);
+      _ebss = .; __bss_end__ = _ebss;
+    } > FLASH
+
+    /* Heap and optional stack region */
+    ._user_heap_stack :
+    {
+      . = ALIGN(8);
+      PROVIDE(end = .);
+      PROVIDE(_end = .);
+      _ld_start_heap = .;
+      . = . + _alloc_heap_size;
+      _ld_end_heap = .;
+      . = . + _alloc_stack_size;
+      . = ALIGN(8);
+    } > FLASH
+
+    /* Strip unused standard library code (optional in embedded) */
+    /DISCARD/ :
+    {
+      *(.comment)
+      *(.note*)
+      *(.eh_frame_hdr)
+      *(.gcc_except_table)
+      *(.riscv.attributes)
+    }
+  }
+  </code></pre>
+  To verify the address assignment of key symbols, I used nm to inspect the binary. <br>
+  <b>Strategy</b>: From the executable, inspect memory layout leveraging <b>nm</b>:<br>
+
+  <pre><code class="language-bash">
+    riscv64-unknown-elf-nm -n multi_thread.elf
+  </code></pre>
+  <p>
+    This prints the name map between symbols name to addresses, sorted. <br>
+    In a symbol name map, A means an absolute symbol, T is a function in the text (code) section, B is an uninitialized global in the BSS section, and b is an uninitialized local symbol in BSS.
+  </p>
+  <pre><code class="language-bash">
+    00000000 A _sidata
+    00000100 A _alloc_heap_size
+    00000800 A _alloc_stack_size
+    80000000 T _Z15thread0_routinev
+    8000000a T _Z15thread1_routinev
+    80000014 T _Z15thread2_routinev
+    8000001e T _Z15thread3_routinev
+    80000028 T main
+    800000d2 T _ZN7YesRTOS20PreemptFIFOScheduler4initEv
+    8000014e T _ZN7YesRTOS20PreemptFIFOScheduler10add_threadEPNS_6ThreadEj
+    8000019e T _ZN7YesRTOS20PreemptFIFOScheduler5startEv
+    80000242 T _ZN7YesRTOS20PreemptFIFOScheduler13schedule_nextEv
+    ...
+    80004d50 B errno
+    80004d54 B __malloc_max_total_mem
+    80004d58 B __malloc_max_sbrked_mem
+    80004d5c B __malloc_top_pad
+    80004d60 b heap_end.0
+    80004d68 B _ld_start_heap
+    80004e68 B _ld_end_heap
+    80020000 T _estack
+  </code></pre>
+  <p>
+    All _si_data, _alloc_heap_size, and _alloc_stack_size are <b>A</b>bsolute addresses with value belonging to the clash region. <br>
+    <pre><code class="language-bash">
+      00000000 A _sidata <br>
+      00000100 A _alloc_heap_size <br>
+      00000800 A _alloc_stack_size <br>
+    </code></pre>
+  </p>
+  <p>
+    <b>Strategy</b>: Dump .map file to further investigate memory layout.<br>
+  </p>
+  <img src="symbol_map_screenshot_00.png" height="300">
+  <p>
+    Both _ld_start_heap and _ld_end_heap are part of the ._user_heap_stack memory, addresses 0x80004d68 and 0x80004e68 are after 0x80000000 as expected.
+  </p>
+  <img src="symbol_map_screenshot_01.png" height="300">
+  <p>
+    However, the _sidata resides on address 0x00000000, in the clash region. <br>
+    The _sidata = LOADADDR(.data) syntax comes from the linker script I have implemented. <br>
+  </p>
+
+  <p>
+    The root cause is that _sidata in the linker script tries to retrieve the address of .data before .data is declared — a classic forward reference error in linker scripts.
+    <pre><code class="language-bash">
+    ...
+    _sidata = LOADADDR(.data);
+    .data : AT(_sidata)
+    {
+      . = ALIGN(4);
+      _sdata = .;
+      *(.data) *(.data*)
+      . = ALIGN(4);
+      _edata = .;
+    } > FLASH
+    ...
+    </code></pre>
+  </p>
+
+  <p>
+    <b>Solution</b>: _sidata is removed from linker script, or it could be declared within .data section.<br>
+  </p>
+
+
+  <h2>
+    Finally Attaching GDB
+  </h2>
+  <pre><code class="language-bash">
+  gdb multi_thread.elf
+  </code></pre>
+  <pre><code class="language-bash">
+  target remote localhost:1234
+  b _start
+  b main
+  </code></pre>
+
+  <pre><code class="language-bash">
+  lhan@Mac build % gdb multi_thread.elf
+  GNU gdb (GDB) 16.3
+  Copyright (C) 2024 Free Software Foundation, Inc.
+  License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+  This is free software: you are free to change and redistribute it.
+  There is NO WARRANTY, to the extent permitted by law.
+  Type "show copying" and "show warranty" for details.
+  This GDB was configured as "--host=aarch64-apple-darwin24.4.0 --target=x86_64-apple-darwin20".
+  Type "show configuration" for configuration details.
+  For bug reporting instructions, please see:
+  <https://www.gnu.org/software/gdb/bugs/>.
+  Find the GDB manual and other documentation resources online at:
+      <http://www.gnu.org/software/gdb/documentation/>.
+
+  For help, type "help".
+  Type "apropos word" to search for commands related to "word"...
+  Reading symbols from multi_thread.elf...
+  (gdb) target remote localhost:1234
+  Remote debugging using localhost:1234
+  0x00001000 in ?? ()
+  (gdb) b _start
+  Breakpoint 1 at 0x800009d0: file /Users/lhan/Projects/YesRTOS/kernel/arch/rv32i/startup_rv32i.s, line 6.
+  (gdb) b main
+  Breakpoint 2 at 0x80000034: file /Users/lhan/Projects/YesRTOS/example/multi_thread/main.cpp, line 82.
+  (gdb) c
+  Continuing.
+
+  Breakpoint 1, _start () at /Users/lhan/Projects/YesRTOS/kernel/arch/rv32i/startup_rv32i.s:6
+  6         la sp, _estack
+  (gdb) si
+  0x800009d4 in _start () at /Users/lhan/Projects/YesRTOS/kernel/arch/rv32i/startup_rv32i.s:6
+  6         la sp, _estack
+  (gdb) si
+  7         call main
+  (gdb) si
+  main () at /Users/lhan/Projects/YesRTOS/example/multi_thread/main.cpp:81
+  81      int main() {
+  (gdb) q
+  A debugging session is active.
+
+          Inferior 1 [process 1] will be detached.
+
+  Quit anyway? (y or n) n
+  Not confirmed.
+  (gdb) si
+  0x8000002a      81      int main() {
+  (gdb) disas
+  Dump of assembler code for function main():
+     0x80000028 <+0>:     addi    sp,sp,-80
+  => 0x8000002a <+2>:     sw      ra,76(sp)
+     0x8000002c <+4>:     sw      s0,72(sp)
+     0x8000002e <+6>:     addi    s0,sp,80
+     0x80000030 <+8>:     lui     t0,0xfffff
+     0x80000032 <+10>:    add     sp,sp,t0
+     0x80000034 <+12>:    addi    a4,s0,-1056
+     0x80000038 <+16>:    lui     a5,0x80000
+     0x8000003c <+20>:    mv      a2,a5
+     0x80000040 <+24>:    li      a1,0
+     0x80000042 <+26>:    mv      a0,a4
+     0x80000044 <+28>:    jal     0x8000033e <_ZN7YesRTOS6ThreadC2EmPFvvE>
+     0x80000046 <+30>:    addi    a5,s0,-1056
+     0x8000004a <+34>:    li      a1,4
+     0x8000004c <+36>:    mv      a0,a5
+     0x8000004e <+38>:    jal     0x8000014e <_ZN7YesRTOS20PreemptFIFOScheduler10add_threadEPNS_6ThreadEj>
+     0x80000050 <+40>:    lui     a5,0xfffff
+     0x80000052 <+42>:    addi    a5,a5,2016 # 0xfffff7e0
+     0x80000056 <+46>:    addi    a5,a5,-16
+     0x80000058 <+48>:    add     a4,a5,s0
+     0x8000005c <+52>:    lui     a5,0x80000
+     0x80000060 <+56>:    addi    a2,a5,10 # 0x8000000a <_Z15thread1_routinev>
+     0x80000064 <+60>:    li      a1,1
+     0x80000066 <+62>:    mv      a0,a4
+  </code></pre>
+  <p>
+    Based on initial observations in GDB, the executable is now running correctly on the RISC-V emulated target.
+  </p>
+
+  <h2>Lessons Learned</h2>
+
+<ul>
+  <li>
+    <strong>Use <code>LOADADDR()</code> cautiously to avoid forward reference issues.</strong><br>
+    The <code>LOADADDR()</code> function must reference a section that has already been declared. Using it before <code>.data</code> is defined causes incorrect symbol resolution and leads to unexpected memory allocations (e.g., at <code>0x00000000</code>).
+  </li>
+
+  <li>
+    <strong>Linker scripts can be loaded multiple times by mistake if not de-duplicated in CMake.</strong><br>
+    Multiple <code>-T</code> references to the same linker script can silently cause symbol redefinitions and memory region redeclarations. Ensure only one <code>-T</code> is added in your CMake configuration.
+  </li>
+
+  <li>
+    <strong>QEMU will report ROM clashes even if the root cause is linker misconfiguration.</strong><br>
+    When ROM segments appear to overlap, it may not be an issue with QEMU's loader. It's often caused by incorrect symbol addresses or misaligned memory regions defined in the linker script.
+  </li>
+
+  <li>
+    <strong>Use <code>-Wl,--verbose</code> and <code>.map</code> files to inspect linker behavior deeply.</strong><br>
+    Enabling verbose linker output and inspecting the generated <code>.map</code> file are invaluable for tracing memory assignments, detecting overlaps, and verifying the final layout of segments and symbols.
+  </li>
+</ul>
+
+</body>
