@@ -26,50 +26,43 @@
     /* damping effect on sudden hover, gradual transition*/
     transition: width 1.5s ease, height 1.5s ease;
 
-    /* by default nav list height = MENU icon + text height, which is 2 vh + padding top 1vh + padding bottom 1vh = 4vh */
-    /* this should show only 'MENU'(text) without list items */
     height: 5vh;
     overflow: hidden;
 }
 
 .nav_list li{
-    padding: 1vh;
     margin: 0;
-    justify-items: center; /* center navbar options */
-    /* without user hovering on the menu, hide all list items explicitly */
+    place-items: center;
 }
 
 .nav_list.expanded {
     /* on hover, the navbar expands to 100% viewport height, options are then visible to user. */
     height: 100vh;
+    place-items: center;
 }
 
 
 .nav_list.expanded li{
     /* all list items shows up */
-    display: block;
+    display: flex;
+    place-items: center;
 }
 
 .nav_list_menu{
-    place-items: center;
-    /* center y-axis */
-    align-items: center;
-    /* center x-axis*/
-    justify-content: center;
+    height: 100%; /* Force the menu icon height same as the default height of .nav_list. So that before expanding, only the icon will fit and visible to the audience. */
 }
 
 #menu_button {
     background-color: transparent;
-    place-self: center;
-    place-items: center;
     border: none;
+    height: 5vh;
     width: 100%;
 }
 
 #menu_button img {
     aspect-ratio: 1 / 1;
-    max-width: 20px;
-    height: auto;
+    max-height: 5vh;
+    width: auto;
 }
 
 /* styles: list item hyperlink */
