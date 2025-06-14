@@ -1,0 +1,352 @@
+<body>
+  <h1>
+    Deep Dive: Context Switching in YesRTOS
+  </h1>
+  <p>
+  YesRTOS is a prototype real-time operating system developed for ARM v7-M/v8-M, with a lightweight memory footprint of approximately 7.5 kB.<br>
+  It is implemented using C++ for structured and modular design, C for efficient low-level system operations, and Assembly (with C expression operands) to enable precise hardware control and fast context switching. <br>
+  I’ve developed YesRTOS drawing on a range of memory management techniques, scheduling strategies, context switching methods, and synchronization primitives.  <br>
+  In this article, I’d like to share some key mechanisms related to its context switch implementation.
+  </p>
+
+  <img src="YesRTOS_LOGO.png" height="200">
+
+  <h2>
+    Context Switching - A Challenging Aspect
+  </h2>
+  Context switching is one of the most intricate aspects of an RTOS. <br>
+  It requires precise handling in areas such as initializing thread stack contexts, bootstrapping the first thread, managing time slices, scheduling, and handling exceptions. <br>
+  These tasks demand meticulous attention to detail—often down to the instruction level—to maintain stack integrity and ensure seamless context restoration.<br>
+  </p>
+
+  <h2>
+    Dual Stack Pointers (MSP & PSP)
+  </h2>
+  <p>
+    In ARM Cortex-M (v7-M/v8-M) architectures, the processor features two separate stack pointers: <br>
+  </p>
+
+  <ul>
+    <li>
+      Main Stack Pointer (MSP) – Used by the kernel and exception handlers (e.g., SVC, PendSV, interrupts). <br> 
+    </li>
+
+    <li>
+      Process Stack Pointer (PSP) – Used by application tasks (thread mode). <br>
+    </li>
+  </ul>
+
+  <p>
+    In assembly code or disassembly listings, I see often see instructions referencing the general SP (Stack Pointer) without explicitly indicating whether it refers to MSP or PSP. <br>
+    To determine which stack pointer is in use, we must consider the current processor mode:
+  </p>
+
+  <ul>
+    <li>
+    In Handler mode (e.g., during exceptions), MSP is always used. <br>
+    </li>
+
+    <li>
+    In Thread mode, the stack pointer used depends on the setting of the CONTROL register: <br>
+    If CONTROL.SPSEL is 0, the MSP is used. <br>
+    If CONTROL.SPSEL is 1, the PSP is used. <br>
+    </li>
+  </ul>
+
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.003.jpeg" height="600">
+
+  <h2>
+    Key Benefit of Dual Stack Design
+  </h2>
+  <p>
+    Isolation and redundancy are core design philosophies in reliability engineering and mission-critical systems. <br>
+  </p>
+
+  <ul>
+    <li>
+    <b>Fault containment</b> -- a runaway stack can corrupt PSP stack without affecting the kernel's MSP stack. <br>
+    </li>
+
+    <li>
+    <b>Simplified Interrupt Handling</b> -- exceptions always use MSP, providing a known-good stack for critical operations <br>
+    </li>
+
+    <li>
+    <b>Efficient Context Switching</b> -- PSP can be swapped without affecting exception handling. <br>
+    </li>
+  </ul>
+
+  <h2>
+    Bootstrapping The First Thread
+  </h2>
+  <p>
+    To bootstrap the first thread, the core needs to fabricate this thread's context as if it were running. <br>
+    The initialized context has two portions -- software saved and hardware saved.<br>
+  </p>
+  <p>
+    In the below demonstration, I have color-coded the portions.   <br>
+  <p>
+    The red region highlights the registers automatically pushed to the stack by hardware during an exception entry. <br>
+    Exceptions differ from normal call flow because their triggering is non-deterministic. <br>
+    The hardware is designed to automatically push these registers onto the current stack to handle events efficiently. <br>
+  </p>
+
+  <p>
+    The yellow box highlights registers pushed to the stack by the software, implemented as part of the kernel context switch service routine. <br>
+  </p>
+  
+  <p>
+    The two portions constitute the full set of registers the CPU expects after exception return. <br>
+    Even though the thread has never executed, its stack is manually crafted to resemble that of a preempted task. <br>
+    This technique effectively simulates the state of an interrupted thread, allowing the CPU to resume execution seamlessly. <br>
+  </p>
+
+  <h2>
+    FPU Context
+  </h2>
+  <p>
+    Beyond this example, on processors equipped with a Floating Point Unit (FPU), the floating-point registers (S0–S31) and the Floating Point Status and I Register (FPSCR) must also be saved and restored during context switching. <br>
+    This ensures that floating-point operations continue correctly after a context switch, maintaining computational integrity.  <br>
+    Typically, the FPU context is saved conditionally to optimize performance and minimize context switch overhead. <br>
+  </p>
+
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.005.jpeg" height="600">
+
+  <h2>
+    Switching Control to The First Thread
+  </h2>
+  <p>
+    Once the initial context has been fabricated for the first thread, the kernel must transfer control to it. <br>
+    This transition is initiated by triggering a SVC (SuperVisor Call) exception.
+  </p>
+  <h2>
+    SuperVisor Call (SVC) – Elevating to Kernel Control
+  </h2>
+  <p>
+    This instruction is provided by the ISA to invoke operating system services that run in privileged mode. <br>
+  </p>
+
+  <h2>
+    Why SVC is Used to Start the First Thread in YesRTOS
+  </h2>
+
+  <ul>
+    <li>
+      SVC transitions the processor to Handler mode with privileged access, enabling operations on protected CPU features (e.g., the CONTROL register and stack pointers).
+    </li>
+
+    <li>
+      The processor uses the MSP, automatically saves the context, and then jumps to SVC_Handler, providing the RTOS with a clean entry point.
+    </li>
+
+    <li>
+      SVC_Handler restores the first thread’s context and sets up EXC_RETURN to switch to Thread mode using the PSP.
+    </li>
+
+    <li>
+      Unified context-switch mechanism ensures consistent handling for both startup and task switching, simplifying RTOS design.
+    </li>
+  </ul>
+
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.006.jpeg" height="600">
+
+
+
+
+
+  <h2>
+    SVC Exception Handling
+  </h2>
+  <p>
+    The handler implements several actions including loading the first thread's context, restoring PSP copy, and branching with link register loaded with EXEC_RETURN (such as 0xFFFFFFFD). <br>
+    The software-saved portion is restored using the ldmia instruction. <br>
+    The hardware-saved portion is automatically restored by the processor upon exiting the SVC handler. <br>
+  </p>
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.007.jpeg" height="600">
+
+  <h2>
+    BX LR From Exception Handler
+  </h2>
+  <p>
+    BX LR is commonly used to return control from a callee function to its caller function.
+    In a normal function call, BX LR will branch the processor to start executing the next PC with address from LR.<br>
+    Exception handling via the vector interrupt controller works differently—here, the PC directly jumps to the ISR without a typical function call mechanism. <br>
+    It also differs from a function call in that an interrupt service routine has no input parameters and output return value. <br>
+  </p>
+
+  <h2>
+    EXEC_RETURN
+  </h2>
+  <p>
+    When returning from an exception, EXEC_RETURN in LR has special meanings. <br>
+    The processor checks the EXEC_RETURN value to determine: <br>
+  <ul>
+    <li>
+      1. Which stack pointer (MSP/PSP) to restore. <br>
+    </li>
+
+    <li>
+      2. Whether to return to Thread or Handler mode. <br>
+    </li>
+
+    <li>
+      3. Whether to switch privilege levels. <br>
+    </li>
+  </ul>
+
+
+    Returning with EXEC_RETURN == 0xFFFFFFFD, the kernel returns to thread mode, with the context of first thread running, using the PSP. <br>
+    At this point, the bootstrap procedure is complete. <br>
+  </p>
+
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.008.jpeg" height="600">
+
+  <h2>
+    Context Switching Based On Time Slice
+  </h2>
+  <p>
+    A time slice defines a period after which the kernel switches between one thread to another selected by the scheduler. <br>
+    A processor timer, such as SysTick, is configured to trigger a PendSV call exception periodically.<br>
+  </p>
+
+  <h2>
+    PendSV: The Pendable SuperVisor Call
+  </h2>
+  <p>
+    PendSV is a special exception type intended for deferred context switching. It is typically triggered by a timer interrupt by setting ICSR.PENDSVSET to 1. <br>
+    In v7-M/v8-M, PendSV has the lowest possible priority among all exceptions, so it will not preempt critical tasks with higher priority.<br>
+  </p>
+
+  <p>
+    Here's a demonstration for PendSV handler behavior when initiating a thread switch. <br>
+    Imagine a set of stack frame containing functions calls for a thread, belonging to the memory space allocated by the kernel at the thread registration. <br>
+  </p>
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.010.jpeg" height="600">
+
+  <p>
+    In addition, each thread as individual object also contains independent routine entry, event bits, copy of PSP defining the top of the stack as it get switched out. <br>
+    At the PendSV exception handler entry, the hardware pushes xPSR, PC, LR, R12, R3 - R0 to the process stack. <br>
+  </p>
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.011.jpeg" height="600">
+
+  <p>
+    In PendSV handler, R11-R4 will then be pushed to the stack by stmdb instruction. <br>
+    The architecture defines a full descending stack. stmdb stores value from registers to the stack, and decrements the PSP pointer. This continues until all specified registers have been stored. <br>
+    The stack grows as context gets saved. Before scheduling picks next thread, the kernel needs to keep track of the latest PSP pointer location. <br>
+  </p>
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.012.jpeg" height="600">
+
+  <h2>
+    Saving PSP Copy
+  </h2>
+  <p>
+    The kernel defines a double pointer pointing the PSP of a thread -- the YesRTOS::PreemptFIFOScheduler::pp_active_thread_stk in its scoped namespace. <br>
+    The PSP is saved by dereferencing it and storing the result in the thread object, preserving the task’s context. <br>
+    At this point, the thread is in a saved state. <br>
+  </p>
+  <h2>
+
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.013.jpeg" height="600">
+
+  <h2>
+    Scheduling
+  </h2>
+  <p>
+    Next, the exception handler branch to the scheduler deciding next thread to execute. <br>
+    The kernel's scheduler interface abstracts selection mechanism. I plan to write a different article to discuss the details.<br>
+    As part of the scheduling, the pp_active_thread_stk is again updated, pointing to PSP of the selected thread to run. <br>
+  </p>
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.014.jpeg" height="600">
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.015.jpeg" height="600">
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.016.jpeg" height="600">
+
+  <h2>
+    Restoring Context
+  </h2>
+  <p>
+    The selected thread is not ready to run until its context is fully restored. <br>
+    The saved PSP value is retrieved from the thread object and reloaded into the PSP register. <br>
+    The registers are popped from the process stack, and the PSP is incremented using the ldmia instruction until all registers are restored. <br>
+  </p>
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.017.jpeg" height="600">
+
+  <p>
+    The PendSV exception handler exits by BX LR, with LR containing the same EXEC_RETURN as in the SVC handler. <br>
+  </p>
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.018.jpeg" height="600">
+
+  <p>
+    At this point, the kernel has successfully switched from one thread to another.
+  </p>
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.019.jpeg" height="600">
+
+  <h2>
+    Stack Corruption -- Sharing One of The Interesting Bugs I have Seen
+  </h2>
+
+  <p>
+  During early RTOS testing, I encountered instability when context switching between multiple stub routines. <br>
+  The sequence typically followed a round-robin pattern—thread 0 → thread 1 → thread 2 → thread 0 → ...—until a crash occurred. <br>
+  Before the crash, the PC, LR, and other registers of the crashing thread (e.g., thread 2) contained garbage values, strongly indicating memory corruption. <br>
+  </p>
+
+  <p>
+  To validate this hypothesis, I increased the stack size for each thread. Interestingly, the number of successful switches before crashing increased—reinforcing the suspicion of a stack overflow caused by memory corruption.
+  </p>
+
+  <p>
+  I began a systematic investigation: reviewing code, writing minimal test cases to isolate the problem, and aligning my mental model with the chip's behavior.  
+  </p>
+
+  <p>
+    From a development standpoint, to avoid C++ name mangling, both the timeslice logic and exception handlers (e.g., PendSV) were written in C with inline assembly.
+  </p>
+
+  <p>
+  However, inspecting the disassembly revealed that the compiler had unexpectedly injected prologue and epilogue code around my `PendSV_Handler`, despite the body being entirely inline assembly.  
+  Specifically, it appended instructions such as `pop {r7, pc}` after my own `bx lr`, which caused the stack to grow by two extra entries each context switch.
+  Over time, this subtle and cumulative stack growth caused threads to overwrite each other’s memory regions.
+  </p>
+
+  <p>
+    I fixed this by adding a compiler directive to the exception handler, marking it as 'naked' function.
+  </p>
+
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.021.jpeg" height="600">
+  <h2>
+    The "__naked__" compiler directive
+  </h2>
+  <p>
+    This attribute tells the compiler that the function is an embedded assembly function. <br>
+    It explicitly instructs the compiler not to generate the standard function prologue and epilogue code. <br>
+    I was delighted to finally resolve this problem after days of confusion. <br>
+  </p>
+  <img src="YesRTOS_DevHL/YesRTOS_DevHL.022.jpeg" height="600">
+
+  <h2>
+    Reflecting On The Debug Strategy<br>
+  </h2>
+
+
+  <ul>
+    <li>
+    Increasing thread stack sizes to check if crashes become less frequent. <br>
+    </li>
+
+    <li>
+    Enabling stack canaries or guard bands to detect overflow. <br>
+    </li>
+
+    <li>
+    Using hardware watchpoints to catch illegal stack pointer changes. <br>
+    </li>
+
+    <li>
+    Inspecting assembly output to ensure no unwanted prologue/epilogue code modifies the stack unexpectedly. <br>
+    </li>
+  </ul>
+
+  <p>
+    These strategies combined help isolate and fix subtle bugs in context switching logic.
+  </p>
+</body>
