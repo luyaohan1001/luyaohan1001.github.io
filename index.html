@@ -113,155 +113,182 @@
         <script src="navbar_toggle.js" defer></script>
 
         <!-- 01. welcome poster -->
-        <div class="welcome_poster">
+        <section class="welcome_poster">
             <div class="welcome_poster_home"></div>
             <div class="welcome_poster_text">
                 Hello!
                 <br>
                 I'm Luyao.
             </div>
-        </div>
+          </section>
 
-        <div id="my_profile_container">
-            <p id= "about_me_title" class="huge_title_font">
-                - About Me -
-            </p>
-            <div id="my_profile">
-                <div class="round_avatar">
-                    <img src="media/misc/webp/profile_cropped.webp" alt="Luyao's profile picture">
+        <!-- Main content for this page to improve SEO. -->
+        <main>
+          <!-- 02. Personal Profile Overview -->
+          <section id="personal_profile_container">
+
+            <header>
+              <h1 id= "about_me_heading" class="huge_title_font"> - About Me - </h1>
+            </header>
+
+            <article id="my_profile">
+
+              <!-- Left Half: Round Profile Picture -->
+              <figure class="round_avatar">
+                  <img src="media/misc/webp/profile_cropped.webp" alt="Luyao's profile picture">
+              </figure>
+
+
+              <!-- Right Half: Round Profile Picture -->
+              <section class="pitch_text">
+                <dl> <!-- description list -->
+                  <dt>
+                    <img src="media/icon/wave.png" alt="Wave Icon" style="width: 2vh; height: 2vh;">
+                    <strong>Name</strong>
+                  </dt>
+                  <dd>Luyao Han (pronounced <em>Loo-yow-Hahn</em>)</dd>
+
+                  <hr class="horizontal_rule">
+
+                  <dt>
+                    <strong>About</strong>
+                  </dt>
+                  <dd>
+                    I'm a technology enthusiast and firmware engineer, passionate about bridging hardware and software with efficient solutions that eventually deliver experience to product users. Taking on new challenges pushes me to grow and keeps me motivated, both in work and in life. Throughout my career, I have embraced opportunities that test my skills and expand my knowledge, believing that continuous learning is key to success. I’m grateful for the mentors, colleagues, and my family who have supported me along the way and look forward to tackling future challenges with the same dedication and curiosity.
+                  </dd>
+
+                  <hr class="horizontal_rule">
+                  <dt>
+                    <img src="media/icon/briefcase.png" alt="Career Icon" style="width: 2vh; height: 2vh;">
+                    <strong>Career Interests</strong>
+                  </dt>
+                  <dd>Real-time embedded systems, IoT solutions, computer architecture, signal processing, system engineering.</dd>
+
+                  <hr class="horizontal_rule">
+                  <dt>
+                    <img src="media/icon/mortar_board.png" alt="Education Icon" style="width: 2vh; height: 2vh;">
+                    <strong>Education</strong>
+                  </dt>
+                  <dd>
+                    <strong>Carnegie Mellon University</strong><br>
+                    M.S. Electrical and Computer Engineering<br><br>
+                    <strong>University of California, Santa Barbara</strong><br>
+                    B.S. Computer Engineering
+                  </dd>
+
+                  <hr class="horizontal_rule">
+                  <dt>
+                    <img src="media/icon/man_climbing.png" alt="Hobby Icon" style="width: 2vh; height: 2vh;">
+                    <strong>Hobbies</strong>
+                  </dt>
+                  <dd>Top roping, gym and fitness, and photography!</dd>
+                </dl>
+
+                <div class="highlight_button">
+                  <a href="experiences.html">Professional Experience</a>
                 </div>
+              </section> <!-- pitch_text end-->
+            </article> <!-- my_profile end -->
+          </section> <!-- personal_profile_container end -->
+        </main>
 
-                <div class="pitch_text">
-                    <p class="pitch_text_font">
-                        <img src="media/icon/wave.png" alt="Wave Icon" style="width: 2vh; height: 2vh;">
-                        <b>NAME</b>:
-                        Luyao Han (pronounced <em>Loo-yow-Hahn</em>).
-                    </p>
-                    <hr>
-                    <p class="pitch_text_font">
-                        I'm a technology enthusiast and firmware engineer, passionate about bridging hardware and software with efficient solutions that eventually delivers experience to product user.
-                        Taking on new challenges pushes me to grow and keeps me motivated, both in work and in life.
-                        Throughout my career, I have embraced opportunities that test my skills and expand my knowledge, believing that continuous learning is key to success. I’m grateful for the mentors, colleagues, and my family who have supported me along the way and look forward to tackling future challenges with the same dedication and curiosity.
-                    </p>
-                    <hr>
-                    <p class="pitch_text_font">
-                        <img src="media/icon/briefcase.png" alt="computer icon" style="width: 2vh; height: 2vh;">
-                        <b>CAREER INTERESTS</b>:
-                        Real-time embedded systems, IoT solutions, computer architecture, signal processing, system engineering.
-                    </p>
-                    <p class="pitch_text_font">
-                        <img src="media/icon/mortar_board.png" alt="education icon" style="width: 2vh; height: 2vh;">
-                        <b>EDUCATION</b>:
-                        <br>
-                        <b>Carnegie Mellon University</b>
-                        <br>
-                        M.S. Electrical and Computer Engineering
-                        <br>
-                        <b>University of California, Santa Barbara</b>
-                        <br>
-                        B.S. Computer Engineering
-                        <br>
-                    </p>
-                    <hr>
-                    <p class="pitch_text_font">
-                        <img src="media/icon/man_climbing.png" alt="climbing icon" style="width: 2vh; height: 2vh;">
-                        <b>HOBBY</b>: Top roping, gym and fitness, and photography!
-                    </p>
-                    <div class="highlight_button">
-                        <a href="experiences.html">Professional Experience</a>
-                    </div>
+
+          <!-- 03. Blogs -->
+          <section id="blog_posts_container">
+              <header>
+                <h1 class="huge_title_font">
+                  - Blogs -
+                </h1>
+              </header>
+
+              <article class="blog_card">
+                <img src="blogs/2025_05/top_roping_portrait.jpeg" alt="Top roping thumbnail image">
+                <div class="blog_content">
+                  <h2 class="blog_title">Climbing Up</h2>
+                  <p class="blog_date">Spring 2025</p>
+                  <p class="blog_description">
+                    My first climbing experience — the fears, the lessons, and techniques.
+                  </p>
+                  <a href="blogs/2025_05/top_roping_experience.html" class="blog_link">Read full blog →</a>
                 </div>
-            </div>
-        </div>
+              </article>
 
-        <!-- highlight_section.html -->
-        <section class="highlight_section">
-            <p class="huge_title_font">
-                - Engineering Projects -
-            </p>
-            <div class="highlight_grid">
-              <img src="media/projects/umips/selected/webp/umips_poster.webp" alt="Highlight 1">
-              <img src="media/projects/drive_sim/webp/drive_sim_poster.webp" alt="Highlight 1">
-              <img src="media/projects/parkingbase/selected/webp/parkingbase_poster.webp" alt="Highlight 1">
-              <img src="media/projects/serial_wire_debugger/selected/webp/serial_wire_debugger_03.webp" alt="Highlight 2">
-              <img src="media/projects/tft_lcd/selected/webp/tft_lcd_05.webp" alt="Highlight 3">
-            </div>
-            <div class="highlight_button">
-              <a href="projects.html">See More Highlights →</a>
-            </div>
-        </section>
+              <article class="blog_card">
+                <img src="blogs/2025_05/YesRTOS_DevHL.gif" alt="Top roping thumbnail image">
+                <div class="blog_content">
+                  <h2 class="blog_title">Deep Dive: Context Switching in YesRTOS</h2>
+                  <p class="blog_date">Spring 2025</p>
+                  <p class="blog_description">
+                    As part of building my own RTOS, I had to deeply understand ARM v7-M/v8-M supervisor call and exception model. Here's a deep dive into the internal mechanisms.
+                  </p>
+                  <a href="blogs/2025_06/rtos_context_switch.html" class="blog_link">Read full blog →</a>
+                </div>
+              </article>
 
-        <section class="highlight_section">
-            <p class="huge_title_font">
-                - Photography -
-            </p>
-            <div class="highlight_grid">
-              <img src="media/contents/baltimore/selected/webp/baltimore_02.webp" alt="Highlight 1">
-              <img src="media/contents/san_francisco/selected/webp/san_francisco_00.webp" alt="Highlight 1">
-              <img src="media/contents/santa_barbara/selected/webp/santa_barbara_03.webp" alt="Highlight 1">
-            </div>
-            <div class="highlight_button">
-              <a href="featured.html">Check Album →</a>
-            </div>
-        </section>
+              <article class="blog_card">
+                <img src="blogs/2025_06/modular_cmake_diagram.png" alt="Modular CMake thumbnail image">
+                <div class="blog_content">
+                  <h2 class="blog_title">Modular CMake - Why It's Good Practice</h2>
+                  <p class="blog_date">Summer 2025</p>
+                  <p class="blog_description">
+                    In large engineering projects, modularity in CMake enables clean architecture, parallel development, and fast builds. This article shows how it helps create to create scalable, maintainable software pipelines.
+                  </p>
+                  <a href="blogs/2025_06/modular_cmake.html" class="blog_link">Read full blog →</a>
+                </div>
+              </article>
 
+              <article class="blog_card">
+                <img src="blogs/2025_06/riscv_porting_recap.png" alt="RISC-V Porting Retrospective thumbnail image">
+                <div class="blog_content">
+                  <h2 class="blog_title">RISC-V Emulation on MacOS</h2>
+                  <p class="blog_date">Summer 2025</p>
+                  <p class="blog_description">
+                    Reflecting on challenges and solutions in porting a project to RISC-V on macOS, setting up cross-compilation, fixing linker issues, and running it on QEMU.
+                  </p>
+                  <a href="blogs/2025_06/riscv_porting_recap.html" class="blog_link">Read full blog →</a>
+                </div>
+              </article>
+          </section>
 
-        <div id="blog_posts_container">
-            <p class="huge_title_font">
-                - Blogs -
-            </p>
+          <!-- 04. Engineering Projects -->
+          <section class="highlight_section">
+              <header>
+                <h1 class="huge_title_font">
+                  - Engineering Projects -
+                </h1>
+              </header>
 
-            <article class="blog_card">
-              <img src="blogs/2025_05/top_roping_portrait.jpeg" alt="Top roping thumbnail image">
-              <div class="blog_content">
-                <h2 class="blog_title">Climbing Up</h2>
-                <p class="blog_date">Spring 2025</p>
-                <p class="blog_description">
-                  My first climbing experience — the fears, the lessons, and techniques.
-                </p>
-                <a href="blogs/2025_05/top_roping_experience.html" class="blog_link">Read full blog →</a>
+              <div class="highlight_grid">
+                <img src="media/projects/umips/selected/webp/umips_poster.webp" alt="Highlight 1">
+                <img src="media/projects/drive_sim/webp/drive_sim_poster.webp" alt="Highlight 1">
+                <img src="media/projects/parkingbase/selected/webp/parkingbase_poster.webp" alt="Highlight 1">
+                <img src="media/projects/serial_wire_debugger/selected/webp/serial_wire_debugger_03.webp" alt="Highlight 2">
+                <img src="media/projects/tft_lcd/selected/webp/tft_lcd_05.webp" alt="Highlight 3">
               </div>
-            </article>
-
-            <article class="blog_card">
-              <img src="blogs/2025_05/YesRTOS_DevHL.gif" alt="Top roping thumbnail image">
-              <div class="blog_content">
-                <h2 class="blog_title">Deep Dive: Context Switching in YesRTOS</h2>
-                <p class="blog_date">Spring 2025</p>
-                <p class="blog_description">
-                  As part of building my own RTOS, I had to deeply understand ARM v7-M/v8-M supervisor call and exception model. Here's a deep dive into the internal mechanisms.
-                </p>
-                <a href="blogs/2025_06/rtos_context_switch.html" class="blog_link">Read full blog →</a>
+              <div class="highlight_button">
+                <a href="projects.html">See More Highlights →</a>
               </div>
-            </article>
+          </section>
 
-            <article class="blog_card">
-              <img src="blogs/2025_06/modular_cmake_diagram.png" alt="Modular CMake thumbnail image">
-              <div class="blog_content">
-                <h2 class="blog_title">Modular CMake - Why It's Good Practice</h2>
-                <p class="blog_date">Summer 2025</p>
-                <p class="blog_description">
-                  In large engineering projects, modularity in CMake enables clean architecture, parallel development, and fast builds. This article shows how it helps create to create scalable, maintainable software pipelines.
-                </p>
-                <a href="blogs/2025_06/modular_cmake.html" class="blog_link">Read full blog →</a>
+          <!-- 05. Photography -->
+          <section class="highlight_section">
+              <header>
+                <h1 class="huge_title_font">
+                  - Photography -
+                </h1>
+              </header>
+
+              <div class="highlight_grid">
+                <img src="media/contents/baltimore/selected/webp/baltimore_02.webp" alt="Highlight 1">
+                <img src="media/contents/san_francisco/selected/webp/san_francisco_00.webp" alt="Highlight 1">
+                <img src="media/contents/santa_barbara/selected/webp/santa_barbara_03.webp" alt="Highlight 1">
               </div>
-            </article>
-
-            <article class="blog_card">
-              <img src="blogs/2025_06/riscv_porting_recap.png" alt="RISC-V Porting Retrospective thumbnail image">
-              <div class="blog_content">
-                <h2 class="blog_title">RISC-V Emulation on MacOS</h2>
-                <p class="blog_date">Summer 2025</p>
-                <p class="blog_description">
-                  Reflecting on challenges and solutions in porting a project to RISC-V on macOS, setting up cross-compilation, fixing linker issues, and running it on QEMU.
-                </p>
-                <a href="blogs/2025_06/riscv_porting_recap.html" class="blog_link">Read full blog →</a>
+              <div class="highlight_button">
+                <a href="featured.html">Check Album →</a>
               </div>
-            </article>
+          </section>
 
-        </div>
-
-        <!-- 05. footer -->
+        <!-- 06. footer -->
         <footer class="footer">
             <div class="footer_icons">
               <a href="mailto:luyaohan7@gmail.com" aria-label="Email">

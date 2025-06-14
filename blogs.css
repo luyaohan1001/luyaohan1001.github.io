@@ -4,6 +4,7 @@
   /* flex along y-axis */
   display: flex;
   flex-direction: column;
+  margin: 10vh 0; /* top-bottom 10vh */
 }
 
 .blog_card {

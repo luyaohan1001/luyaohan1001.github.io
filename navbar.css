@@ -39,14 +39,6 @@
     /* without user hovering on the menu, hide all list items explicitly */
 }
 
-.nav_list li button {
-    background-color: transparent; /* or rgba(0,0,0,0) */
-    border: none;
-    outline: none;
-    width: 100%;
-    cursor: pointer;  /* Changes cursor to a hand pointer on hover */
-}
-
 .nav_list.expanded {
     /* on hover, the navbar expands to 100% viewport height, options are then visible to user. */
     height: 100vh;
@@ -58,18 +50,7 @@
     display: block;
 }
 
-/* styles: "MENU" icon and text */
 .nav_list_menu{
-    height: 2vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
-    display: flex;
-
-    gap: 8px; /* Optional: space between image and text */
-    font-size: 1vh;
-
     place-items: center;
     /* center y-axis */
     align-items: center;
@@ -77,19 +58,18 @@
     justify-content: center;
 }
 
-/* icon */
-.nav_list_menu img{
-    aspect-ratio: 1 / 1;
-    max-width: 30px;
-    height: auto;
+#menu_button {
+    background-color: transparent;
+    place-self: center;
+    place-items: center;
+    border: none;
+    width: 100%;
 }
 
-/* 'MENU' text font */
-.nav_list_menu p {
-    font-family: 'Georgia', serif;
-    color:#000000;
-    font-weight: bold;
-    font-size: 20px;
+#menu_button img {
+    aspect-ratio: 1 / 1;
+    max-width: 20px;
+    height: auto;
 }
 
 /* styles: list item hyperlink */
