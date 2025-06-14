@@ -95,18 +95,21 @@
     <body>
 
         <!-- 00.navigation bar -->
-        <ul class="nav_list">
-            <div class="nav_list_menu" id="menu_button">
-                <img src="media/icon/icons8-engineer-64.png" alt="menu icon">
-                <p>Menu</p>
-            </div>
-            <!-- Script runs after elements are parsed, so they exist when selected -->
-            <script src="navbar_toggle.js"></script>
-            <li><a href=index.html>About Me</a></li>
-            <li><a href=projects.html>Engineering Projects</a></li>
-            <li><a href=experiences.html>Experience</a></li>
-            <li><a href=featured.html>Photography</a></li>
-        </ul>
+        <nav aria-label="main_navigation">
+          <ul class="nav_list">
+              <li class="nav_list_menu">
+                <button id="menu_button">
+                  <img src="media/icon/icons8-engineer-64.png" alt="Menu icon">
+                </button>
+              </li>
+              <li><a href=index.html>About Me</a></li>
+              <li><a href=projects.html>Engineering Projects</a></li>
+              <li><a href=experiences.html>Experience</a></li>
+              <li><a href=featured.html>Photography</a></li>
+          </ul>
+        </nav>
+        <!-- Script runs after elements are parsed, so they exist when selected -->
+        <script src="navbar_toggle.js" defer></script>
 
         <section class="skills-section">
             <h2 class="skills-title">Technical Skills</h2>

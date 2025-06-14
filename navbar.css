@@ -37,7 +37,14 @@
     margin: 0;
     justify-items: center; /* center navbar options */
     /* without user hovering on the menu, hide all list items explicitly */
-    display: none;
+}
+
+.nav_list li button {
+    background-color: transparent; /* or rgba(0,0,0,0) */
+    border: none;
+    outline: none;
+    width: 100%;
+    cursor: pointer;  /* Changes cursor to a hand pointer on hover */
 }
 
 .nav_list.expanded {
