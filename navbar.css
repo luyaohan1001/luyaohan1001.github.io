@@ -1,4 +1,5 @@
 /* styles: parent vertical navigation bar */
+/* navigation bar, default not expanded */
 .nav_list {
     display: flex;
     flex-direction: column;
@@ -20,49 +21,54 @@
     /* effect: frosted glass effect */
     backdrop-filter: blur(0.8vh);
 
-    /* centers multiple rows or columns along the cross axis*/
-    align-content: center;
-
     /* damping effect on sudden hover, gradual transition*/
-    transition: width 1.5s ease, height 1.5s ease;
+    transition: width 1s ease, height 1s ease;
 
+    /* define fixed height to contain the menu icon */
     height: 5vh;
+    min-height: 20px;
     overflow: hidden;
 }
 
-.nav_list li{
-    margin: 0;
-    place-items: center;
-}
-
+/* navigation bar, expanded */
 .nav_list.expanded {
     /* on hover, the navbar expands to 100% viewport height, options are then visible to user. */
     height: 100vh;
     place-items: center;
 }
 
+/* navigation bar list items, not expanded */
+.nav_list li{
+    margin: 0 10;
+    place-items: center;
+    list-style-type: none; /* disable bullet point */
+}
 
+/* navigation bar list items, expanded */
 .nav_list.expanded li{
     /* all list items shows up */
     display: flex;
     place-items: center;
 }
 
-.nav_list_menu{
-    height: 100%; /* Force the menu icon height same as the default height of .nav_list. So that before expanding, only the icon will fit and visible to the audience. */
-}
-
+/* button which display menu icon. user clicks to expand the entire navigation bar */
 #menu_button {
     background-color: transparent;
     border: none;
-    height: 5vh;
     width: 100%;
 }
 
 #menu_button img {
     aspect-ratio: 1 / 1;
-    max-height: 5vh;
+    height: 5vh;
+    min-height: 20px;
     width: auto;
+}
+
+
+#home_page_li {
+    /* add space at top of the first menu entry */
+    padding-top: 35vh;
 }
 
 /* styles: list item hyperlink */
@@ -112,8 +118,9 @@
 /* style for mobile device of small max-width */
 @media (max-width: 768px) {
     .nav_list {
-        min-width: 26vw;
-        min-height: 8vh;
+        min-width: 20vw;
+        max-width: 30vw;
+        min-height: 8kvh;
     }
     .nav_list li a {
         font-size: 4vw;
