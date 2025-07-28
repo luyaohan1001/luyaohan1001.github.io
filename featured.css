@@ -13,7 +13,7 @@
 
 .featured_poster_background {
     /* background image */
-    background-image: url("media/poster/webp/chasing_the_next_horizon.webp");
+    background-image: url("media/contents/santa_barbara/selected/webp/santa_barbara_01.webp");
     background-size: cover;
     background-position: center;
 
@@ -26,15 +26,32 @@
     z-index: -1; /* Push behind content */
 }
 
+/* Glossy silver glass overlay */
+.featured_poster_background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.1),
+    rgba(192, 192, 192, 0.1)
+  );
+  backdrop-filter: blur(1px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1;
+}
+
+
 .featured_poster_text {
     /* poster text */
     position: relative;
     max-width: 80vw;
-    top: 60vh;
+    left: 10vw;
+    top: 40vh;
     /* text font */
-    font-family: 'Georgia', serif;
+    font-family: cursive;
     font-weight: bold;
-    font-size: 8vh;
+    font-size: 10vh;
     color: white;
 }
 
