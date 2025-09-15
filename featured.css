@@ -46,10 +46,10 @@
     /* poster text */
     position: relative;
     max-width: 80vw;
-    left: 10vw;
+    align-self: center;
     top: 40vh;
     /* text font */
-    font-family: cursive;
+    font-family: Gill Sans Extrabold;
     font-weight: bold;
     font-size: 10vh;
     color: white;
@@ -109,7 +109,8 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 
     /* by default image is grey'd out */
-    width: 60vw;
+    max-height: 80vh;
+    max-width: 60vw;
     /* The filter property will take 300 seconds (5 minutes) to transition back to its original state after a hover ends.
        This is an intentionally extreme delay, often used as a trick to "hold" the hover effect, so that:
             When the user hovers over an image, it changes instantly (e.g. becomes clear or colored),
