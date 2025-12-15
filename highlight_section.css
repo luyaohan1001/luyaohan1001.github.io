@@ -32,22 +32,6 @@
   box-shadow: 0 10px 20px rgba(74, 144, 226, 0.6);
 }
 
-
-.highlight_button a {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #0057ff;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-}
-
-.highlight_button a:hover {
-  background-color: #003fcc;
-}
-
 /* style on a mobile device */
 @media (max-width: 768px) {
   .highlight_grid img {

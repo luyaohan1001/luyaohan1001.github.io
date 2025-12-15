@@ -12,7 +12,7 @@
         <meta name="description" content="Luyao Han's portfolio featuring embedded systems projects, photography, and blogs.">
 
         <title>
-            Luyao Han's Website
+            Luyao Han
         </title>
 
         <link rel="icon" href="media/favicon/favicon.png" type="image/png">
@@ -96,21 +96,21 @@
 
         <!-- 00.navigation bar -->
         <nav aria-label="main_navigation">
-          <ul class="nav_list">
-              <li class="nav_list_menu">
-                <button id="menu_button">
-                  <img src="media/icon/icons8-menu-128.png" alt="menu_icon">
-                </button>
-              </li>
-              <li><a href=index.html id="home_page_li">About Me</a></li>
-              <li><a href=projects.html>Engineering Projects</a></li>
-              <li><a href=experiences.html>Experience</a></li>
-              <li><a href=featured.html>Photography</a></li>
-          </ul>
+          <div class="nav_container">
+            <!-- Navigation items -->
+            <ul class="nav_list">
+              <li><a href="index.html">About Me</a></li>
+              <li><a href="blogs.html">Blogs</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="experiences.html">Experience</a></li>
+              <li><a href="featured.html">Photography</a></li>
+            </ul>
+          </div>
         </nav>
         <!-- Script runs after elements are parsed, so they exist when selected -->
-        <script src="navbar_toggle.js" defer></script>
+        <script src="navbar.js" defer></script>
 
+        <!--
         <section class="skills-section">
             <h2 class="skills-title">Technical Skills</h2>
 
@@ -179,142 +179,151 @@
                     </ul>
                 </div>
         </section>
+        -->
 
-        <!-- 04. Experience experience_timeline -->
-        <p id="experience_title" class="huge_title_font">
-            - Experience -
-        </p>
-        <p id="disclaimer">
+        <section class="resume-section">
+          <h2 class="section-title">Work Experience</h2>
+        
+          <p id="disclaimer">
             The company trademarks below are the property of their owners, provided solely for illustrative purposes to indicate prior employment.
             It does not imply any commercial affiliation, endorsement, or authorization.
             Details of professional work conducted are not described on this page and will not be disclosed.
-        </p>
-
-        <div class="experience_timeline">
-
-            <div class="job_container">
-                <div class="job_info">
-                    <h4>Spring 2023 to Present</h4>
-                    <div class="company_name">
-                        <h4>Apple</h4>
-                    </div>
-                    <h3> Embedded Firmware Engineer</h3>
+          </p>
+      
+          <!-- Apple -->
+          <div class="resume-item">
+            <img class="resume-logo" src="media/experience/webp/apple.webp" alt="Apple logo">
+            <div class="resume-content">
+              <div class="resume-item-header">
+                <div class="resume-title">
+                  <h3>Embedded Firmware Engineer</h3>
+                  <h4>Apple</h4>
                 </div>
-                <div class="centered_company_logo">
-                    <img src="media/experience/webp/apple.webp" alt="Apple logo">
-                </div>
+                <div class="resume-date">2023 – Present</div>
+              </div>
+              <p>Feature development for Appple products.</p>
+              <ul>
+                <li>Multi-threaded peripheral drivers.</li>
+                <li>Heterogeneous-core DSP firmware.</li>
+                <li>Hardware-software integration and platform-level debugging. </li>
+              </ul>
             </div>
-
-            <div class="job_container">
-                <div class="job_info">
-                    <h4>2022 Winter</h4>
-                    <div class="company_name">
-                        <h4>Carnegie Mellon University</h4>
-                    </div>
-                    <h3>Graduate Student</h3>
+          </div>
+      
+          <!-- NVIDIA -->
+          <div class="resume-item">
+            <img class="resume-logo" src="media/experience/webp/nvidia.webp" alt="NVIDIA logo">
+            <div class="resume-content">
+              <div class="resume-item-header">
+                <div class="resume-title">
+                  <h3>Firmware Engineer Intern</h3>
+                  <h4>NVIDIA</h4>
                 </div>
-                <div class="centered_company_logo">
-                    <img src="media/experience/webp/cmu.webp" alt="Carnegie Mellon University logo">
-                </div>
-                <div class="job_description">
-                    <p>
-                        Distributed Embedded Systems / Wireless Networks
-                    </p>
-                </div>
+                <div class="resume-date">Summer 2022</div>
+              </div>
+              <p>
+                Joined NVIDIA as a firmware engineer to improve reliability and memory efficiency of the GPU context switch processor.
+              </p>
+              <ul>
+                <li>Refactored firmware modules to decouple interfaces and implement a deferred interrupt processing pattern, </li>
+                <li>Implemented structured error handling using explicit return codes and unified cleanup routines to enhance firmware reliability.</li>
+                <li>Strengthened firmware security by resolving MISRA C-identified vulnerabilities.</li>
+                <li>Built a YAML-configured automation tool to orchestrate CI workspace setup, simulations, and result submissions. </li>
+              </ul>
             </div>
+          </div>
+      
+          <!-- Qualcomm 2021 -->
+          <div class="resume-item">
+            <img class="resume-logo" src="media/experience/webp/qualcomm.webp" alt="Qualcomm logo">
+            <div class="resume-content">
+              <div class="resume-item-header">
+                <div class="resume-title">
+                  <h3>Hardware Intern</h3>
+                  <h4>Qualcomm</h4>
+                </div>
+                <div class="resume-date">Summer 2021</div>
+              </div>
+              <p>
+                Returned to Qualcomm hardware team to work on profiling methods on network processors.
+              </p>
+              <ul>
+                <li>Investigated hardware counters and sampling-based profilers to identify processor performance bottlenecks.</li>
+                <li>Experimented with tracing-based profiling techniques to reduce performance monitoring overhead.</li>
+                <li>Collaborated with software team to assess limitations of current profiling methods and explore improvements.</li>
+                <li>Documented findings, summarized profiling research, and contributed to team discussions on potential enhancements.</li>
+              </ul>
 
-            <div class="job_container">
-                <div class="job_info">
-                    <h4>Summer 2022</h4>
-                    <div class="company_name">
-                        <h4>NVIDIA</h4>
-                    </div>
-                    <h3>Firmware Engineer Intern</h3>
+              <div class="resume-item-header">
+                <div class="resume-title">
+                  <h3>Hardware Intern</h3>
                 </div>
-                <div class="centered_company_logo">
-                    <img src="media/experience/webp/nvidia.webp" alt="NVIDIA logo">
-                </div>
-                <div class="job_description">
-                    <p>
-                        GPU Context Switch Firmware
-                    </p>
-                </div>
+                <div class="resume-date">Summer 2020</div>
+              </div>
+              <p>
+                Joined Qualcomm hardware team to optimize design verification, responsibilities include Verilog compile/elaboration optimization, scripting enhancements, and performance benchmarking using industrial tools.
+              </p>
+              <ul>
+                <li>Optimized Verilog compile/elaboration flow in Cadence Xcelium using MSIE, improving simulation efficiency.</li>
+                <li>Collected and benchmarked elaboration performance metrics across different designs, quantifying efficiency gains.</li>
+                <li>Integrated verified script changes into production, creating a faster, scalable, reusable workflow.</li>
+              </ul>
             </div>
-
-            <div class="job_container">
-                <div class="job_info">
-                    <h4>Summer 2021</h4>
-                    <div class="company_name">
-                        <h4>Qualcomm</h4>
-                    </div>
-                    <h3>Hardware Engineer Intern</h3>
+          </div>
+      
+          <!-- Bruker -->
+          <div class="resume-item">
+            <img class="resume-logo" src="media/experience/webp/bruker.webp" alt="Bruker logo">
+            <div class="resume-content">
+              <div class="resume-item-header">
+                <div class="resume-title">
+                  <h3>Electrical Engineer Intern</h3>
+                  <h4>Bruker</h4>
                 </div>
-                <div class="centered_company_logo">
-                    <img src="media/experience/webp/qualcomm.webp" alt="Qualcomm logo">
-                </div>
-                <div class="job_description">
-                    <p>
-                        Network Processor
-                    </p>
-                </div>
+                <div class="resume-date">Summer 2019</div>
+              </div>
+              <p>Bruker is a scientific instruments company specializing in high-precision scientific instruments.
+              <ul>
+                <li>Implemented an efficient hall-sensing stepper motor homing algorithm.</li>
+                <li>Built and debugged optical laser shutter assembly with motor, sensors, and PIC microcontroller.</li>
+                <li>Developed firmware integrating sensor data, motor control, and host commands for stepper motor driver board.</li>
+                <li>Diagnosed Optics Interconnect PCB issues, creating firmware to manage sensors, outputs, serial communication, and alerts.</li>
+              </ul>
             </div>
+          </div>
+      
+        </section>
 
-            <div class="job_container">
-                <div class="job_info">
-                    <h4>Summer 2020</h4>
-                    <div class="company_name">
-                        <h4>Qualcomm</h4>
-                    </div>
-                    <h3>Hardware Engineer Intern</h3>
+        <section class="resume-section">
+          <h2 class="section-title">Education</h2>
+        
+          <!-- CMU -->
+          <div class="resume-item">
+            <img class="resume-logo" src="media/experience/webp/cmu.webp" alt="CMU logo">
+            <div class="resume-content">
+              <div class="resume-item-header">
+                <div class="resume-title">
+                  <h3>Master of Science, Electrical and Computer Engineering</h3>
+                  <h4>Carnegie Mellon University</h4>
                 </div>
-                <div class="centered_company_logo">
-                    <img src="media/experience/webp/qualcomm.webp" alt="Qualcomm logo">
-                </div>
-                <div class="job_description">
-                    <p>
-                        Power Management IC
-                    </p>
-                </div>
+              </div>
             </div>
-
-            <div class="job_container">
-                <div class="job_info">
-                    <h4>Summer 2019</h4>
-                    <div class="company_name">
-                        <h4>Bruker</h4>
-                    </div>
-                    <h3>Electrical Engineer Intern</h3>
+          </div>
+      
+          <!-- UCSB -->
+          <div class="resume-item">
+            <img class="resume-logo" src="media/experience/webp/ucsb.webp" alt="UC Santa Barbara logo">
+            <div class="resume-content">
+              <div class="resume-item-header">
+                <div class="resume-title">
+                  <h3>Bachelor of Science, Computer Engineering</h3>
+                  <h4>University of California, Santa Barbara</h4>
                 </div>
-                <div class="centered_company_logo">
-                    <img src="media/experience/webp/bruker.webp" alt="Bruker logo">
-                </div>
-                <div class="job_description">
-                    <p>
-                        Bruker Atomic Force Microscope
-                    </p>
-                </div>
+              </div>
             </div>
-
-
-            <div class="job_container">
-                <div class="job_info">
-                    <h4>Fall 2017</h4>
-                    <div class="company_name">
-                        <h4>University of California</h4>
-                        <h4>Santa Barbara, California</h4>
-                    </div>
-                    <h3>ECE student</h3>
-                </div>
-                <div class="centered_company_logo">
-                    <img src="media/experience/webp/ucsb.webp" alt="UC Santa Barbara logo">
-                </div>
-                <div class="job_description">
-                    <p>
-                        Computer Engineering (hybrid of EE and CS)
-                    </p>
-                </div>
-            </div>
-        </div>
+          </div>
+      
+        </section>
 
         <!-- 05. footer -->
         <footer class="footer">

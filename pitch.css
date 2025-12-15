@@ -1,7 +1,7 @@
 
 /* --- Self Introduction Section --- */
 #personal_profile_container {
-    min-height: 100vh;
+    min-height: 90vh;
     align-content: center;
     width: 80vw;
     margin: 0 auto;  /* top/bottom 0, left/right auto centers horizontally */
@@ -14,6 +14,7 @@
     align-items: center;        /* center vertically (Y-axis) */
     width: 100%;                /* ensure it spans horizontally */
 }
+
 
 .round_avatar {
     display: flex;            /* helps the round_avatar img to center */
@@ -31,7 +32,7 @@
     overflow: hidden;
 
     /* space around avatar */
-    padding: 5vw;
+    padding: 2vw;
 
     /* DEBUG */
     /* background: rgba(255, 0, 0, 0.1); */
@@ -83,8 +84,9 @@
     }
     .round_avatar img {
         /* image size */
-        width: 150px;
-        height: 150px;
+        width: 50vw;
+        aspect-ratio: 1;
+        height: auto;
       }
 
     .pitch_text {

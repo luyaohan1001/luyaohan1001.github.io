@@ -1,146 +1,108 @@
-/* --- Experience Timeline Section --- */
-#experience_subtitle {
-  /* center in x-axis */
-  text-align: center;
-  font-family: 'Georgia', serif;
-  font-size: 1vw;  /* optional: adjust text size */
-  word-wrap: break-word;  /* Allows long words to break and wrap */
-  overflow-wrap: break-word; /* Preferred modern syntax */
+/* Resume Section */
+.resume-section {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 0 20px;
 }
 
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* Resume Item Card */
+.resume-item {
+  display: flex; /* logo + content side by side */
+  background: linear-gradient(145deg, #ffffff, #f9f9f9);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resume-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo on the left */
+.resume-logo {
+  width: 60px;       /* fixed width */
+  height: auto;      /* keep aspect ratio */
+  object-fit: contain; /* ensure logo fits without stretching */
+  margin-right: 16px; /* spacing to the content */
+}
+
+/* Content on the right */
+.resume-content {
+  flex: 1; /* fill remaining space */
+}
+
+/* Header: title + company + date */
+.resume-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* wrap on mobile */
+  margin-bottom: 12px;
+}
+
+.resume-title h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.resume-title h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #555;
+}
+
+/* Date styling */
+.resume-date {
+  font-size: 0.95rem;
+  color: #777;
+  white-space: nowrap;
+}
+
+/* UL styling */
+.resume-item ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.resume-item ul li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+/* Disclaimer text */
 #disclaimer {
-  /* center in x-axis */
   text-align: center;
-  font-size: 10px;  /* optional: adjust text size */
-  color: #666;      /* optional: softer text color */
-  word-wrap: break-word;  /* Allows long words to break and wrap */
-  overflow-wrap: break-word; /* Preferred modern syntax */
+  font-size: 0.85rem;
+  color: #666;
   font-style: italic;
-  max-width: 95vw;
+  margin-bottom: 30px;
 }
 
-.company_name {
-    font-family: 'Georgia', serif;
-    color: rgb(0, 0, 0);
-    font-size: 1vw;
-    line-height: 0%;
-    flex-wrap: wrap; /* Allows children like <h4> to wrap */
-}
-
-.company_name h4 {
-    white-space: normal; /* default: allows wrapping */
-    font-size: 3vw;
+/* Mobile adjustments */
+@media (max-width: 700px) {
+  .resume-item {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-.experience_timeline {
-    position: relative;
+  .resume-logo {
+    margin-bottom: 12px;
+    width: 48px;
+  }
+
+  .resume-item-header {
     width: 100%;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-}
-
-.job_container {
-    position: relative;
-    width: 100%;
-    max-height: 80vh;
-    display: flex;
-    justify-content: space-between; /* Align jobs left and right */
-    margin: 10vh 0; /* Vertical spacing between jobs */
-}
-
-.job_info {
-    position: relative;
-    padding-left: 10%;
-    width: 40%;
-    background: linear-gradient(to right, rgba(179, 179, 179, 0.5), rgba(200, 200, 200, 0.1));
-}
-
-.job_info h3 {
-  margin: 10px 0;
-  font-weight: 300; /* Thin font */
-  font-size: 1.2vw;
-}
-
-.job_info h4 {
-  font-size: 2vw;
-}
-
-.centered_company_logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: box-shadow 0.6s ease, transform 0.6s ease;
-  width: 15%;
-}
-
-.centered_company_logo:hover {
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.6),
-              0 0 50px rgba(255, 255, 255, 0.4);
-  transform: translate(-50%, -50%) scale(1.1);
-}
-
-/* company image */
-.centered_company_logo img {
-  max-width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  border-radius: 50%;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-}
-
-.job_description {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(0%, -50%);
-  z-index: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: box-shadow 0.6s ease, transform 0.6s ease;
-  padding-left: 10%;
-  width: auto;
-  /* background: linear-gradient(to right, rgba(200, 200, 200, 0.1), rgba(179, 179, 179, 0.5)); */
-}
-
-.job_description p {
-  font-size: 1.5vw;
-  font-family: 'Georgia', monospace;
-}
-
-/* style for the dashline*/
-.experience_timeline::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 0.1vw;
-  min-width: 1px;
-  height: 100%;
-  background: repeating-linear-gradient(to bottom, #979595 0%, #979595 5px, transparent 10px, transparent 20px);
-  transform: translateX(-50%);
-  z-index: 0; /* Behind all job content */
-}
-
-/* style on a mobile device */
-@media (max-width: 768px) {
-  .experience_timeline {
-    /* adjust top and bottom (length of dash line extended outside of experience)*/
-    padding: 0.1vh 0;
-  }
-
-  .job_container {
-    /* adjust vertical spacing between jobs */
-      margin: 4vh 0;
-  }
-
-  .job_description p {
-    font-size: 2%;
   }
 }

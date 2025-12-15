@@ -119,12 +119,13 @@
 
     <!-- Body of the web page layout. -->
     <body>
+
         <!-- 00.navigation bar -->
         <nav aria-label="main_navigation">
           <div class="nav_container">
             <!-- Navigation items -->
             <ul class="nav_list">
-              <li><a href="#personal_profile_container">About Me</a></li>
+              <li><a href="index.html">About Me</a></li>
               <li><a href="blogs.html">Blogs</a></li>
               <li><a href="projects.html">Projects</a></li>
               <li><a href="experiences.html">Experience</a></li>
@@ -135,42 +136,64 @@
         <!-- Script runs after elements are parsed, so they exist when selected -->
         <script src="navbar.js" defer></script>
 
-        <!-- 01. welcome poster -->
-        <section class="welcome_poster">
-            <div class="welcome_poster_home"></div>
-            <div class="welcome_poster_text">
-              Hello!
-              <br>
-              I'm Luyao
-              <br>
-            </div>
-        </section>
-
         <!-- Main content for this page to improve SEO. -->
         <main>
-          <!-- 02. Personal Profile Overview -->
-          <section id="personal_profile_container" class="roles_text_container">
-            <article id="my_profile">
-              <!-- Left Half: Round Profile Picture -->
-              <figure class="round_avatar">
-                  <img src="media/misc/webp/profile_cropped.webp" alt="Luyao's profile picture">
-              </figure>
+          <!-- 03. Blogs -->
+          <section id="blog_posts_container">
+              <header>
+                <h1 class="huge_title_font">
+                  - Blogs -
+                </h1>
+              </header>
 
-              <!-- Right Half: Round Profile Picture -->
-              <section class="pitch_text"">
-                <header>
-                  <h1 id="about_me_heading" class="roles_text">
-                    Engineering × Photography
-                  </h1>
-                </header>
-                <p class="pitch_text_font">
-                  I build with engineering, and see the world through photography.
-                  This blend of precision and perspective is what I bring to future challenges—with dedication and curiosity.
-                </p>
-              </section> <!-- pitch_text end-->
-            </article> <!-- my_profile end -->
-          </section> <!-- personal_profile_container end -->
-        </main>
+              <article class="blog_card">
+                <img src="blogs/2025_05/top_roping_portrait.jpeg" alt="Top roping thumbnail image">
+                <div class="blog_content">
+                  <h2 class="blog_title">Climbing Up</h2>
+                  <p class="blog_date">Spring 2025</p>
+                  <p class="blog_description">
+                    My first climbing experience — the fears, the lessons, and techniques.
+                  </p>
+                  <a href="blogs/2025_05/top_roping_experience.html" class="blog_link">Read full blog →</a>
+                </div>
+              </article>
+
+              <article class="blog_card">
+                <img src="blogs/2025_05/YesRTOS_DevHL.gif" alt="Top roping thumbnail image">
+                <div class="blog_content">
+                  <h2 class="blog_title">Deep Dive: Context Switching in YesRTOS</h2>
+                  <p class="blog_date">Spring 2025</p>
+                  <p class="blog_description">
+                    As part of building my own RTOS, I had to deeply understand ARM v7-M/v8-M supervisor call and exception model. Here's a deep dive into the internal mechanisms.
+                  </p>
+                  <a href="blogs/2025_06/rtos_context_switch.html" class="blog_link">Read full blog →</a>
+                </div>
+              </article>
+
+              <article class="blog_card">
+                <img src="blogs/2025_06/modular_cmake_diagram.png" alt="Modular CMake thumbnail image">
+                <div class="blog_content">
+                  <h2 class="blog_title">Modular CMake - Why It's Good Practice</h2>
+                  <p class="blog_date">Summer 2025</p>
+                  <p class="blog_description">
+                    In large Projects, modularity in CMake enables clean architecture, parallel development, and fast builds. This article shows how it helps create to create scalable, maintainable software pipelines.
+                  </p>
+                  <a href="blogs/2025_06/modular_cmake.html" class="blog_link">Read full blog →</a>
+                </div>
+              </article>
+
+              <article class="blog_card">
+                <img src="blogs/2025_06/riscv_porting_recap.png" alt="RISC-V Porting Retrospective thumbnail image">
+                <div class="blog_content">
+                  <h2 class="blog_title">RISC-V Emulation on MacOS</h2>
+                  <p class="blog_date">Summer 2025</p>
+                  <p class="blog_description">
+                    Reflecting on challenges and solutions in porting a project to RISC-V on macOS, setting up cross-compilation, fixing linker issues, and running it on QEMU.
+                  </p>
+                  <a href="blogs/2025_06/riscv_porting_recap.html" class="blog_link">Read full blog →</a>
+                </div>
+              </article>
+          </section>
 
         <!-- 06. footer -->
         <footer class="footer">
@@ -188,8 +211,6 @@
             </p>
         </footer>
 
-        <!-- Place scripts here, after all elements exist -->
-        <script src="navbar.js"></script>
     </body>
 
 </html>

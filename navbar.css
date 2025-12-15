@@ -1,130 +1,95 @@
-/* styles: parent vertical navigation bar */
-/* navigation bar, default not expanded */
+/* === Desktop Navbar === */
 .nav_list {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    /* position: fixed on viewport on scrolling */
     position: fixed;
-    top:0;
+    top: 0;
     padding: 0;
     margin: 0;
 
-    /* shape: round corner */
     border-bottom-right-radius: 1vw;
 
-    /* layer: above all other layer */
-    z-index: 999;
+    z-index: 99;
 
-    /* color and transparency */
-    background-color: rgba(203, 203, 203, 0.2);
-    /* effect: frosted glass effect */
-    backdrop-filter: blur(0.8vh);
-
-    /* damping effect on sudden hover, gradual transition*/
+    background-color: rgba(203, 203, 203, 0.1); /* light glossy at start */
+    backdrop-filter: blur(0.1vh); /* initial blur */
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
     transition: width 1s ease, height 1s ease;
 
-    /* define fixed height to contain the menu icon */
-    height: 5vh;
-    min-height: 20px;
+    width: 100vw;
+    height: auto;
     overflow: hidden;
 }
 
-/* navigation bar, expanded */
-.nav_list.expanded {
-    /* on hover, the navbar expands to 100% viewport height, options are then visible to user. */
-    height: 100vh;
-    width: auto;
-    place-items: center;
-}
-
-/* navigation bar list items, not expanded */
+/* navigation bar list items, desktop */
 .nav_list li{
-    margin: 0 10;
+    margin: 0 20px;
     place-items: center;
-    list-style-type: none; /* disable bullet point */
-}
-
-/* navigation bar list items, expanded */
-.nav_list.expanded li{
-    /* all list items shows up */
-    display: flex;
-    place-items: center;
-}
-
-/* button which display menu icon. user clicks to expand the entire navigation bar */
-#menu_button {
-    background-color: transparent;
-    border: none;
-    width: 100%;
-}
-
-#menu_button img {
-    aspect-ratio: 1 / 1;
-    height: 5vh;
-    min-height: 20px;
-    width: auto;
-}
-
-
-#home_page_li {
-    /* add space at top of the first menu entry */
-    padding-top: 35vh;
+    list-style-type: none;
 }
 
 /* styles: list item hyperlink */
 .nav_list li a {
-    /* make text like rectangle filling full width of parent, more click area */
     display: block;
     width: auto;
-
     position: relative;
-
-    /* Allows long words or URLs to break and wrap to the next line. */
     overflow-wrap: break-word;
-
-    /* Removes default bullets or numbers */
     list-style: none;
-
-    /* add padding */
     padding-top: 3vh;
     padding-bottom: 3vh;
-
-    /* text font */
     font-family: 'Georgia';
     font-weight: bold;
     font-size: 1.5vw;
-
-    /* slow transition on hover */
-    transition: background-position 0.6s ease-in-out;
-
-    /* clickable */
-    cursor: pointer;
-
-    /* layer */
     z-index: 1;
-
-    /* text color - gradient, to be combined with li a:hover effect */
     background: linear-gradient(270deg, #ffffff, #7cc0ff, #0080ff);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* On hover, shifts the gradient position to create a dynamic animation effect */
-.nav_list li a:hover {
-    background-position: right center;
-}
+/* === Mobile Navbar === */
+@media screen and (max-width: 768px) {
+    /* Hamburger menu icon */
+    .menu_toggle {
+        display: block;
+        position: fixed;
+        top: 1vh;
+        right: 2vw;
+        font-size: 3vh;
+        z-index: 1000;
+        cursor: pointer;
+    }
 
-/* style for mobile device of small max-width */
-@media (max-width: 768px) {
+    /* Nav list is initially hidden offscreen */
     .nav_list {
-        min-width: 20vw;
-        max-width: 30vw;
-        min-height: 8kvh;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70vw;
+        height: 100vh;
+        background-color: rgba(203, 203, 203, 0.3);
+        backdrop-filter: blur(0.5vh);
+        transition: left 0.3s ease, background-color 0.3s ease, backdrop-filter 0.3s ease;
+        z-index: 999;
+        padding-top: 5vh;
     }
+
+    /* Open menu */
+    .nav_list.open {
+        left: 0;
+    }
+
+    .nav_list li {
+        margin: 2vh 0;
+        text-align: center;
+    }
+
     .nav_list li a {
-        font-size: 4vw;
+        font-size: clamp(16px, 4vw, 30px);; /* larger for touch */
+        padding-top: 4vh;
+        padding-bottom: 4vh;
     }
 }
-

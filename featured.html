@@ -30,20 +30,19 @@
     <body>
         <!-- 00.navigation bar -->
         <nav aria-label="main_navigation">
-          <ul class="nav_list">
-              <li class="nav_list_menu">
-                <button id="menu_button">
-                  <img src="media/icon/icons8-menu-128.png" alt="menu_icon">
-                </button>
-              </li>
-              <li><a href=index.html id="home_page_li">About Me</a></li>
-              <li><a href=projects.html>Engineering Projects</a></li>
-              <li><a href=experiences.html>Experience</a></li>
-              <li><a href=featured.html>Photography</a></li>
-          </ul>
+          <div class="nav_container">
+            <!-- Navigation items -->
+            <ul class="nav_list">
+              <li><a href="index.html">About Me</a></li>
+              <li><a href="blogs.html">Blogs</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="experiences.html">Experience</a></li>
+              <li><a href="featured.html">Photography</a></li>
+            </ul>
+          </div>
         </nav>
         <!-- Script runs after elements are parsed, so they exist when selected -->
-        <script src="navbar_toggle.js" defer></script>
+        <script src="navbar.js" defer></script>
 
         <!-- 01. welcome poster -->
         <div class="featured_poster">
