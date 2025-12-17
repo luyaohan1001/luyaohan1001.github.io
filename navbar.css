@@ -49,6 +49,10 @@
     -webkit-text-fill-color: transparent;
 }
 
+.menu_toggle {
+    display: none;
+}
+
 /* === Mobile Navbar === */
 @media screen and (max-width: 768px) {
     /* Hamburger menu icon */

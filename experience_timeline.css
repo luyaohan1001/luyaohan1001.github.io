@@ -5,13 +5,6 @@
   padding: 0 20px;
 }
 
-.section-title {
-  font-size: 2.2rem;
-  font-weight: 600;
-  margin-bottom: 40px;
-  text-align: center;
-}
-
 /* Resume Item Card */
 .resume-item {
   display: flex; /* logo + content side by side */

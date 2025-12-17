@@ -7,54 +7,19 @@
     margin: 0 auto;  /* top/bottom 0, left/right auto centers horizontally */
 }
 
-#my_profile {
-    display: flex;
-    flex-direction: row;        /* horizontal layout */
-    justify-content: center;    /* center along the main axis (X-axis) */
-    align-items: center;        /* center vertically (Y-axis) */
-    width: 100%;                /* ensure it spans horizontally */
+.roles_text_container {
+    width: 100%;        /* container width */
+    text-align: center;
 }
 
-
-.round_avatar {
-    display: flex;            /* helps the round_avatar img to center */
-    width: auto;              /* Ensure it spans available width */
-    height: auto;             /* Or adjust this to suit layout */
-    position: relative;
-    justify-content: center;
-    align-items: center;
-
-    /*  15% of the viewport width. */
-    min-width: 300px;
-    max-width: 15vw;
-
-    /* Trim image outside the circle */
-    overflow: hidden;
-
-    /* space around avatar */
-    padding: 2vw;
-
-    /* DEBUG */
-    /* background: rgba(255, 0, 0, 0.1); */
-}
-
-.round_avatar img {
-    /* Maintain circular shape, take width of parent container */
-    border-radius: 50%;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    height: auto;
-
-    /* Crop image to fill circle */
-    object-fit: cover;
-
-    /* 3D effect */
-    transition: transform 0.3s ease;
-}
-
-.round_avatar img:hover {
-    /* 3D tile effect, perspective(px) creates a perspective effect like 3D*/
-    transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1.05);
+.roles_text {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    display: inline-block;         /* needed for scrollWidth measurement */
+    color: #222;
+    /* auto-adjust font size */
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .pitch_text_font {
@@ -64,40 +29,19 @@
     color: black;
 }
 
+#my_profile {
+    /* display avatar and pitch text vertically instead */
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* <-- horizontally center items in column layout */
+    margin: 0 auto;           /* <-- horizontally center the container itself if it has a parent */
+}
 
-/* Media query, conditional css for smaller screen (mobile) with width < 768 pixels */
-@media (max-width: 768px) {
-    #my_profile {
-        /* display avatar and pitch text vertically instead */
-        display: flex;
-        flex-direction: column;
-        align-items: center;      /* <-- horizontally center items in column layout */
-        margin: 0 auto;           /* <-- horizontally center the container itself if it has a parent */
-    }
-
-    .round_avatar {
-        /* Make avatar span full width */
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: 20px;
-        /* background: rgba(255, 0, 0, 0.1); */ /* DEBUG */
-    }
-    .round_avatar img {
-        /* image size */
-        width: 50vw;
-        aspect-ratio: 1;
-        height: auto;
-      }
-
-    .pitch_text {
-        margin-right: 0;
-        padding: 0;
-        width: 90vw;
-    }
-
-    .pitch_text_font {
-        font-size: 1.5vh;
-    }
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 
@@ -108,7 +52,7 @@
 }
 
 .page_title h1 {
-  font-size: 2.4rem;
+  font-size: 4rem;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -119,4 +63,85 @@
 }
 
 
+.round_avatar {
+    position: relative;
+    width: 20rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    perspective: 1200px;
+}
 
+.round_avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+
+    transform-style: preserve-3d;
+    transition:
+        transform 0.6s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.6s ease,
+        filter 0.6s ease;
+
+    animation: float 4s ease-in-out infinite;
+}
+
+.round_avatar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        conic-gradient(
+            from 0deg,
+            rgba(0, 200, 255, 0.0),
+            rgba(0, 200, 255, 0.6),
+            rgba(150, 0, 255, 0.6),
+            rgba(0, 200, 255, 0.0)
+        );
+    filter: blur(12px);
+    opacity: 0.6;
+    animation: spin 6s linear infinite;
+    z-index: -1;
+}
+
+.round_avatar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Hover：3D + 能量爆发 */
+.round_avatar:hover img {
+    transform:
+        rotateX(12deg)
+        rotateY(-18deg)
+        scale(1.12)
+        translateZ(30px);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.35),
+        0 0 30px rgba(124, 209, 255, 0.7),
+        0 0 60px rgba(185, 220, 255, 0.011);
+
+    filter: saturate(1.2);
+}
+
+.round_avatar:hover::after {
+    opacity: 1;
+}
+
+/* floating */
+@keyframes float {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+}
+
+/* spinning halo */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
