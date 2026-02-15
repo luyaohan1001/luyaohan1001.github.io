@@ -1,0 +1,175 @@
+
+<body>
+  <h1>
+    Libcamera's Semaphore Class, A Simple Counting Semaphore Implementation in C++
+  </h1>
+
+  <p>
+    <br>
+    Before C++ 20 std::binary_semaphore or std::counting_semaphore, the C++ standard library does not provide a built-in semaphore implementation.
+    <br>
+    In this piece of note, I go over the implementation of a simple general-purpose counting semaphore found in libcamera, a C++ library for camera subsystems found on Linux devices.
+    <br>
+  </p>
+  <p>
+
+  <h2>
+    The Copyright
+  </h2>
+  <pre><code class="language-cpp">
+    /* SPDX-License-Identifier: LGPL-2.1-or-later */
+    /*
+    * Copyright (C) 2019, Google Inc.
+    *
+    * General-purpose counting semaphore
+    */
+  </code></pre>
+  <p>
+      The code I analyze is licensed under the LGPL-2.1-or-later license, and the copyright belongs to Google Inc.
+  </p>
+
+  <h2>
+    The Semaphore Class
+  </h2>
+  <p>
+    A semaphore's function is to:
+    <br>
+    1) Keep track of the <b>number of available resources</b>.
+    <br>
+    2) Allow consumers to <b>acquire</b> resources, and <b>block</b> if there are not enough resources available.
+    <br>
+    3) Allow producers to release resources, and <b>wake up any blocked consumers</b> if there are enough resources available for them to acquire.
+    <br>
+    <br>
+    To achieve these, the class will need a counting variable, a mutex for synchronizing access, and signal mechanism for signaling other blocked threads.
+  </p>
+
+  <pre><code class="language-cpp">
+    Semaphore::Semaphore(unsigned int n)
+    	: available_(n)
+    {
+    }
+  </code></pre>
+  <p>
+    This is an empty constructor with initialization list for the <b>shared resource count</b>.
+  </p>
+
+  <pre><code class="language-cpp">
+    /**
+     * \brief Retrieve the number of available resources
+     * \return The number of available resources
+     */
+    unsigned int Semaphore::available()
+    {
+    	MutexLocker locker(mutex_);
+    	return available_;
+    }
+  </code></pre>
+
+  <p>
+    The shared resource count is susceptible to race conditions, so it is locked for synchronization.
+    <br>
+    The lock <b>MutexLocker</b>leverages the RAII pattern to automatically acquire the lock when the locker is created, and release the lock when the locker goes out of scope.
+  </p>
+
+  <pre><code class="language-cpp">
+    /**
+     * \brief Acquire \a n resources
+     * \param[in] n The resource count
+     *
+     * This function attempts to acquire \a n resources. If \a n is higher than the
+     * number of available resources, the call will block until enough resources
+     * become available.
+     */
+    void Semaphore::acquire(unsigned int n)
+    {
+    	MutexLocker locker(mutex_);
+    	cv_.wait(locker, [&]() LIBCAMERA_TSA_REQUIRES(mutex_) {
+    		return available_ >= n;
+    	});
+    	available_ -= n;
+    }
+  </code></pre>
+  <p>
+    When a thread attempts to acquire resources, it waits on a conditional variable until the number of available resources is sufficient.
+    <br>
+    Here it makes use of a lambda function to define the condition for waiting.
+    <br> 
+    When the lambda function returns false, the thread will block and wait for a notification.
+    <br>
+    cv.wait...
+    <br>
+    Otherwise it takes these resources by substrating the resource count by n and returns immediately.
+    <br>
+    The operation is atomic with the lock held, so it is thread-safe.
+  </p>
+
+  <pre><code class="language-cpp">
+    /**
+     * \brief Try to acquire \a n resources without blocking
+     * \param[in] n The resource count
+     *
+     * This function attempts to acquire \a n resources. If \a n is higher than the
+     * number of available resources, it returns false immediately without
+     * acquiring any resource. Otherwise it acquires the resources and returns
+     * true.
+     *
+     * \return True if the resources have been acquired, false otherwise
+     */
+    bool Semaphore::tryAcquire(unsigned int n)
+    {
+    	MutexLocker locker(mutex_);
+    	if (available_ < n)
+    		return false;
+    
+    	available_ -= n;
+    	return true;
+    }
+  </code></pre>
+
+  <p>
+    Then there's the non-blocking version of acquire, which returns false immediately if there are not enough resources available, and returns true after acquiring the resources if there are enough resources available.
+    <br>
+    This has the advantages of:
+    1) Deadlock prevention. By allowing fallback paths in execution, the thread acquiring the resources can avoid getting into a deadlock by not blocking on the acquire call.
+    2) Predictive execution time. The thread execution time is bounded. In certain contexts such as interrupt handler where blocking is not allowed, this can be a useful alternative to the blocking acquire.
+    3) When the number of blocking threads is high, notify_all leads to context switch to all blocked threads to check wait condition. Therefore, the overhead lowers system performance.
+  </p>
+
+  <pre><code class="language-cpp">
+    /**
+     * \brief Release \a n resources
+     * \param[in] n The resource count
+     *
+     * This function releases \a n resources, increasing the available resource
+     * count by \a n. If the number of available resources becomes large enough for
+     * any consumer blocked on an acquire() call, those consumers get woken up.
+     */
+    void Semaphore::release(unsigned int n)
+    {
+    	MutexLocker locker(mutex_);
+    
+    	available_ += n;
+    	cv_.notify_all();
+    }
+  </code></pre>
+  <p>
+    The release method is a reverse process of acquire.
+  </p>
+
+  <h2>
+    From Performance Perspective - There's No Mitigation Against Priority Inversion
+  </h2>
+  <p>
+    The MutexLocker class is a light wait wrapper around std::mutex, and it does not implement priority inversion mitigation.
+    <br>
+    Similarly, the std::condition_variable also don't implement signaling based on priority.
+    <br>
+    <br>
+    In general, this is a fairly lightweight implementation of a counting semaphore, and it is sufficient for most use cases.
+    <br>
+    However, if a high-priority thread is waiting on the semaphore, and a low-priority thread holds the lock for the semaphore, the high-priority thread will be blocked until the low-priority thread releases the lock, which can lead to performance issues and even deadlocks in certain scenarios.
+    <br>
+  </p>
+
+</body>
